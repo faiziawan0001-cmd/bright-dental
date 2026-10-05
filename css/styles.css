@@ -1,3 +1,17 @@
+/* ===========================================================================
+   Bright Smiles Dental Clinic - Premium Edition
+   Designed & built by : Nexus Labs
+   Date                : 2026-10-05
+   Site                : Bright Smiles Dental Clinic, Lahore
+   --------------------------------------------------------------------------
+   (c) 2026-10-05 Nexus Labs. All rights reserved.
+   --------------------------------------------------------------------------
+   This stylesheet was delivered as part of a website build. It may not be
+   copied, redistributed, resold or reused for any other client or project
+   without written permission from the author.
+   --------------------------------------------------------------------------
+   Enquiries : faiziawan.0001@gmail.com
+   =========================================================================== */
 :root{--navy:#1E3A6E;--blue:#3B8FC9;--tint:#EAF3FA;--bg:#fff;--card:#fff;--txt:#5B6B7F;--line:#c4d8e9;--page:#e6f0f8;--fh:'Poppins','Plus Jakarta Sans',system-ui,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--navy:#d6e4ff;--tint:#12223b;--bg:#0b1526;--card:#15243b;--txt:#a3b4ca;--line:#27385a;--page:#070f1c}}
 :root[data-theme="dark"]{--navy:#d6e4ff;--tint:#12223b;--bg:#0b1526;--card:#15243b;--txt:#a3b4ca;--line:#27385a;--page:#070f1c}

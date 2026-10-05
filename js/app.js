@@ -1,3 +1,17 @@
+/* ===========================================================================
+   Bright Smiles Dental Clinic - Premium Edition
+   Designed & built by : Nexus Labs
+   Date                : 2026-10-05
+   Site                : Bright Smiles Dental Clinic, Lahore
+   --------------------------------------------------------------------------
+   (c) 2026-10-05 Nexus Labs. All rights reserved.
+   --------------------------------------------------------------------------
+   This script was delivered as part of a website build. It may not be
+   copied, redistributed, resold or reused for any other client or project
+   without written permission from the author.
+   --------------------------------------------------------------------------
+   Enquiries : faiziawan.0001@gmail.com
+   =========================================================================== */
 /* Bright Smiles Dental Clinic — shared behaviour for every page.
    Paste photo URLs or data: URIs into IMG below to replace the illustrated tiles. */
 const IMG={reception:"",rooms:"",steril:"",lounge:""};
