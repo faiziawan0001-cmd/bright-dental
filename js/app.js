@@ -80,8 +80,67 @@ if(esSel){
 const teeth=n=>`<svg viewBox="0 0 24 24"><use href="#t"/></svg>`.repeat(n);
 const ba=t=>`<div class="card"><div class="ba"><div class="b">${teeth(5)}<em style="left:10px">Before</em></div><div class="a">${teeth(5)}<em style="right:10px">After</em></div><i></i><input type="range" min="0" max="100" value="50" aria-label="Compare before and after"></div><h3 style="margin:14px 0 0">${t}</h3></div>`;
 const wk0=$("#wk0");if(wk0)wk0.innerHTML=ba("Teeth whitening");
-const wk=$("#wk");if(wk)wk.innerHTML=["Teeth whitening","Veneers","Aligners","Cosmetic bonding","Gum contouring","Full smile makeover"].map(ba).join("");
-document.addEventListener("input",e=>{if(e.target.closest(".ba")){const b=e.target.parentNode,v=e.target.value;b.querySelector(".a").style.clipPath=`inset(0 0 0 ${v}%)`;b.querySelector("i").style.left=v+"%"}});
+
+const WORK_DATA = [
+  { name: "Sarah's Wedding Smile", cat: "Veneers", desc: "Sarah wanted a brighter, more symmetrical smile for her wedding. Using 8 custom porcelain veneers, we achieved a natural, radiant look.", img: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=800&auto=format&fit=crop" },
+  { name: "Ahmed's Transformation", cat: "Aligners", desc: "Ahmed corrected severe crowding over 14 months with clear aligners, entirely discreetly without metal braces.", img: "https://images.unsplash.com/photo-1590611936760-eeb9bcab58dc?q=80&w=800&auto=format&fit=crop" },
+  { name: "Fatima's Restoration", cat: "Implants", desc: "A seamless replacement of a missing front tooth using a titanium implant and custom hand-layered ceramic crown.", img: "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800&auto=format&fit=crop" },
+  { name: "Omar's Refresh", cat: "Whitening", desc: "A dramatic 6-shade improvement in just one in-clinic session, completely rejuvenating his overall appearance.", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop" },
+  { name: "Aisha's Makeover", cat: "Makeover", desc: "A combination of gum contouring and cosmetic bonding to fix uneven edges and correct a gummy smile.", img: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?q=80&w=800&auto=format&fit=crop" },
+  { name: "Hassan's Repair", cat: "Veneers", desc: "Quick and minimally invasive repair of chipped front teeth using high-end, color-matched composite bonding.", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&auto=format&fit=crop" }
+];
+
+const storyCard = (s) => `
+<div class="story-card" data-cat="${s.cat}">
+  <div class="story-ba">
+    <img src="${s.img}" class="b-img" alt="Before" loading="lazy">
+    <img src="${s.img}" class="a-img" alt="After" loading="lazy">
+    <em style="left:16px">Before</em>
+    <em style="right:16px">After</em>
+    <i></i>
+    <input type="range" min="0" max="100" value="50" aria-label="Compare before and after">
+  </div>
+  <div class="story-content">
+    <span class="story-cat">${s.cat}</span>
+    <h3 class="story-title">${s.name}</h3>
+    <p class="story-desc">${s.desc}</p>
+    <a href="#" class="story-cta" onclick="bk.showModal(); return false;">Book similar treatment <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</div>
+`;
+
+const wk=$("#wk");
+const wkf=$("#wk-filters");
+if(wk && wkf) {
+  wk.innerHTML = WORK_DATA.map(storyCard).join("");
+  const cats = ["All", ...new Set(WORK_DATA.map(x => x.cat))];
+  wkf.innerHTML = cats.map((c,i) => `<button class="${i===0?'on':''}">${c}</button>`).join("");
+  wkf.onclick = (e) => {
+    if(e.target.tagName !== "BUTTON") return;
+    [...wkf.children].forEach(b => b.classList.remove("on"));
+    e.target.classList.add("on");
+    const c = e.target.textContent;
+    const cards = wk.querySelectorAll(".story-card");
+    cards.forEach(card => {
+      card.style.display = (c === "All" || card.dataset.cat === c) ? "block" : "none";
+    });
+  };
+} else if (wk) {
+  wk.innerHTML=["Teeth whitening","Veneers","Aligners","Cosmetic bonding","Gum contouring","Full smile makeover"].map(ba).join("");
+}
+
+document.addEventListener("input",e=>{
+  if(e.target.closest(".ba")){
+    const b=e.target.parentNode,v=e.target.value;
+    b.querySelector(".a").style.clipPath=`inset(0 0 0 ${v}%)`;
+    b.querySelector("i").style.left=v+"%";
+  }
+  if(e.target.closest(".story-ba")){
+    const b=e.target.parentNode,v=e.target.value;
+    b.querySelector(".a-img").style.clipPath=`inset(0 0 0 ${v}%)`;
+    b.querySelector("i").style.left=v+"%";
+  }
+});
 
 /* --- about: team --- */
 set("#tm",[["Dr. Ayesha Khan","Lead Dentist &amp; Founder","BDS, MSc · Implants · RCT · Smile restoration","fa-user-doctor"],["Dr. Omar Siddiqui","Orthodontist","Aligners, braces &amp; bite correction · MOrth","fa-tooth"],["Dr. Sara Malik","Paediatric Dentist","Child dentistry &amp; prevention · BDS, MDS","fa-child"],["Sana Yousaf","Dental Hygienist","Scaling, whitening &amp; gum care","fa-spa"]].map(a=>`<div class="tmc"><div class="tmi"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#t"/></svg></div><div class="tmb"><h3>${a[0]}</h3><div class="rl"><i class="fa-solid ${a[3]}"></i> ${a[1]}</div><p>${a[2]}</p></div></div>`).join(""));

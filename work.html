@@ -28,12 +28,65 @@
 <symbol id="t" viewBox="0 0 24 24"><path d="M12 3c-2 0-3 1-5 1S3 5 3 9c0 3 1 5 2 8 .5 2 1 4 2.5 4 1.7 0 1.5-4 4.5-4s2.8 4 4.5 4c1.5 0 2-2 2.5-4 1-3 2-5 2-8 0-4-2-5-4-5s-3-1-5-1z"/></symbol>
 <symbol id="s" viewBox="0 0 24 24"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12z"/></symbol></svg>
 <header><a class="logo" href="index.html"><svg><use href="#t"/></svg><span>Bright Smiles<br><small style="font-weight:400;color:var(--blue)">Dental Clinic</small></span></a>
-<nav id="nav"><a href="index.html">Home</a><a href="about.html">About Us</a><a href="services.html">Services</a><a href="work.html" class="on" aria-current="page">Work</a><a href="clinic.html">Clinic</a><a href="reviews.html">Testimonials</a></nav>
+<nav id="nav"><a href="index.html">Home</a><a href="about.html">About Us</a><a href="services.html">Services</a><a href="work.html" class="on" aria-current="page">Smile Gallery</a><a href="clinic.html">Clinic</a></nav>
 <div class="ha"><button class="btn hb" onclick="bk.showModal()">Book appointment</button><button id="th" aria-label="Toggle dark mode" style="all:unset;cursor:pointer;font-size:1.2rem">&#127769;</button><button id="mn" class="mn" aria-label="Menu" aria-expanded="false">&#9776;</button></div></header>
 <main><section class="pg">
-<div class="w ph"><div class="crumb"><a href="index.html">Home</a><span>&#8250;</span>Our Work</div><h1>Our Work Gallery</h1><p>See real transformations from our patients. Drag each slider to compare<br>before and after results.</p></div><div class="sec"><div class="w"><div class="sh"><h2>Smile transformations</h2></div><div class="grid" id="wk"></div></div></div>
+<div class="w ph"><div class="crumb"><a href="index.html">Home</a><span>&#8250;</span>Our Work</div><h1>Smile Stories</h1><p>More than just dental procedures—we create transformations that inspire confidence. Explore real results from our patients.</p></div>
+<div class="sec">
+<div class="w">
+<div id="wk-filters" class="tabs wk-filters"></div>
+<div class="wk-grid" id="wk"></div>
+</div>
+</div>
+<div class="sec">
+<div class="w">
+<div class="sh"><h2>Hear from our patients</h2><p>Real stories of confidence restored.</p></div>
+<div class="grid video-gallery">
+  <div class="card video-card" style="padding:0; overflow:hidden; position:relative; cursor:pointer;" onclick="bk.showModal()">
+    <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=600&auto=format&fit=crop" style="width:100%; height:240px; object-fit:cover; display:block;" alt="Patient video">
+    <div style="position:absolute; top:0; left:0; right:0; height:240px; background:rgba(0,0,0,0.3); display:grid; place-items:center;">
+       <i class="fa-solid fa-play" style="color:#fff; font-size:3rem; filter:drop-shadow(0 4px 12px rgba(0,0,0,0.5)); transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></i>
+    </div>
+    <div style="padding:22px;">
+      <h3 style="margin:0; font-size:1.1rem;">"They changed my life."</h3>
+      <p style="margin:4px 0 0; font-size:0.9rem; color:var(--subtle);">Sarah M. - Veneers Patient</p>
+    </div>
+  </div>
+  <div class="card video-card" style="padding:0; overflow:hidden; position:relative; cursor:pointer;" onclick="bk.showModal()">
+    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop" style="width:100%; height:240px; object-fit:cover; display:block;" alt="Patient video">
+    <div style="position:absolute; top:0; left:0; right:0; height:240px; background:rgba(0,0,0,0.3); display:grid; place-items:center;">
+       <i class="fa-solid fa-play" style="color:#fff; font-size:3rem; filter:drop-shadow(0 4px 12px rgba(0,0,0,0.5)); transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></i>
+    </div>
+    <div style="padding:22px;">
+      <h3 style="margin:0; font-size:1.1rem;">"Pain-free and perfect."</h3>
+      <p style="margin:4px 0 0; font-size:0.9rem; color:var(--subtle);">Omar K. - Implants Patient</p>
+    </div>
+  </div>
+  <div class="card video-card" style="padding:0; overflow:hidden; position:relative; cursor:pointer;" onclick="bk.showModal()">
+    <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?q=80&w=600&auto=format&fit=crop" style="width:100%; height:240px; object-fit:cover; display:block;" alt="Patient video">
+    <div style="position:absolute; top:0; left:0; right:0; height:240px; background:rgba(0,0,0,0.3); display:grid; place-items:center;">
+       <i class="fa-solid fa-play" style="color:#fff; font-size:3rem; filter:drop-shadow(0 4px 12px rgba(0,0,0,0.5)); transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></i>
+    </div>
+    <div style="padding:22px;">
+      <h3 style="margin:0; font-size:1.1rem;">"I smile in photos now."</h3>
+      <p style="margin:4px 0 0; font-size:0.9rem; color:var(--subtle);">Aisha F. - Aligners Patient</p>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<div class="sec tint"><div class="w"><div class="sh"><h2>Patient Experiences</h2><p><span class="star">★★★★★</span> 4.9 average from 1,200+ reviews</p></div>
+<div class="car"><div class="star" style="font-size:1.4rem">★★★★★</div><blockquote id="cq"></blockquote><p id="ca" style="font-weight:800;color:var(--blue)"></p><div class="dots" id="cd"></div></div>
+</div></div>
+<div class="sec"><div class="w"><div class="sh"><h2>More kind words</h2></div><div class="grid" id="rv"></div></div></div>
+<div class="sec tint">
+<div class="w consult-strip">
+<div><h2>Ready for your own transformation?</h2><p>Book a private consultation to discuss your smile goals with our expert cosmetic dentists.</p></div>
+<div class="consult-actions"><button class="btn" onclick="bk.showModal()">Book consultation</button><a href="tel:+920000000000" class="btn alt">Call clinic</a></div>
+</div>
+</div>
 </section></main>
-<footer><div class="w grid"><div><b style="color:var(--navy)">Bright Smiles Dental Clinic</b><br>Gentle dental care for the whole family.</div><div>Mon–Sat 9 am – 8 pm<br>Call: +92 000 0000000</div><div><a href="services.html" style="color:var(--blue)">Services</a> &middot; <a href="work.html" style="color:var(--blue)">Our work</a> &middot; <a href="reviews.html" style="color:var(--blue)">Reviews</a></div></div></footer>
+<footer><div class="w grid"><div><b style="color:var(--navy)">Bright Smiles Dental Clinic</b><br>Gentle dental care for the whole family.</div><div>Mon–Sat 9 am – 8 pm<br>Call: +92 000 0000000</div><div><a href="services.html" style="color:var(--blue)">Services</a> &middot; <a href="work.html" style="color:var(--blue)">Smile Gallery</a></div></div></footer>
 <div class="fl"><a class="btn alt" href="tel:+920000000000"><svg class="ci" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</a><button class="btn mb" onclick="bk.showModal()">Book now</button></div>
 <dialog id="sd"><div id="sb"></div><br><button class="btn" onclick="bk.showModal();sd.close()">Book this treatment</button> <button class="btn alt" onclick="sd.close()">Close</button></dialog>
 <dialog id="bk"><h2>Book an appointment</h2><div id="bf"><label for="n">Full name</label><input id="n" autocomplete="name"><div class="err" id="e1"></div><label for="p">Phone</label><input id="p" type="tel" autocomplete="tel"><div class="err" id="e2"></div><label for="s">Service</label><select id="s"></select><label for="d">Preferred date</label><input id="d" type="date"><div class="err" id="e3"></div><br><button class="btn" id="go">Request appointment</button> <button class="btn alt" onclick="bk.close()">Cancel</button></div>
