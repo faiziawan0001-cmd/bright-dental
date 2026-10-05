@@ -148,18 +148,22 @@ const pic=(k,t,g)=>`<div class="pic" style="--g:${IMG[k]?`url(${IMG[k]})`:g}"><s
 set("#gal",[pic("reception","Reception and lounge","linear-gradient(135deg,#a8d5f2,#3B8FC9)"),pic("rooms","Treatment rooms","linear-gradient(135deg,#7fb6e0,#1E3A6E)"),pic("steril","Sterilisation suite","linear-gradient(135deg,#cfe9fb,#5aa5d8)"),pic("lounge","Kids' corner","linear-gradient(135deg,#9ad0f0,#2c78b4)")].join(""));
 set("#tech",[["scan","Digital X-ray","Low radiation, instant results."],["tag","3D intraoral scanner","No messy impressions."],["zap","Laser dentistry","Gentler gum care, faster healing."]].map(a=>`<div class="card">${ic(a[0])}<h3>${a[1]}</h3><p>${a[2]}</p></div>`).join(""));
 
-/* --- reviews: grid + carousel --- */
+/* --- testimonials: single pausable, labelled carousel --- */
 
 const tc=$("#testimonials-carousel");
 if(tc){
+  const N=R.length;
+  tc.setAttribute('role','region');
+  tc.setAttribute('aria-roledescription','carousel');
+  tc.setAttribute('aria-label','Patient testimonials');
   const stars=`<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`.repeat(5);
   tc.innerHTML = R.map((r,i) => {
     const init = r[0].split(' ').map(n=>n[0]).join('');
-    return `<div class="testimonial-card ${i===0?'active':''}" data-idx="${i}">
-      <div class="testimonial__stars">${stars}</div>
+    return `<div class="testimonial-card ${i===0?'active':''}" data-idx="${i}" role="group" aria-roledescription="slide" aria-label="Testimonial ${i+1} of ${N}">
+      <div class="testimonial__stars" aria-hidden="true">${stars}</div>
       <blockquote class="testimonial__quote">"${r[1]}"</blockquote>
       <div class="testimonial__author">
-        <div class="testimonial__avatar">${init}</div>
+        <div class="testimonial__avatar" aria-hidden="true">${init}</div>
         <div class="testimonial__meta">
           <div class="testimonial__name">${r[0]}</div>
           <div class="testimonial__role">Verified Patient</div>
@@ -168,28 +172,58 @@ if(tc){
     </div>`;
   }).join("") + `
     <div class="testimonials__controls">
-      <button class="testimonials__ctrl-btn" id="t-prev"><i class="fa-solid fa-chevron-left"></i></button>
+      <button type="button" class="testimonials__ctrl-btn" id="t-prev" aria-label="Previous testimonial"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
       <div class="testimonials__dots">
-        ${R.map((_,i)=>`<button class="testimonials__dot ${i===0?'active':''}" data-dot="${i}"></button>`).join('')}
+        ${R.map((_,i)=>`<button type="button" class="testimonials__dot ${i===0?'active':''}" data-dot="${i}" aria-label="Show testimonial ${i+1} of ${N}"${i===0?' aria-current="true"':''}></button>`).join('')}
       </div>
-      <button class="testimonials__ctrl-btn" id="t-next"><i class="fa-solid fa-chevron-right"></i></button>
+      <button type="button" class="testimonials__ctrl-btn" id="t-next" aria-label="Next testimonial"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+      <button type="button" class="testimonials__ctrl-btn" id="t-toggle" aria-label="Pause automatic rotation"><i class="fa-solid fa-pause" aria-hidden="true"></i></button>
     </div>
+    <p class="sr-only" aria-live="polite"></p>
   `;
-  let ci=0, ct;
+  let ci=0, ct=null, userPaused=false, hovered=false, focused=false;
   const cards = tc.querySelectorAll('.testimonial-card');
   const dots = tc.querySelectorAll('.testimonials__dot');
-  const cs = (i) => {
-    if(i<0) i=R.length-1; if(i>=R.length) i=0; ci=i;
+  const toggle = tc.querySelector('#t-toggle');
+  const live = tc.querySelector('.sr-only');
+  const stop = () => { if(ct){ clearInterval(ct); ct=null; } };
+  const shouldRun = () => !userPaused && !hovered && !focused;
+  const start = () => { stop(); if(shouldRun()) ct = setInterval(()=>go(ci+1), 5500); };
+  const setPaused = (p) => {
+    userPaused = p;
+    toggle.setAttribute('aria-label', p ? 'Resume automatic rotation' : 'Pause automatic rotation');
+    toggle.querySelector('i').className = 'fa-solid fa-' + (p ? 'play' : 'pause');
+    start();
+  };
+  const go = (i) => {
+    if(i<0) i=N-1; if(i>=N) i=0; ci=i;
     cards.forEach((c,j) => c.classList.toggle('active', j===ci));
-    dots.forEach((d,j) => d.classList.toggle('active', j===ci));
+    dots.forEach((d,j) => {
+      d.classList.toggle('active', j===ci);
+      if(j===ci) d.setAttribute('aria-current','true'); else d.removeAttribute('aria-current');
+    });
+    live.textContent = 'Testimonial ' + (ci+1) + ' of ' + N;
+    start();
   };
-  tc.onclick = (e) => {
-    if(e.target.closest('#t-prev')) { cs(ci-1); clearInterval(ct); }
-    if(e.target.closest('#t-next')) { cs(ci+1); clearInterval(ct); }
+  tc.addEventListener('click', (e) => {
+    if(e.target.closest('#t-prev')) return go(ci-1);
+    if(e.target.closest('#t-next')) return go(ci+1);
+    if(e.target.closest('#t-toggle')) return setPaused(!userPaused);
     const dot = e.target.closest('.testimonials__dot');
-    if(dot) { cs(+dot.dataset.dot); clearInterval(ct); }
-  };
-  ct = setInterval(()=>cs(ci+1), 5500);
+    if(dot) go(+dot.dataset.dot);
+  });
+  tc.addEventListener('keydown', (e) => {
+    if(e.key==='ArrowLeft')  { e.preventDefault(); go(ci-1); }
+    if(e.key==='ArrowRight') { e.preventDefault(); go(ci+1); }
+  });
+  /* Don't rotate out from under someone who is reading, hovering or tabbing. */
+  tc.addEventListener('mouseenter', () => { hovered=true;  start(); });
+  tc.addEventListener('mouseleave', () => { hovered=false; start(); });
+  tc.addEventListener('focusin',   () => { focused=true;  start(); });
+  tc.addEventListener('focusout',  (e) => { if(!tc.contains(e.relatedTarget)){ focused=false; start(); } });
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) setPaused(true);
+  else start();
+  live.textContent = 'Testimonial 1 of ' + N;
 }
 
 /* --- animated counters (home stats) --- */

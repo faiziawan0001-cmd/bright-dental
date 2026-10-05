@@ -212,5 +212,13 @@ dialog#sd { border-radius:28px; padding:34px 34px 26px; box-shadow:0 40px 80px r
 }
 .testimonials__ctrl-btn:hover { background: var(--blue); color: #FFFFFF; border-color: var(--blue); }
 .testimonials__dots { display: flex; align-items: center; gap: 8px; }
-.testimonials__dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line); border: none; padding: 0; cursor: pointer; transition: all 200ms ease; }
+/* --line was only 1.3:1 against the card, so inactive dots were near invisible.
+   --subtle clears 3.65:1 light and 3.91:1 dark, which is what a clickable
+   target needs. */
+.testimonials__dot { position: relative; width: 10px; height: 10px; border-radius: 50%; background: var(--subtle); border: none; padding: 0; cursor: pointer; transition: all 200ms ease; }
+/* A 10px dot is far under the 24px minimum target size, so grow the clickable
+   area without making the dot itself look any bigger. */
+.testimonials__dot::before { content: ""; position: absolute; inset: -7px; border-radius: 50%; }
 .testimonials__dot.active { background: var(--blue); width: 28px; border-radius: 100px; }
+.testimonials__ctrl-btn:focus-visible, .testimonials__dot:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
