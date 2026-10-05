@@ -32,7 +32,22 @@ const S=[["Cleaning","General","Scale and polish to protect your gums.","30 min"
 
 const R=[["Hira A.","I was terrified of dentists. Dr. Ayesha made it painless and kind."],["Bilal R.","My aligners finished two months early and the results are perfect."],["Mariam S.","My kids actually ask to go back. That says everything."],["Usman T.","Clear pricing, no surprises, and a great implant result."],["Noor F.","Whitening in one hour. Friends keep asking what I changed."],["Zain K.","An emergency toothache fixed the same afternoon. Thank you."]];
 
-const card=(a,i)=>`<div class="card h" style="cursor:pointer" tabindex="0" role="button" data-i="${i}">${ic(a[5])}<h3>${a[0]}</h3><p>${a[2]}</p><p style="margin-top:8px;font-size:.85rem"><b>${a[1]}</b> · ${a[3]}</p></div>`;
+const SERV_IMG = {
+  "Cleaning": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.1.0",
+  "Whitening": "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0",
+  "Implants": "https://images.unsplash.com/photo-1613846721397-9fc07b1e6d9b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0",
+  "Braces and aligners": "https://images.unsplash.com/photo-1588776814546-daab30f310ce?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0",
+  "Root canal": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop&ixlib=rb-4.1.0",
+  "Veneers": "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0",
+  "Child check-ups": "https://images.unsplash.com/photo-1504439468489-c8920d796a29?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0",
+  "Fillings": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0"
+};
+const card=(a,i)=>{
+  const img = SERV_IMG[a[0]] || "";
+  const price = (a[4]*100).toLocaleString();
+  let media = img ? '<div class="svc-media"><img src="'+img+'" alt="'+a[0]+' at Bright Smiles Dental Clinic" loading="lazy"><span class="svc-tag">'+a[1]+'</span></div>' : '<div class="svc-media"><div class="svc-fallback">'+ic(a[5])+'</div><span class="svc-tag">'+a[1]+'</span></div>';
+  return '<div class="card svc h" style="cursor:pointer" tabindex="0" role="button" data-i="'+i+'">'+media+'<div class="svc-body"><h3>'+a[0]+'</h3><p>'+a[2]+'</p><div class="svc-meta"><span class="svc-price">From Rs '+price+'</span><span class="svc-link">View details <i class="fa-solid fa-arrow-right"></i></span></div></div></div>';
+};
 const rvCard=r=>`<div class="card"><div class="star">★★★★★</div><p>“${r[1]}”</p><p style="margin-top:8px"><b style="color:var(--navy)">${r[0]}</b></p></div>`;
 
 const open=e=>{const c=e.target.closest("[data-i]");if(!c)return;const a=S[c.dataset.i];set("#sb",`<h2>${a[0]}</h2><p>${a[2]}</p><p><b>Duration:</b> ${a[3]}</p><h3>Steps</h3><div class="tl">${a[6].map(x=>`<p>${x}</p>`).join("")}</div><details open><summary>${a[7][0]}</summary><p>${a[7][1]}</p></details>`);sd.showModal()};
