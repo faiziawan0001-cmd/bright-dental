@@ -175,37 +175,42 @@ dialog#sd { border-radius:28px; padding:34px 34px 26px; box-shadow:0 40px 80px r
 .wk-hero-title { font-family:var(--fh); font-size:clamp(3.2rem, 6vw, 4.8rem); font-weight:800; color:#fff; line-height:1.1; margin-bottom:24px; letter-spacing:-0.02em; }
 .wk-hero-desc { font-size:1.15rem; color:#d4e5f6; max-width:600px; margin:0 auto; line-height:1.7; }
 
-/* Copied Reference Testimonials Style EXACTLY */
-.testimonials-section { background: #FFFFFF; border-bottom: 1px solid #BAE6FD; padding: 64px 20px; position: relative; }
+/* Testimonials carousel. Layout follows the reference design; all colours are
+   site tokens so this section follows the theme, including dark mode. */
+.testimonials-section { background: var(--bg); border-bottom: 1px solid var(--line); padding: 64px 20px; position: relative; }
 .testimonials__wrapper { max-width: 800px; margin: 0 auto; text-align: center; position: relative; }
 .testimonial-card {
-  display: none; background: #F0F9FF; border: 1px solid #BAE6FD; border-radius: 16px;
+  display: none; background: var(--tint); border: 1px solid var(--line); border-radius: 16px;
   padding: 48px 32px; box-shadow: 0 4px 6px rgba(0,0,0,.10); transition: opacity 500ms ease;
 }
 .testimonial-card.active { display: block; opacity: 1; animation: fade-in 500ms ease; }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 .testimonial__stars { display: flex; justify-content: center; gap: 4px; color: #F59E0B; margin-bottom: 16px; }
 .testimonial__stars svg { width:20px; height:20px; }
+/* Open Sans is not on the page's font stack, so the quote would silently fall
+   back to a system face. Use the loaded body font instead. */
 .testimonial__quote {
-  font-family: 'Open Sans', sans-serif; font-size: clamp(1.05rem, 2.5vw, 1.25rem); font-style: italic;
-  line-height: 1.65; color: #0C4A6E; margin-bottom: 32px; position: relative; font-weight:400;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif; font-size: clamp(1.05rem, 2.5vw, 1.25rem); font-style: italic;
+  line-height: 1.65; color: var(--navy); margin-bottom: 32px; position: relative; font-weight:400;
 }
 .testimonial__author { display: flex; align-items: center; justify-content: center; gap: 16px; }
+/* Navy on card, not white on blue: white on --blue is only 2.8:1 and these
+   are text initials, so they need 4.5:1. This pairing passes in both themes. */
 .testimonial__avatar {
-  width: 48px; height: 48px; border-radius: 50%; background: #0EA5E9; color: #FFFFFF;
+  width: 48px; height: 48px; border-radius: 50%; background: var(--navy); color: var(--card);
   font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px;
   display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 2px rgba(0,0,0,.05);
 }
 .testimonial__meta { text-align: left; }
-.testimonial__name { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; color: #0C4A6E; margin: 0 0 4px 0; }
-.testimonial__role { font-family: 'Open Sans', sans-serif; font-size: 13px; color: #475569; margin: 0; }
+.testimonial__name { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; color: var(--navy); margin: 0 0 4px 0; }
+.testimonial__role { font-family: "Plus Jakarta Sans", system-ui, sans-serif; font-size: 13px; color: var(--txt); margin: 0; }
 .testimonials__controls { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 48px; }
 .testimonials__ctrl-btn {
-  width: 40px; height: 40px; border-radius: 50%; border: 1px solid #BAE6FD; background: #FFFFFF;
-  color: #0C4A6E; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--card);
+  color: var(--navy); cursor: pointer; display: flex; align-items: center; justify-content: center;
   transition: all 200ms ease; box-shadow: 0 1px 2px rgba(0,0,0,.05); padding:0;
 }
-.testimonials__ctrl-btn:hover { background: #0EA5E9; color: #FFFFFF; border-color: #0EA5E9; }
+.testimonials__ctrl-btn:hover { background: var(--blue); color: #FFFFFF; border-color: var(--blue); }
 .testimonials__dots { display: flex; align-items: center; gap: 8px; }
-.testimonials__dot { width: 10px; height: 10px; border-radius: 50%; background: #BAE6FD; border: none; padding: 0; cursor: pointer; transition: all 200ms ease; }
-.testimonials__dot.active { background: #0EA5E9; width: 28px; border-radius: 100px; }
+.testimonials__dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line); border: none; padding: 0; cursor: pointer; transition: all 200ms ease; }
+.testimonials__dot.active { background: var(--blue); width: 28px; border-radius: 100px; }
