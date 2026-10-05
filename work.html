@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bright Smiles Dental Clinic – Our Work</title>
+<meta name="description" content="Real smile transformations from Bright Smiles Dental Clinic, Lahore. Drag the sliders to compare before and after.">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/styles.css">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
+<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".6" stop-color="#eaf5fd"/><stop offset="1" stop-color="#a9d3f1"/></linearGradient></defs>
+<symbol id="t" viewBox="0 0 24 24"><path d="M12 3c-2 0-3 1-5 1S3 5 3 9c0 3 1 5 2 8 .5 2 1 4 2.5 4 1.7 0 1.5-4 4.5-4s2.8 4 4.5 4c1.5 0 2-2 2.5-4 1-3 2-5 2-8 0-4-2-5-4-5s-3-1-5-1z"/></symbol>
+<symbol id="s" viewBox="0 0 24 24"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12z"/></symbol></svg>
+<header><a class="logo" href="index.html"><svg><use href="#t"/></svg><span>Bright Smiles<br><small style="font-weight:400;color:var(--blue)">Dental Clinic</small></span></a>
+<nav id="nav"><a href="index.html">Home</a><a href="about.html">About Us</a><a href="services.html">Services</a><a href="work.html" class="on" aria-current="page">Our Work</a><a href="clinic.html">Clinic</a><a href="reviews.html">Testimonials</a></nav>
+<div class="ha"><button class="btn hb" onclick="bk.showModal()">Book appointment</button><button id="th" aria-label="Toggle dark mode" style="all:unset;cursor:pointer;font-size:1.2rem">&#127769;</button><button id="mn" class="mn" aria-label="Menu" aria-expanded="false">&#9776;</button></div></header>
+<main><section class="pg">
+<div class="w ph"><h1>Our work</h1><p>Drag each slider to compare before and after. Swap in your real case photos later.</p></div><div class="sec"><div class="w"><div class="sh"><h2>Smile transformations</h2></div><div class="grid" id="wk"></div></div></div>
+</section></main>
+<footer><div class="w grid"><div><b style="color:var(--navy)">Bright Smiles Dental Clinic</b><br>Gentle dental care for the whole family.</div><div>Mon–Sat 9 am – 8 pm<br>Call: +92 000 0000000</div><div><a href="services.html" style="color:var(--blue)">Services</a> &middot; <a href="work.html" style="color:var(--blue)">Our work</a> &middot; <a href="reviews.html" style="color:var(--blue)">Reviews</a></div></div></footer>
+<div class="fl"><a class="btn alt" href="tel:+920000000000"><svg class="ci" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</a><button class="btn mb" onclick="bk.showModal()">Book now</button></div>
+<dialog id="sd"><div id="sb"></div><br><button class="btn" onclick="bk.showModal();sd.close()">Book this treatment</button> <button class="btn alt" onclick="sd.close()">Close</button></dialog>
+<dialog id="bk"><h2>Book an appointment</h2><div id="bf"><label for="n">Full name</label><input id="n" autocomplete="name"><div class="err" id="e1"></div><label for="p">Phone</label><input id="p" type="tel" autocomplete="tel"><div class="err" id="e2"></div><label for="s">Service</label><select id="s"></select><label for="d">Preferred date</label><input id="d" type="date"><div class="err" id="e3"></div><br><button class="btn" id="go">Request appointment</button> <button class="btn alt" onclick="bk.close()">Cancel</button></div>
+<p id="ok" hidden><b style="color:var(--navy)">Request sent.</b> We will call you within a few hours to confirm.<br><br><button class="btn" onclick="bk.close()">Close</button></p></dialog>
+<script src="js/app.js" defer></script></body></html>

@@ -2,109 +2,20 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bright Smiles Dental Clinic – Premium Edition</title>
+<meta name="description" content="Gentle dental care for the whole family in Lahore. Book your appointment at Bright Smiles Dental Clinic.">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-:root{--navy:#1E3A6E;--blue:#3B8FC9;--tint:#EAF3FA;--bg:#fff;--card:#fff;--txt:#5B6B7F;--line:#c4d8e9;--page:#e6f0f8;--fh:'Poppins','Plus Jakarta Sans',system-ui,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--navy:#d6e4ff;--tint:#12223b;--bg:#0b1526;--card:#15243b;--txt:#a3b4ca;--line:#27385a;--page:#070f1c}}
-:root[data-theme="dark"]{--navy:#d6e4ff;--tint:#12223b;--bg:#0b1526;--card:#15243b;--txt:#a3b4ca;--line:#27385a;--page:#070f1c}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 "Plus Jakarta Sans",system-ui,Arial,sans-serif;overflow-x:clip}
-h1,h2,h3{color:var(--navy);line-height:1.12;margin:0 0 .5em}h1{font-size:clamp(2.4rem,6vw,4.2rem);font-weight:800;letter-spacing:-.02em}h2{font-size:clamp(1.7rem,3.5vw,2.5rem);font-weight:800}
-.w{max-width:1120px;margin:0 auto;padding:0 20px}
-header{position:fixed;top:0;left:0;right:0;z-index:9;margin:0;padding:14px max(20px,calc((100% - 1120px)/2));background:transparent;transition:background .3s,box-shadow .3s;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px}header.sc{background:color-mix(in srgb,var(--card) 92%,transparent);backdrop-filter:blur(14px);box-shadow:0 2px 16px rgba(30,58,110,.12)}header.mo{background:#0f2548}header:is(:not(.sc),.mo) :is(.logo,nav a,.tel,.mn){color:#fff}header:is(:not(.sc),.mo) .logo small{color:#9fd0f2!important}header:is(:not(.sc),.mo) nav a.on{color:#9fd0f2;border-color:#9fd0f2}header.mo nav a{border-bottom-color:#ffffff26}
-.logo{display:flex;align-items:center;gap:8px;color:var(--navy);font-weight:800;text-decoration:none;line-height:1.1}
-.ha{justify-self:end;display:flex;align-items:center;gap:12px}
-.logo svg{width:36px;height:36px;stroke:var(--blue);fill:none;stroke-width:1.5}
-nav{display:flex;gap:4px;flex-wrap:wrap}nav a{color:var(--navy);text-decoration:none;font-weight:600;font-size:.9rem;padding:6px 10px;border-bottom:2px solid transparent}nav a.on{border-color:var(--blue);color:var(--blue)}
-.btn{display:inline-block;border:0;cursor:pointer;font:700 .95rem "Plus Jakarta Sans",sans-serif;text-decoration:none;color:#fff;background:linear-gradient(135deg,#55aae6,#2c78b4);padding:14px 26px;border-radius:14px;box-shadow:0 8px 20px rgba(59,143,201,.38);transition:transform .2s,box-shadow .2s}
-.btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(59,143,201,.45)}.btn.alt{background:var(--card);color:var(--navy);box-shadow:0 4px 16px rgba(0,0,0,.1)}
-:is(a,button,input,select,summary):focus-visible{outline:3px solid var(--blue);outline-offset:2px}
-.pg{display:none;padding-bottom:40px;counter-reset:s}.pg.on{display:block}
-.hero{position:relative;display:grid;grid-template-columns:1.05fr 1fr;gap:30px;align-items:center;padding:64px 0 50px}
-.hero h1 span{color:var(--blue);display:block}.hero p{font-size:1.12rem;max-width:470px}
-.hero .in{animation:up .9s both}.hero .in:nth-child(2){animation-delay:.12s}.hero .in:nth-child(3){animation-delay:.24s}
-@keyframes up{from{opacity:0;transform:translateY(24px)}}
-.mesh{position:absolute;left:0;right:0;top:0;height:100%;z-index:-1;background:radial-gradient(500px 300px at 85% 30%,#bfe0f7aa,transparent),radial-gradient(400px 300px at 5% 10%,#dcebf8,transparent)}
-.vis{position:relative;aspect-ratio:1;border-radius:36px;background:linear-gradient(160deg,#f7fbff,#cfe6f7 60%,#8fc3ea);box-shadow:0 30px 70px rgba(30,58,110,.25);display:grid;place-items:center;overflow:visible}
-.vis>svg.big{width:56%;filter:drop-shadow(0 24px 24px rgba(30,80,140,.35));animation:fl 6s ease-in-out infinite}
-@keyframes fl{50%{transform:translateY(-12px) rotate(1.5deg)}}
-.ring{position:absolute;inset:8%;border:2px dashed #ffffffaa;border-radius:50%;animation:sp 40s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
-.sp{position:absolute;width:26px;fill:#fff;animation:tw 3s ease-in-out infinite}@keyframes tw{50%{opacity:.25;transform:scale(.6)}}
-.gl{position:absolute;background:color-mix(in srgb,var(--card) 78%,transparent);backdrop-filter:blur(10px);border:1px solid #ffffff88;border-radius:16px;padding:11px 16px;font-size:.82rem;box-shadow:0 12px 30px rgba(30,58,110,.2)}.gl b{display:block;color:var(--navy);font-size:1.2rem}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;text-align:center;margin:0 0 60px}
-.stats div{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 10px;box-shadow:0 10px 30px rgba(30,58,110,.08)}.stats b{font-size:2.1rem;color:var(--blue);display:block}
-.strip{background:linear-gradient(135deg,#1E3A6E,#3B8FC9);padding:46px 0}
-.strip .sg{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
-.strip .number{font-size:clamp(1.9rem,4vw,2.6rem);font-weight:700;color:#fff;line-height:1}
-.strip .label{color:#ffffffcc;font-weight:400;font-size:.88rem;margin-top:6px}
-@media(max-width:820px){.strip .sg{grid-template-columns:1fr 1fr}}@media(max-width:420px){.strip .sg{grid-template-columns:1fr}}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:20px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 10px 28px rgba(30,58,110,.07);transition:transform .25s,box-shadow .25s}
-.card.h:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(30,58,110,.16)}.card h3{font-size:1.15rem;margin-bottom:.3em}.card p{margin:0}
-.ic{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--tint),#bfe0f7);display:grid;place-items:center;margin-bottom:14px}.ic svg{width:26px;fill:none;stroke:var(--blue);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.sec{padding:72px 0;background:var(--bg)}.tint{background:var(--tint)}.band{background:linear-gradient(135deg,#1E3A6E,#3B8FC9)}.band h2{color:#fff}.hs{position:relative;display:flex;align-items:center;min-height:min(100vh,780px);padding:130px 0 80px;overflow:hidden;color:#fff;background:radial-gradient(700px 500px at 82% 20%,rgba(59,143,201,.55),transparent 70%),radial-gradient(600px 400px at 8% 100%,rgba(44,120,180,.35),transparent 70%),linear-gradient(115deg,#071428 0%,#0e2a57 55%,#17497f 100%)}.hs>.w{width:100%}.hs .hero{display:block;padding:0}.hs .hero>div:first-child{max-width:660px;position:relative;z-index:1}.hs h1{color:#fff;font-size:clamp(2.6rem,6.5vw,4.6rem)}.hs h1 span{color:#8fcdf5}.hs p{color:#d6e4f5}.hs .eb{display:inline-flex;align-items:center;gap:10px;color:#fff;font-size:.75rem;font-weight:700;letter-spacing:.1em;border:1px solid #ffffff73;border-radius:14px;padding:8px 18px;background:#ffffff14;backdrop-filter:blur(10px)}.hs .eb i{font-size:.82rem;color:#fff}.hs .btn.alt{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.35);box-shadow:none;backdrop-filter:blur(6px)}.hs .btn.alt:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.7)}.hs .hero-btns{display:flex;gap:12px;flex-wrap:wrap}.hs .hero-btns .btn{display:inline-flex;align-items:center;gap:8px;margin:0;padding:14px 30px;font-weight:600;white-space:nowrap;box-shadow:0 4px 20px rgba(59,143,201,.28);transition:transform .3s cubic-bezier(.4,0,.2,1),box-shadow .3s cubic-bezier(.4,0,.2,1),background .3s cubic-bezier(.4,0,.2,1),border-color .3s cubic-bezier(.4,0,.2,1)}.hs .hero-btns .btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(59,143,201,.4)}.hs .hero-btns .btn.alt:hover{box-shadow:0 8px 24px rgba(0,0,0,.18)}.wm{position:absolute;right:-3%;top:50%;transform:translateY(-50%);width:min(520px,46vw);fill:none;stroke:#fff;stroke-width:.12;opacity:.14;pointer-events:none}.mesh{display:none}.trust{display:flex;flex-wrap:wrap;gap:28px;align-items:center;margin-top:22px}.ti{display:flex;align-items:center;gap:9px;color:#ffffffe0;font-weight:500;font-size:.85rem;white-space:nowrap}.ts{width:16px;height:16px;flex:none;fill:none;stroke:#8fcdf5;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.eb{display:inline-block;color:var(--blue);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem;margin-bottom:14px}.two{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}.stack{display:grid;gap:18px}.tabs{justify-content:center}.tel{font-weight:700;color:var(--navy);text-decoration:none;font-size:.9rem}.top{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;background:#10264d;color:#cfe0f5;font-size:.8rem;padding:7px 14px}.sh{margin:0 auto 36px;max-width:640px;text-align:center}.sh h2{margin:0 0 8px}.sh p{margin:0}.hero .btn{margin:0 10px 10px 0}footer .grid{gap:28px}.mb{display:none}.mn{display:none;cursor:pointer;font-size:1.6rem;color:var(--navy);line-height:1;background:none;border:0;padding:0 4px}
-.pic{position:relative;min-height:210px;border-radius:22px;overflow:hidden;background:var(--g,linear-gradient(135deg,#8fc3ea,#1E3A6E));background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:18px;color:#fff;font-weight:800}
-.pic svg{position:absolute;right:-16px;top:-10px;width:130px;opacity:.18;fill:#fff}.pic span{position:relative;text-shadow:0 2px 12px #0006}
-.cta{color:#e8f2fb;text-align:center}.su{display:flex;gap:10px;max-width:460px;margin:22px auto 0;flex-wrap:wrap}.su input{flex:1;min-width:200px}.cta h2{color:#fff}
-.ph{max-width:none;margin:0;padding:130px 20px 64px;text-align:center;background:linear-gradient(105deg,#071428,#123a73 60%,#2c78b4)}.ph p{max-width:600px;color:#d4e5f6;margin:8px auto 0;font-size:16px}.ph h1{color:#fff;font-family:var(--fh);font-size:clamp(2rem,4vw,3rem);font-weight:700}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}.tabs button{border:1px solid var(--line);background:var(--card);color:var(--navy);border-radius:99px;padding:8px 18px;font:600 .88rem "Plus Jakarta Sans",sans-serif;cursor:pointer}.tabs button.on{background:var(--blue);color:#fff;border-color:var(--blue)}
-.ba{position:relative;height:210px;border-radius:18px;overflow:hidden;user-select:none;background:#dff0fb}
-.ba>div{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:0}.ba .a{clip-path:inset(0 0 0 50%);background:linear-gradient(160deg,#fff,#cfe9fb)}.ba .b{background:linear-gradient(160deg,#e9dfb8,#c9b36b)}
-.ba svg{width:15%;stroke:#0003;stroke-width:.4}.ba .b svg{fill:#d8c27a}.ba .a svg{fill:#fff}
-.ba em{position:absolute;top:10px;font:700 .75rem sans-serif;background:#0007;color:#fff;padding:3px 10px;border-radius:99px;font-style:normal}
-.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}.ba i{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;box-shadow:0 0 10px #0005;pointer-events:none}
-.car{position:relative;max-width:760px;margin:0 auto;text-align:center}.car blockquote{margin:0;font-size:clamp(1.1rem,2.4vw,1.5rem);color:var(--navy);font-weight:600;min-height:7.5em}
-.dots{display:flex;gap:8px;justify-content:center;margin-top:14px}.dots button{width:10px;height:10px;border-radius:50%;border:0;background:var(--line);cursor:pointer;padding:0}.dots .on{background:var(--blue);width:26px;border-radius:9px}
-.ava{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#8fc3ea,var(--navy));margin-bottom:12px;display:grid;place-items:center;color:#fff;font-weight:800}
-.pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--fh);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#fff;background:#ffffff1f;border:1px solid #ffffff4d;border-radius:14px;padding:6px 14px;margin-bottom:16px}
-.dr{display:grid;grid-template-columns:320px 1fr;gap:56px;align-items:start}
-.drc{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:36px 30px;text-align:center;box-shadow:0 10px 28px rgba(30,58,110,.07)}
-.drc .av{width:160px;height:160px;border-radius:50%;margin:0 auto 22px;border:4px solid var(--line);background:linear-gradient(135deg,var(--tint),#8fc3ea);display:grid;place-items:center}
-.drc .av svg{width:72px;height:72px;fill:none;stroke:var(--blue);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;opacity:.7}
-.drc h3{font-family:var(--fh);font-size:24px;font-weight:700;margin-bottom:4px}.drc .dg{font-size:14px;font-weight:600;color:var(--blue);margin-bottom:16px}
-.bdgs{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
-.bdg{font-size:12px;background:rgba(59,143,201,.08);color:var(--navy);border:1px solid var(--line);border-radius:100px;padding:4px 10px;display:inline-flex;align-items:center;gap:5px}
-.bdg i{color:var(--blue)}
-.drb h2{font-family:var(--fh);font-size:22px;font-weight:700;margin-bottom:16px}
-.ass{margin-top:24px}.ass h3{font-family:var(--fh);font-size:22px;font-weight:700;margin-bottom:16px}
-.assg{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.assg>div{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:.85rem;font-weight:500;color:var(--navy)}
-.assg i{color:var(--blue);width:18px;flex:none;text-align:center}
-.tmg{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.tmc{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;text-align:center;box-shadow:0 10px 28px rgba(30,58,110,.07);transition:transform .25s,box-shadow .25s}
-.tmc:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(30,58,110,.16)}
-.tmc .tmi{height:200px;background:linear-gradient(135deg,var(--tint),#8fc3ea);display:grid;place-items:center}
-.tmc .tmi svg{width:64px;height:64px;fill:none;stroke:var(--blue);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;opacity:.7}
-.tmc .tmb{padding:22px}.tmc .tmb h3{font-family:var(--fh);font-size:19px;font-weight:700;margin-bottom:4px}.tmc .tmb .rl{font-size:14px;font-weight:600;color:var(--blue);margin-bottom:8px}.tmc .tmb p{margin:0}
-#about .sh h2,#about .story h2{font-family:var(--fh);font-weight:700}
-.story{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-.tl2{position:relative;padding-left:34px}
-.tl2::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:var(--line)}
-.tli{position:relative;margin-bottom:26px}
-.tli::before{content:"";position:absolute;left:-29px;top:5px;width:14px;height:14px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 4px var(--tint)}
-.tli .yr{font-size:.78rem;font-weight:700;color:var(--blue);letter-spacing:.06em;margin-bottom:2px}
-.tli h4{margin-bottom:4px}.tli p{margin:0}
-@media(max-width:900px){.dr{grid-template-columns:1fr;gap:34px}.story{grid-template-columns:1fr}.tmg{grid-template-columns:1fr 1fr}.assg{grid-template-columns:1fr}}@media(max-width:520px){.tmg{grid-template-columns:1fr}}
-.star{color:#f5a623;letter-spacing:2px}.tl{border-left:3px solid var(--blue);padding-left:22px}.tl p{margin:0 0 14px}
-details{border-top:1px solid var(--line);padding:10px 0}summary{cursor:pointer;font-weight:600;color:var(--navy)}
-footer{background:var(--tint);padding:46px 0;font-size:.92rem}
-.fl{display:flex;gap:8px;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:8}
-dialog{border:0;border-radius:24px;padding:30px;width:min(480px,92vw);background:var(--card);color:var(--txt);max-height:88vh;overflow:auto}dialog::backdrop{background:rgba(8,16,30,.6);backdrop-filter:blur(3px)}
-label{display:block;font-weight:600;font-size:.85rem;margin:10px 0 4px;color:var(--navy)}input,select{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--navy);font:inherit}
-.err{color:#c0392b;font-size:.82rem;min-height:1em}.est{font-size:2rem;font-weight:800;color:var(--blue)}
-@media(max-width:820px){header{padding:10px 16px;gap:10px}.hb{display:none}.mn{display:block}.mb{display:block}nav{display:none;order:9;width:100%;flex-direction:column;gap:0}nav.open{display:flex}nav a{padding:13px 4px;border-bottom:1px solid var(--line);font-size:1rem}.hero{grid-template-columns:1fr;padding:36px 0 40px;gap:36px}.vis{max-width:400px;width:100%;margin:0 auto}.stats{grid-template-columns:1fr 1fr;margin-bottom:40px}.sec{padding:52px 0}.ph{padding-top:40px}.tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px}.tabs button{flex:none}.card{padding:22px}.ba{height:180px}footer{padding-bottom:90px}.cta{padding:40px 22px;border-radius:24px}}
-@media(max-width:520px){.g3{display:none}.gl{padding:8px 12px;font-size:.75rem}.gl b{font-size:1rem}.btn{padding:13px 20px}.hs .eb{font-size:.68rem;letter-spacing:.06em;padding:7px 14px;gap:7px}.hs .hero-btns .btn{padding:13px 22px;font-size:.88rem}.trust{flex-direction:column;align-items:flex-start;gap:12px}.ti{font-size:.8rem;white-space:normal}}
-@media(max-width:980px){header{display:flex;flex-wrap:wrap}.ha{margin-left:auto}.hb,.tel{display:none}.mn,.mb{display:block}nav{display:none;order:9;width:100%;flex-direction:column;gap:0}nav.open{display:flex}nav a{padding:13px 4px;border-bottom:1px solid var(--line);font-size:1rem}}@media(max-width:820px){.ph{padding:40px 20px}.hs{padding:36px 0 40px}.sec{padding:56px 0}.two{grid-template-columns:1fr;gap:28px}.top{display:none}}#svp,#wk,#rv{grid-template-columns:repeat(3,1fr)}@media(max-width:900px){#svp,#wk,#rv{grid-template-columns:1fr 1fr}}@media(max-width:820px){.hs{padding:108px 0 56px;min-height:0}.ph{padding:104px 20px 40px}.sec{padding:48px 0}.wm{opacity:.08;width:70vw}}@media(max-width:560px){#svp,#wk,#rv{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-.ci{width:18px;height:18px;vertical-align:-3px;margin-right:8px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}</style></head><body>
+<link rel="stylesheet" href="css/styles.css">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head><body>
 <svg width="0" height="0" style="position:absolute"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".6" stop-color="#eaf5fd"/><stop offset="1" stop-color="#a9d3f1"/></linearGradient></defs>
 <symbol id="t" viewBox="0 0 24 24"><path d="M12 3c-2 0-3 1-5 1S3 5 3 9c0 3 1 5 2 8 .5 2 1 4 2.5 4 1.7 0 1.5-4 4.5-4s2.8 4 4.5 4c1.5 0 2-2 2.5-4 1-3 2-5 2-8 0-4-2-5-4-5s-3-1-5-1z"/></symbol>
 <symbol id="s" viewBox="0 0 24 24"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12z"/></symbol></svg>
-<header><a class="logo" href="#home"><svg><use href="#t"/></svg><span>Bright Smiles<br><small style="font-weight:400;color:var(--blue)">Dental Clinic</small></span></a>
-<nav id="nav"><a href="#home">Home</a><a href="#about">About Us</a><a href="#services">Services</a><a href="#work">Our Work</a><a href="#clinic">Clinic</a><a href="#reviews">Testimonials</a></nav>
-<div class="ha"><button class="btn hb" onclick="bk.showModal()">Book appointment</button><button id="th" aria-label="Toggle dark mode" style="all:unset;cursor:pointer;font-size:1.2rem">🌓</button><button id="mn" class="mn" aria-label="Menu" aria-expanded="false">☰</button></div></header>
-<main>
-<section class="pg" id="home"><div class="sec hs"><div class="w"><div class="mesh"></div>
+<header><a class="logo" href="index.html"><svg><use href="#t"/></svg><span>Bright Smiles<br><small style="font-weight:400;color:var(--blue)">Dental Clinic</small></span></a>
+<nav id="nav"><a href="index.html" class="on" aria-current="page">Home</a><a href="about.html">About Us</a><a href="services.html">Services</a><a href="work.html">Our Work</a><a href="clinic.html">Clinic</a><a href="reviews.html">Testimonials</a></nav>
+<div class="ha"><button class="btn hb" onclick="bk.showModal()">Book appointment</button><button id="th" aria-label="Toggle dark mode" style="all:unset;cursor:pointer;font-size:1.2rem">&#127769;</button><button id="mn" class="mn" aria-label="Menu" aria-expanded="false">&#9776;</button></div></header>
+<main><section class="pg">
+<div class="sec hs"><div class="w"><div class="mesh"></div>
 <div class="hero"><div><div class="eb in"><i class="fa-solid fa-shield-halved"></i>TRUSTED FAMILY &amp; COSMETIC DENTISTRY – LAHORE, PK</div><h1 class="in">Healthy Smiles,<span>Confident You</span></h1><p class="in">We provide gentle, high-quality dental care for the whole family in a comfortable environment.</p>
 <div class="in hero-btns" style="margin-top:26px"><button class="btn" onclick="bk.showModal()"><i class="fa-solid fa-calendar-check"></i> Book appointment</button><a class="btn alt" href="tel:+920000000000"><i class="fa-solid fa-phone"></i> Call us now</a></div><div class="trust in"><div class="ti"><svg class="ts" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>ISO Certified Clinic</div><div class="ti"><svg class="ts" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-8-5-8-11a4.5 4.5 0 018-3 4.5 4.5 0 018 3c0 6-8 11-8 11z"/></svg>Painless Procedures</div><div class="ti"><svg class="ts" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>DHA Phase 6, Lahore</div></div></div>
 <svg class="wm" viewBox="0 0 24 24" aria-hidden="true"><use href="#t"/></svg></div>
@@ -117,95 +28,11 @@ label{display:block;font-weight:600;font-size:.85rem;margin:10px 0 4px;color:var
 </div></div></div><div class="sec tint"><div class="w"><div class="sh"><h2>Care for every smile</h2><p>Tap a treatment to see how it works.</p></div><div class="grid" id="svp"></div></div></div>
 <div class="sec"><div class="w"><div class="sh"><h2>Why families choose us</h2><p>Dental care that feels different from the moment you walk in.</p></div><div class="grid" id="why"></div></div></div><div class="sec tint"><div class="w"><div class="sh"><h2>See the difference</h2><p>Drag the slider to compare a smile before and after whitening.</p></div>
 <div class="grid" id="wk0" style="max-width:520px;margin:0 auto"></div></div></div><div class="sec"><div class="w"><div class="sh"><h2>What our patients say</h2><p>Real experiences from the families we care for.</p></div><div class="grid" id="hr"></div></div></div><div class="sec band"><div class="w">
-<div class="cta"><div class="eb" style="color:#bfe0f7">Exclusive new patient offer</div><h2>Ready for your best smile?</h2><p>Book a check-up in under a minute, or sign up for new-patient offers.</p><button class="btn alt" onclick="bk.showModal()">Book appointment</button><form class="su" onsubmit="this.innerHTML='<b>Thanks! We will be in touch.</b>';return false"><input type="email" required placeholder="Your email" aria-label="Email address"><button class="btn alt">Claim offer</button></form></div></div></div></section>
-
-<section class="pg" id="about"><div class="w ph"><div class="pill"><i class="fa-solid fa-shield-halved"></i>FAMILY &amp; COSMETIC DENTISTRY – LAHORE, PK</div><h1>Meet Our Doctor &amp; Team</h1><p style="max-width:640px">Over 10 years of gentle, thorough and compassionate dental care for your whole family.</p></div>
-<div class="sec"><div class="w"><div class="dr">
-<div class="drc"><div class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#t"/></svg></div><h3>Dr. Ayesha Khan</h3><div class="dg">BDS, MSc — Cosmetic &amp; Restorative Dentistry</div>
-<div class="bdgs"><span class="bdg"><i class="fa-solid fa-graduation-cap"></i> BDS Graduate</span><span class="bdg"><i class="fa-solid fa-clock"></i> 10+ Yrs Exp</span><span class="bdg"><i class="fa-solid fa-id-card"></i> PMDC Registered</span><span class="bdg"><i class="fa-solid fa-language"></i> Urdu &amp; English</span><span class="bdg"><i class="fa-solid fa-star"></i> 5.0★ Google Rated</span></div></div>
-<div class="drb"><h2>About Dr. Ayesha Khan</h2>
-<p>Dr. Khan has over 10 years of clinical experience and is committed to providing the absolute best in quality, thorough and gentle dental care for every patient. She treats her patients like family and is especially skilled in working with children, nervous patients and complex procedures.</p>
-<p>She completed her Bachelor of Dental Surgery with high honours, followed by an MSc in restorative and cosmetic dentistry. Since then she has pursued advanced training in dental implants, endodontics (painless root canal treatment) and full smile makeovers — taking pride in treating thousands of patients with care and precision.</p>
-<div class="ass"><h3>Professional Associations &amp; Advanced Training</h3><div class="assg">
-<div><i class="fa-solid fa-certificate"></i><span>PMDC Registered Dental Surgeon</span></div>
-<div><i class="fa-solid fa-tooth"></i><span>Advanced Endodontic Specialist (RCT)</span></div>
-<div><i class="fa-solid fa-award"></i><span>Member of Pakistan Dental Association</span></div>
-<div><i class="fa-solid fa-sparkles"></i><span>Certified Implantologist &amp; Smile Designer</span></div>
-</div></div></div></div></div></div>
-<div class="sec tint"><div class="w"><div class="sh"><h2>The People Behind Your Smile</h2><p>A dedicated team of professionals working together to deliver exceptional dental experiences.</p></div><div class="tmg" id="tm"></div></div></div>
-<div class="sec"><div class="w"><div class="story">
-<div><h2>Where It All Began</h2>
-<p>Bright Smiles was founded with a single mission: to make high-quality dental care accessible, comfortable and genuinely painless for families in Lahore. Born from Dr. Khan's passion for transforming smiles and her dedication to patient welfare, the clinic was designed to feel welcoming from the ground up.</p>
-<p style="margin-top:14px">Our rooms are bright and quiet, with state-of-the-art equipment, rigorous sterilisation standards and a team trained in modern dentistry — so you always feel respected, informed and completely at ease.</p>
-<p style="margin-top:14px">Today, with a 5.0-star Google rating and thousands of patients treated, Bright Smiles stands among the city's most trusted dental practices. We remain as devoted as ever to every patient who walks through our door.</p></div>
-<div class="tl2">
-<div class="tli"><div class="yr">2011 · FOUNDED</div><h4>Clinic opens</h4><p>Bright Smiles opens in DHA Phase 6 with two chairs and a vision of painless, patient-centred dental care.</p></div>
-<div class="tli"><div class="yr">2016 · EXPANSION</div><h4>New technology added</h4><p>Digital X-ray and 3D intraoral scanning introduced — instant results and no messy impressions.</p></div>
-<div class="tli"><div class="yr">2021 · GROWTH</div><h4>Specialist services launch</h4><p>Orthodontics, clear aligners and an implant centre expand treatment under one roof.</p></div>
-<div class="tli"><div class="yr">TODAY · EXCELLENCE</div><h4>5.0★ Google rating</h4><p>Over 5,000 patients treated and counting, with same-week appointments available every day.</p></div>
-</div></div></div></div></section>
-
-<section class="pg" id="services"><div class="w ph"><h1>Services</h1><p>Filter by type, then open any treatment for steps and FAQs.</p></div><div class="sec"><div class="w"><div class="sh"><h2>Our treatments</h2></div><div class="tabs" id="tb"></div><div class="grid" id="sv"></div>
-</div></div><div class="sec tint"><div class="w"><div class="sh"><h2>Plan your budget</h2><p>Get a quick idea of the cost before you visit.</p></div><div class="card" style="max-width:560px;margin:0 auto"><h3>Smile cost estimator <small style="font-weight:400">(sample prices)</small></h3><label for="es">Treatment</label><select id="es"></select><label for="eq">Teeth / units: <b id="ev">1</b></label><input id="eq" type="range" min="1" max="10" value="1"><p class="est" id="eo"></p></div></div></div></section>
-
-<section class="pg" id="work"><div class="w ph"><h1>Our work</h1><p>Drag each slider to compare before and after. Swap in your real case photos later.</p></div><div class="sec"><div class="w"><div class="sh"><h2>Smile transformations</h2></div><div class="grid" id="wk"></div></div></div></section>
-
-<section class="pg" id="clinic"><div class="w ph"><h1>Our Clinic &amp; Location</h1><p>Bright, quiet rooms with the technology to treat you accurately.</p></div><div class="sec"><div class="w"><div class="sh"><h2>Take a look inside</h2></div><div class="grid" id="gal"></div></div></div>
-<div class="sec tint"><div class="w"><div class="sh"><h2>Technology</h2></div><div class="grid" id="tech"></div></div></div>
-<div class="sec"><div class="w"><div class="sh"><h2>Plan your visit</h2></div><div class="card"><h3>Visit us</h3><p>Open Mon–Sat, 9:00 am – 8:00 pm. Sunday: emergencies only.<br>Add your address and map link here.</p></div></div></div></section>
-
-<section class="pg" id="reviews"><div class="w ph"><h1>Patient stories</h1><p><span class="star">★★★★★</span> 4.9 average from 1,200+ reviews</p></div><div class="sec"><div class="w"><div class="sh"><h2>What patients say</h2></div>
-<div class="car"><div class="star" style="font-size:1.4rem">★★★★★</div><blockquote id="cq"></blockquote><p id="ca" style="font-weight:800;color:var(--blue)"></p><div class="dots" id="cd"></div></div>
-</div></div><div class="sec tint"><div class="w"><div class="sh"><h2>More kind words</h2></div><div class="grid" id="rv"></div></div></div></section>
-</main>
-<footer><div class="w grid"><div><b style="color:var(--navy)">Bright Smiles Dental Clinic</b><br>Gentle dental care for the whole family.</div><div>Mon–Sat 9 am – 8 pm<br>Call: +92 000 0000000</div><div><a href="#services" style="color:var(--blue)">Services</a> · <a href="#work" style="color:var(--blue)">Our work</a> · <a href="#reviews" style="color:var(--blue)">Reviews</a></div></div></footer>
+<div class="cta"><div class="eb" style="color:#bfe0f7">Exclusive new patient offer</div><h2>Ready for your best smile?</h2><p>Book a check-up in under a minute, or sign up for new-patient offers.</p><button class="btn alt" onclick="bk.showModal()">Book appointment</button><form class="su" onsubmit="this.innerHTML='<b>Thanks! We will be in touch.</b>';return false"><input type="email" required placeholder="Your email" aria-label="Email address"><button class="btn alt">Claim offer</button></form></div></div></div>
+</section></main>
+<footer><div class="w grid"><div><b style="color:var(--navy)">Bright Smiles Dental Clinic</b><br>Gentle dental care for the whole family.</div><div>Mon–Sat 9 am – 8 pm<br>Call: +92 000 0000000</div><div><a href="services.html" style="color:var(--blue)">Services</a> &middot; <a href="work.html" style="color:var(--blue)">Our work</a> &middot; <a href="reviews.html" style="color:var(--blue)">Reviews</a></div></div></footer>
 <div class="fl"><a class="btn alt" href="tel:+920000000000"><svg class="ci" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</a><button class="btn mb" onclick="bk.showModal()">Book now</button></div>
 <dialog id="sd"><div id="sb"></div><br><button class="btn" onclick="bk.showModal();sd.close()">Book this treatment</button> <button class="btn alt" onclick="sd.close()">Close</button></dialog>
 <dialog id="bk"><h2>Book an appointment</h2><div id="bf"><label for="n">Full name</label><input id="n" autocomplete="name"><div class="err" id="e1"></div><label for="p">Phone</label><input id="p" type="tel" autocomplete="tel"><div class="err" id="e2"></div><label for="s">Service</label><select id="s"></select><label for="d">Preferred date</label><input id="d" type="date"><div class="err" id="e3"></div><br><button class="btn" id="go">Request appointment</button> <button class="btn alt" onclick="bk.close()">Cancel</button></div>
 <p id="ok" hidden><b style="color:var(--navy)">Request sent.</b> We will call you within a few hours to confirm.<br><br><button class="btn" onclick="bk.close()">Close</button></p></dialog>
-<script>
-/* Paste photo URLs or data: URIs here to replace the illustrated tiles */
-const IMG={reception:"",rooms:"",steril:"",lounge:""};
-const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
-const P={sparkle:"M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2 2M16 16l2 2M18 6l-2 2M8 16l-2 2",shield:"M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z M9 12l2 2 4-4",heart:"M12 21s-8-5-8-11a4.5 4.5 0 018-3 4.5 4.5 0 018 3c0 6-8 11-8 11z",clock:"M12 7v5l3 2M12 3a9 9 0 100 18 9 9 0 000-18z",tag:"M3 12V4h8l10 10-8 8zM7.5 7.5h.01",user:"M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c0-4 4-6 8-6s8 2 8 6",scan:"M4 8V5a1 1 0 011-1h3M16 4h3a1 1 0 011 1v3M20 16v3a1 1 0 01-1 1h-3M8 20H5a1 1 0 01-1-1v-3M8 12h8",zap:"M13 2L4 14h7l-1 8 9-12h-7z"};
-const ic=k=>`<div class="ic"><svg viewBox="0 0 24 24"><path d="${P[k]}"/></svg></div>`;
-const S=[["Cleaning","General","Scale and polish to protect your gums.","30 min",15,"sparkle",["Exam and X-ray","Ultrasonic scaling","Polish and fluoride"],["How often?","Every six months for most people."]],
-["Whitening","Cosmetic","Up to 8 shades brighter in one visit.","60 min",60,"zap",["Gum protection","Gel and LED light","Aftercare kit"],["Is it sensitive?","Mild, short-lived sensitivity is common."]],
-["Implants","Restorative","A permanent replacement for missing teeth.","2+ visits",450,"shield",["3D scan and plan","Titanium post placed","Crown fitted after healing"],["How long do they last?","With good care, decades."]],
-["Braces and aligners","Orthodontics","Straighter teeth, in metal or clear.","6–18 months",90,"scan",["Digital scan","Custom plan preview","Check-ups every 6 weeks"],["Are aligners invisible?","Nearly. Most people will not notice them."]],
-["Root canal","Restorative","Relieve pain and save the natural tooth.","60–90 min",120,"heart",["Numb the area","Clean the canal","Seal and crown"],["Does it hurt?","No more than a filling, with modern anaesthesia."]],
-["Veneers","Cosmetic","Thin porcelain shells for a flawless smile.","2 visits",200,"sparkle",["Smile design","Minimal prep","Bond the veneers"],["Can I choose the shade?","Yes, you approve a preview first."]],
-["Child check-ups","Pediatric","Friendly first visits, sealants and fluoride.","30 min",12,"user",["Meet and play","Gentle exam","Tips for parents"],["First visit age?","Around the first birthday."]],
-["Fillings","General","Tooth-coloured, natural-looking repairs.","45 min",25,"tag",["Numb","Remove decay","Shape and polish"],["Are they safe?","Yes, mercury-free composite is used."]]];
-const R=[["Hira A.","I was terrified of dentists. Dr. Ayesha made it painless and kind."],["Bilal R.","My aligners finished two months early and the results are perfect."],["Mariam S.","My kids actually ask to go back. That says everything."],["Usman T.","Clear pricing, no surprises, and a great implant result."],["Noor F.","Whitening in one hour. Friends keep asking what I changed."],["Zain K.","An emergency toothache fixed the same afternoon. Thank you."]];
-const card=(a,i)=>`<div class="card h" style="cursor:pointer" tabindex="0" role="button" data-i="${i}">${ic(a[5])}<h3>${a[0]}</h3><p>${a[2]}</p><p style="margin-top:8px;font-size:.85rem"><b>${a[1]}</b> · ${a[3]}</p></div>`;
-const open=e=>{const c=e.target.closest("[data-i]");if(!c)return;const a=S[c.dataset.i];$("#sb").innerHTML=`<h2>${a[0]}</h2><p>${a[2]}</p><p><b>Duration:</b> ${a[3]}</p><h3>Steps</h3><div class="tl">${a[6].map(x=>`<p>${x}</p>`).join("")}</div><details open><summary>${a[7][0]}</summary><p>${a[7][1]}</p></details>`;sd.showModal()};
-$("#svp").innerHTML=S.slice(0,6).map(card).join("");$("#svp").onclick=$("#sv").onclick=open;
-const cats=["All",...new Set(S.map(x=>x[1]))];$("#tb").innerHTML=cats.map((c,i)=>`<button class="${i?"":"on"}">${c}</button>`).join("");
-const show=c=>$("#sv").innerHTML=S.map((a,i)=>[a,i]).filter(([a])=>c=="All"||a[1]==c).map(([a,i])=>card(a,i)).join("");show("All");
-$("#tb").onclick=e=>{if(e.target.tagName!="BUTTON")return;$$("#tb button").forEach(b=>b.classList.remove("on"));e.target.classList.add("on");show(e.target.textContent)};
-$("#why").innerHTML=[["heart","Gentle, pain-free care","Modern anaesthesia and a calm approach."],["tag","Clear pricing","See the full cost before treatment."],["clock","Same-week visits","Urgent slots open every day."],["shield","Strict sterilisation","Hospital-grade protocols throughout."]].map(a=>`<div class="card">${ic(a[0])}<h3>${a[1]}</h3><p>${a[2]}</p></div>`).join("");
-const teeth=n=>`<svg viewBox="0 0 24 24"><use href="#t"/></svg>`.repeat(n);
-const ba=t=>`<div class="card"><div class="ba"><div class="b">${teeth(5)}<em style="left:10px">Before</em></div><div class="a">${teeth(5)}<em style="right:10px">After</em></div><i></i><input type="range" min="0" max="100" value="50" aria-label="Compare before and after"></div><h3 style="margin:14px 0 0">${t}</h3></div>`;
-$("#wk0").innerHTML=ba("Teeth whitening");$("#wk").innerHTML=["Teeth whitening","Veneers","Aligners","Cosmetic bonding","Gum contouring","Full smile makeover"].map(ba).join("");
-document.addEventListener("input",e=>{if(e.target.closest(".ba")){const b=e.target.parentNode,v=e.target.value;b.querySelector(".a").style.clipPath=`inset(0 0 0 ${v}%)`;b.querySelector("i").style.left=v+"%"}});
-$("#tm").innerHTML=[["Dr. Ayesha Khan","Lead Dentist &amp; Founder","BDS, MSc · Implants · RCT · Smile restoration","fa-user-doctor"],["Dr. Omar Siddiqui","Orthodontist","Aligners, braces &amp; bite correction · MOrth","fa-tooth"],["Dr. Sara Malik","Paediatric Dentist","Child dentistry &amp; prevention · BDS, MDS","fa-child"],["Sana Yousaf","Dental Hygienist","Scaling, whitening &amp; gum care","fa-spa"]].map(a=>`<div class="tmc"><div class="tmi"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#t"/></svg></div><div class="tmb"><h3>${a[0]}</h3><div class="rl"><i class="fa-solid ${a[3]}"></i> ${a[1]}</div><p>${a[2]}</p></div></div>`).join("");
-const pic=(k,t,g)=>`<div class="pic" style="--g:${IMG[k]?`url(${IMG[k]})`:g}"><svg viewBox="0 0 24 24"><use href="#t"/></svg><span>${t}</span></div>`;
-$("#gal").innerHTML=[pic("reception","Reception and lounge","linear-gradient(135deg,#a8d5f2,#3B8FC9)"),pic("rooms","Treatment rooms","linear-gradient(135deg,#7fb6e0,#1E3A6E)"),pic("steril","Sterilisation suite","linear-gradient(135deg,#cfe9fb,#5aa5d8)"),pic("lounge","Kids' corner","linear-gradient(135deg,#9ad0f0,#2c78b4)")].join("");
-$("#tech").innerHTML=[["scan","Digital X-ray","Low radiation, instant results."],["tag","3D intraoral scanner","No messy impressions."],["zap","Laser dentistry","Gentler gum care, faster healing."]].map(a=>`<div class="card">${ic(a[0])}<h3>${a[1]}</h3><p>${a[2]}</p></div>`).join("");
-$("#rv").innerHTML=R.map(r=>`<div class="card"><div class="star">★★★★★</div><p>“${r[1]}”</p><p style="margin-top:8px"><b style="color:var(--navy)">${r[0]}</b></p></div>`).join("");
-let ci=0,ct;const cs=i=>{ci=i;$("#cq").textContent="“"+R[i][1]+"”";$("#ca").textContent=R[i][0];$("#cd").innerHTML=R.map((_,j)=>`<button class="${j==i?"on":""}" aria-label="Review ${j+1}" data-j="${j}"></button>`).join("")};cs(0);
-$("#cd").onclick=e=>{if(e.target.dataset.j){cs(+e.target.dataset.j);clearInterval(ct)}};ct=setInterval(()=>cs((ci+1)%R.length),5500);
-$("#es").innerHTML=S.map((x,i)=>`<option value="${i}">${x[0]}</option>`).join("");$("#s").innerHTML=S.map(x=>`<option>${x[0]}</option>`).join("");
-const est=()=>{const a=S[$("#es").value],q=+$("#eq").value;$("#ev").textContent=q;$("#eo").textContent="Rs "+(a[4]*q*100).toLocaleString()+" – Rs "+(a[4]*q*140).toLocaleString()};$("#es").onchange=$("#eq").oninput=est;est();
-const cnt=el=>{const n=parseFloat(el.dataset.count),sfx=el.dataset.suffix||"",dec=+(el.dataset.decimals||0),t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/1600),v=n*(1-Math.pow(1-p,3));el.textContent=(dec?v.toFixed(dec):Math.round(v).toLocaleString())+sfx;if(p<1)requestAnimationFrame(f)})(t0)};
-const cObs=$$("[data-count]").length&&"IntersectionObserver" in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){cnt(e.target);cObs.unobserve(e.target)}}),{threshold:.5}):null;
-$$("[data-count]").forEach(el=>cObs?cObs.observe(el):cnt(el));
-function route(){const h=(location.hash||"#home").slice(1),id=document.getElementById(h)?h:"home";$$(".pg").forEach(p=>p.classList.toggle("on",p.id==id));$$("#nav a").forEach(a=>a.classList.toggle("on",a.hash=="#"+id));scrollTo(0,0);$("#nav").classList.remove("open");$("#mn").setAttribute("aria-expanded","false")}
-addEventListener("hashchange",route);route();
-$("#mn").onclick=()=>{const o=$("#nav").classList.toggle("open");$("header").classList.toggle("mo",o);$("#mn").setAttribute("aria-expanded",o)};$("#nav").onclick=()=>{$("#nav").classList.remove("open");$("header").classList.remove("mo")};addEventListener("scroll",()=>$("header").classList.toggle("sc",scrollY>24),{passive:true});
-$("#hr").innerHTML=[...$("#rv").children].slice(0,3).map(c=>c.outerHTML).join("");
-const ok=p=>/^[+\d\s-]{7,}$/.test(p);
-$("#go").onclick=()=>{const n=$("#n").value.trim(),p=$("#p").value.trim(),d=$("#d").value;$("#e1").textContent=n?"":"Enter your name.";$("#e2").textContent=ok(p)?"":"Enter a valid phone number.";$("#e3").textContent=d?"":"Choose a date.";if(n&&ok(p)&&d){$("#bf").hidden=true;$("#ok").hidden=false}};
-$("#th").onclick=()=>{const r=document.documentElement;r.dataset.theme=getComputedStyle(r).getPropertyValue("--bg").trim()=="#0b1526"?"light":"dark"};
-</script></body></html>
+<script src="js/app.js" defer></script></body></html>
