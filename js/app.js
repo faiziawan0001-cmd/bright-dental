@@ -48,7 +48,6 @@ const card=(a,i)=>{
   let media = img ? '<div class="svc-media"><img src="'+img+'" alt="'+a[0]+' at Bright Smiles Dental Clinic" loading="lazy"><span class="svc-tag">'+a[1]+'</span></div>' : '<div class="svc-media"><div class="svc-fallback">'+ic(a[5])+'</div><span class="svc-tag">'+a[1]+'</span></div>';
   return '<div class="card svc h" style="cursor:pointer" tabindex="0" role="button" data-i="'+i+'">'+media+'<div class="svc-body"><h3>'+a[0]+'</h3><p>'+a[2]+'</p><div class="svc-meta"><span class="svc-price">From Rs '+price+'</span><span class="svc-link">View details <i class="fa-solid fa-arrow-right"></i></span></div></div></div>';
 };
-const rvCard=r=>`<div class="card"><div class="star">★★★★★</div><p>“${r[1]}”</p><p style="margin-top:8px"><b style="color:var(--navy)">${r[0]}</b></p></div>`;
 
 const open=e=>{const c=e.target.closest("[data-i]");if(!c)return;const a=S[c.dataset.i];set("#sb",`<h2>${a[0]}</h2><p>${a[2]}</p><p><b>Duration:</b> ${a[3]}</p><h3>Steps</h3><div class="tl">${a[6].map(x=>`<p>${x}</p>`).join("")}</div><details open><summary>${a[7][0]}</summary><p>${a[7][1]}</p></details>`);sd.showModal()};
 
@@ -56,7 +55,6 @@ const open=e=>{const c=e.target.closest("[data-i]");if(!c)return;const a=S[c.dat
 set("#svp",S.slice(0,6).map(card).join(""));
 const svp=$("#svp");if(svp)svp.onclick=open;
 set("#why",[["heart","Gentle, pain-free care","Modern anaesthesia and a calm approach."],["tag","Clear pricing","See the full cost before treatment."],["clock","Same-week visits","Urgent slots open every day."],["shield","Strict sterilisation","Hospital-grade protocols throughout."]].map(a=>`<div class="card">${ic(a[0])}<h3>${a[1]}</h3><p>${a[2]}</p></div>`).join(""));
-set("#hr",R.slice(0,3).map(rvCard).join(""));
 
 /* --- services: filters, grid, cost estimator --- */
 const tb=$("#tb"),sv=$("#sv");
@@ -151,14 +149,47 @@ set("#gal",[pic("reception","Reception and lounge","linear-gradient(135deg,#a8d5
 set("#tech",[["scan","Digital X-ray","Low radiation, instant results."],["tag","3D intraoral scanner","No messy impressions."],["zap","Laser dentistry","Gentler gum care, faster healing."]].map(a=>`<div class="card">${ic(a[0])}<h3>${a[1]}</h3><p>${a[2]}</p></div>`).join(""));
 
 /* --- reviews: grid + carousel --- */
-set("#rv",R.map(rvCard).join(""));
-const cd=$("#cd");
-if(cd){
-  let ci=0,ct;
-  const cs=i=>{ci=i;$("#cq").textContent="“"+R[i][1]+"”";$("#ca").textContent=R[i][0];cd.innerHTML=R.map((_,j)=>`<button class="${j==i?"on":""}" aria-label="Review ${j+1}" data-j="${j}"></button>`).join("")};
-  cs(0);
-  cd.onclick=e=>{if(e.target.dataset.j){cs(+e.target.dataset.j);clearInterval(ct)}};
-  ct=setInterval(()=>cs((ci+1)%R.length),5500);
+
+const tc=$("#testimonials-carousel");
+if(tc){
+  const stars=`<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`.repeat(5);
+  tc.innerHTML = R.map((r,i) => {
+    const init = r[0].split(' ').map(n=>n[0]).join('');
+    return `<div class="testimonial-card ${i===0?'active':''}" data-idx="${i}">
+      <div class="testimonial__stars">${stars}</div>
+      <blockquote class="testimonial__quote">"${r[1]}"</blockquote>
+      <div class="testimonial__author">
+        <div class="testimonial__avatar">${init}</div>
+        <div class="testimonial__meta">
+          <div class="testimonial__name">${r[0]}</div>
+          <div class="testimonial__role">Verified Patient</div>
+        </div>
+      </div>
+    </div>`;
+  }).join("") + `
+    <div class="testimonials__controls">
+      <button class="testimonials__ctrl-btn" id="t-prev"><i class="fa-solid fa-chevron-left"></i></button>
+      <div class="testimonials__dots">
+        ${R.map((_,i)=>`<button class="testimonials__dot ${i===0?'active':''}" data-dot="${i}"></button>`).join('')}
+      </div>
+      <button class="testimonials__ctrl-btn" id="t-next"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+  `;
+  let ci=0, ct;
+  const cards = tc.querySelectorAll('.testimonial-card');
+  const dots = tc.querySelectorAll('.testimonials__dot');
+  const cs = (i) => {
+    if(i<0) i=R.length-1; if(i>=R.length) i=0; ci=i;
+    cards.forEach((c,j) => c.classList.toggle('active', j===ci));
+    dots.forEach((d,j) => d.classList.toggle('active', j===ci));
+  };
+  tc.onclick = (e) => {
+    if(e.target.closest('#t-prev')) { cs(ci-1); clearInterval(ct); }
+    if(e.target.closest('#t-next')) { cs(ci+1); clearInterval(ct); }
+    const dot = e.target.closest('.testimonials__dot');
+    if(dot) { cs(+dot.dataset.dot); clearInterval(ct); }
+  };
+  ct = setInterval(()=>cs(ci+1), 5500);
 }
 
 /* --- animated counters (home stats) --- */
