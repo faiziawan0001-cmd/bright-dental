@@ -155,6 +155,32 @@ if(wk && wkf) {
   wk.innerHTML=["Teeth whitening","Veneers","Aligners","Cosmetic bonding","Gum contouring","Full smile makeover"].map(ba).join("");
 }
 
+/* --- home: smile gallery teaser (explore-style image cards) --------------- */
+const wkHome=$("#wk-home");
+if(wkHome){
+  const teaser=WORK_DATA.slice(0,3);
+  wkHome.innerHTML=teaser.map(s=>{
+    const line=(s.desc.split(".")[0]||s.desc).trim()+".";
+    return `<a href="work.html" class="smile-card js-rev">
+      <img src="${s.img}" srcset="${srcset(s.img)}" sizes="${WK_SIZES}" alt="${s.name} — ${s.cat} result at Bright Smiles Dental Clinic" loading="lazy" decoding="async" width="1200" height="900">
+      <div class="smile-ov">
+        <h3>${s.name}</h3>
+        <p>${line}</p>
+      </div>
+    </a>`;
+  }).join("");
+}
+/* Reference-style scroll reveal: sections rise into place as they enter view. */
+const revs=$$(".js-rev");
+if(revs.length){
+  if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion: reduce)").matches){
+    const rObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");rObs.unobserve(e.target)}}),{threshold:.15,rootMargin:"0px 0px -40px 0px"});
+    revs.forEach(el=>rObs.observe(el));
+  }else{
+    revs.forEach(el=>el.classList.add("in"));
+  }
+}
+
 /* --- before/after slider behaviour (mouse, touch and keyboard) ------------ */
 /* The slider is a real <input type="range"> stretched over the whole frame, so
    it stays keyboard and screen-reader friendly for free. CSS gives it
@@ -162,14 +188,14 @@ if(wk && wkf) {
    a horizontal drag moves the divider. */
 const syncBA=(box,v)=>{
   if(!box)return;
-  const layer=box.querySelector(".a,.a-img"),handle=box.querySelector("i");
+  const layer=box.querySelector(".a,.a-img,.ec-a"),handle=box.querySelector("i");
   if(layer)layer.style.clipPath=`inset(0 0 0 ${v}%)`;
   if(handle)handle.style.left=v+"%";
 };
 document.addEventListener("input",e=>{
   const t=e.target;
   if(!t||t.tagName!=="INPUT"||t.type!=="range")return;
-  const box=t.closest(".ba,.story-ba");
+  const box=t.closest(".ba,.story-ba,.explore-card-ba");
   if(!box)return;
   syncBA(box,t.value);
 },true);
@@ -179,7 +205,7 @@ document.addEventListener("input",e=>{
 document.addEventListener("pointerdown",e=>{
   const t=e.target;
   if(!t||t.tagName==="INPUT")return;
-  const box=t.closest(".ba,.story-ba");
+  const box=t.closest(".ba,.story-ba,.explore-card-ba");
   if(!box)return;
   const r=box.querySelector('input[type="range"]');
   if(r)r.focus({preventScroll:true});
