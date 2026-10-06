@@ -21,6 +21,13 @@ const set=(s,h)=>{const e=$(s);if(e)e.innerHTML=h};
 const P={sparkle:"M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2 2M16 16l2 2M18 6l-2 2M8 16l-2 2",shield:"M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z M9 12l2 2 4-4",heart:"M12 21s-8-5-8-11a4.5 4.5 0 018-3 4.5 4.5 0 018 3c0 6-8 11-8 11z",clock:"M12 7v5l3 2M12 3a9 9 0 100 18 9 9 0 000-18z",tag:"M3 12V4h8l10 10-8 8zM7.5 7.5h.01",user:"M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c0-4 4-6 8-6s8 2 8 6",scan:"M4 8V5a1 1 0 011-1h3M16 4h3a1 1 0 011 1v3M20 16v3a1 1 0 01-1 1h-3M8 20H5a1 1 0 01-1-1v-3M8 12h8",zap:"M13 2L4 14h7l-1 8 9-12h-7z"};
 const ic=k=>`<div class="ic"><svg viewBox="0 0 24 24"><path d="${P[k]}"/></svg></div>`;
 
+/* Responsive images: the Unsplash URLs already carry a w= parameter, so one
+   source becomes several widths without adding any new asset. Declared up here
+   because the card templates below are called before the slider section runs. */
+const srcset=u=>{if(!u)return"";const p=u.replace(/([?&]w=)\d+/,"$1{W}");return [400,600,900,1200].map(w=>p.replace("{W}",w)+" "+w+"w").join(", ")};
+const SRV_SIZES="(max-width:560px) 90vw, (max-width:820px) 46vw, 340px";
+const WK_SIZES="(max-width:600px) 90vw, (max-width:1024px) 46vw, 420px";
+
 const S=[["Cleaning","General","Scale and polish to protect your gums.","30 min",15,"sparkle",["Exam and X-ray","Ultrasonic scaling","Polish and fluoride"],["How often?","Every six months for most people."]],
 ["Whitening","Cosmetic","Up to 8 shades brighter in one visit.","60 min",60,"zap",["Gum protection","Gel and LED light","Aftercare kit"],["Is it sensitive?","Mild, short-lived sensitivity is common."]],
 ["Implants","Restorative","A permanent replacement for missing teeth.","2+ visits",450,"shield",["3D scan and plan","Titanium post placed","Crown fitted after healing"],["How long do they last?","With good care, decades."]],
@@ -45,11 +52,29 @@ const SERV_IMG = {
 const card=(a,i)=>{
   const img = SERV_IMG[a[0]] || "";
   const price = (a[4]*100).toLocaleString();
-  let media = img ? '<div class="svc-media"><img src="'+img+'" alt="'+a[0]+' at Bright Smiles Dental Clinic" loading="lazy"><span class="svc-tag">'+a[1]+'</span></div>' : '<div class="svc-media"><div class="svc-fallback">'+ic(a[5])+'</div><span class="svc-tag">'+a[1]+'</span></div>';
-  return '<div class="card svc h" style="cursor:pointer" tabindex="0" role="button" data-i="'+i+'">'+media+'<div class="svc-body"><h3>'+a[0]+'</h3><p>'+a[2]+'</p><div class="svc-meta"><span class="svc-price">From Rs '+price+'</span><span class="svc-link">View details <i class="fa-solid fa-arrow-right"></i></span></div></div></div>';
+  let media = img ? '<div class="svc-media"><img src="'+img+'" srcset="'+srcset(img)+'" sizes="'+SRV_SIZES+'" alt="'+a[0]+' at Bright Smiles Dental Clinic" loading="lazy" decoding="async" width="1200" height="675"><span class="svc-tag">'+a[1]+'</span></div>' : '<div class="svc-media"><div class="svc-fallback">'+ic(a[5])+'</div><span class="svc-tag">'+a[1]+'</span></div>';
+  return '<div class="card svc h" style="cursor:pointer" tabindex="0" role="button" aria-haspopup="dialog" data-i="'+i+'">'+media+'<div class="svc-body"><h3>'+a[0]+'</h3><p>'+a[2]+'</p><div class="svc-meta"><span class="svc-price">From Rs '+price+'</span><span class="svc-link">View details <i class="fa-solid fa-arrow-right"></i></span></div></div></div>';
 };
 
-const open=e=>{const c=e.target.closest("[data-i]");if(!c)return;const a=S[c.dataset.i];set("#sb",`<h2>${a[0]}</h2><p>${a[2]}</p><p><b>Duration:</b> ${a[3]}</p><h3>Steps</h3><div class="tl">${a[6].map(x=>`<p>${x}</p>`).join("")}</div><details open><summary>${a[7][0]}</summary><p>${a[7][1]}</p></details>`);sd.showModal()};
+/* Dialog helpers. Calling showModal() on an already-open <dialog> throws, and
+   every "Book" button on the site routes through here. */
+const openDialog=d=>{
+  if(!d||d.open)return;
+  /* Always start from a clean form. Done on open rather than on the dialog's
+     close event, which is not dispatched consistently. */
+  const form=$("#bf"),ok=$("#ok");
+  if(form)form.hidden=false;
+  if(ok)ok.hidden=true;
+  if(d.showModal)d.showModal();else d.setAttribute("open","");
+  /* No scroll-lock class here on purpose: the close event is unreliable, and
+     a class left behind would freeze the page for good. The
+     html:has(dialog:modal) rule in the stylesheet handles it instead. */
+};
+const closeDialog=d=>{if(!d||!d.open)return;if(d.close)d.close();else d.removeAttribute("open")};
+window.openBooking=()=>openDialog(document.getElementById("bk"));
+window.closeDialog=closeDialog;
+
+const open=e=>{const c=e.target.closest("[data-i]");if(!c)return;const a=S[c.dataset.i];if(!a)return;set("#sb",`<h2>${a[0]}</h2><p>${a[2]}</p><p><b>Duration:</b> ${a[3]}</p><h3>Steps</h3><div class="tl">${a[6].map(x=>`<p>${x}</p>`).join("")}</div><details open><summary>${a[7][0]}</summary><p>${a[7][1]}</p></details>`);openDialog(document.getElementById("sd"))};
 
 /* --- home: featured services, why-us, before/after, reviews --- */
 set("#svp",S.slice(0,6).map(card).join(""));
@@ -60,18 +85,21 @@ set("#why",[["heart","Gentle, pain-free care","Modern anaesthesia and a calm app
 const tb=$("#tb"),sv=$("#sv");
 if(tb&&sv){
   const cats=["All",...new Set(S.map(x=>x[1]))];
-  tb.innerHTML=cats.map((c,i)=>`<button class="${i?"":"on"}">${c}</button>`).join("");
+  tb.innerHTML=cats.map((c,i)=>`<button type="button" class="${i?"":"on"}">${c}</button>`).join("");
   const show=c=>{sv.innerHTML=S.map((a,i)=>[a,i]).filter(([a])=>c=="All"||a[1]==c).map(([a,i])=>card(a,i)).join("")};
   show("All");
   sv.onclick=open;
   tb.onclick=e=>{if(e.target.tagName!=="BUTTON")return;[...tb.children].forEach(b=>b.classList.remove("on"));e.target.classList.add("on");show(e.target.textContent)};
 }
-const esSel=$("#es");
-if(esSel){
-  const s2=$("#s");if(s2)s2.innerHTML=S.map(x=>`<option>${x[0]}</option>`).join("");
+/* The "Service" dropdown lives in the booking dialog, which is on every page —
+   so it has to be filled on every page, not just the services page. */
+const svcSel=$("#s");
+if(svcSel)svcSel.innerHTML=S.map(x=>`<option>${x[0]}</option>`).join("");
+const esSel=$("#es"),eq=$("#eq"),ev=$("#ev"),eo=$("#eo");
+if(esSel&&eq&&ev&&eo){
   esSel.innerHTML=S.map((x,i)=>`<option value="${i}">${x[0]}</option>`).join("");
-  const est=()=>{const a=S[esSel.value],q=+$("#eq").value;$("#ev").textContent=q;$("#eo").textContent="Rs "+(a[4]*q*100).toLocaleString()+" – Rs "+(a[4]*q*140).toLocaleString()};
-  esSel.onchange=$("#eq").oninput=est;est();
+  const est=()=>{const a=S[esSel.value];if(!a)return;const q=+eq.value||1;ev.textContent=q;eo.textContent="Rs "+(a[4]*q*100).toLocaleString()+" – Rs "+(a[4]*q*140).toLocaleString()};
+  esSel.onchange=eq.oninput=est;est();
 }
 
 /* --- before/after sliders (home + work) --- */
@@ -91,18 +119,18 @@ const WORK_DATA = [
 const storyCard = (s) => `
 <div class="story-card" data-cat="${s.cat}">
   <div class="story-ba">
-    <img src="${s.img}" class="b-img" alt="Before" loading="lazy">
-    <img src="${s.img}" class="a-img" alt="After" loading="lazy">
+    <img src="${s.img}" srcset="${srcset(s.img)}" sizes="${WK_SIZES}" class="b-img" alt="Before" loading="lazy" decoding="async" width="1200" height="900">
+    <img src="${s.img}" srcset="${srcset(s.img)}" sizes="${WK_SIZES}" class="a-img" alt="After" loading="lazy" decoding="async" width="1200" height="900">
     <em style="left:16px">Before</em>
     <em style="right:16px">After</em>
     <i></i>
-    <input type="range" min="0" max="100" value="50" aria-label="Compare before and after">
+    <input type="range" min="0" max="100" value="50" aria-label="Compare before and after of ${s.name}">
   </div>
   <div class="story-content">
     <span class="story-cat">${s.cat}</span>
     <h3 class="story-title">${s.name}</h3>
     <p class="story-desc">${s.desc}</p>
-    <a href="#" class="story-cta" onclick="bk.showModal(); return false;">Book similar treatment <i class="fa-solid fa-arrow-right"></i></a>
+    <a href="#book" class="story-cta" onclick="openBooking(); return false;">Book similar treatment <i class="fa-solid fa-arrow-right"></i></a>
   </div>
 </div>
 `;
@@ -112,7 +140,7 @@ const wkf=$("#wk-filters");
 if(wk && wkf) {
   wk.innerHTML = WORK_DATA.map(storyCard).join("");
   const cats = ["All", ...new Set(WORK_DATA.map(x => x.cat))];
-  wkf.innerHTML = cats.map((c,i) => `<button class="${i===0?'on':''}">${c}</button>`).join("");
+  wkf.innerHTML = cats.map((c,i) => `<button type="button" class="${i===0?'on':''}">${c}</button>`).join("");
   wkf.onclick = (e) => {
     if(e.target.tagName !== "BUTTON") return;
     [...wkf.children].forEach(b => b.classList.remove("on"));
@@ -127,18 +155,35 @@ if(wk && wkf) {
   wk.innerHTML=["Teeth whitening","Veneers","Aligners","Cosmetic bonding","Gum contouring","Full smile makeover"].map(ba).join("");
 }
 
+/* --- before/after slider behaviour (mouse, touch and keyboard) ------------ */
+/* The slider is a real <input type="range"> stretched over the whole frame, so
+   it stays keyboard and screen-reader friendly for free. CSS gives it
+   touch-action:pan-y, which means a vertical swipe still scrolls the page while
+   a horizontal drag moves the divider. */
+const syncBA=(box,v)=>{
+  if(!box)return;
+  const layer=box.querySelector(".a,.a-img"),handle=box.querySelector("i");
+  if(layer)layer.style.clipPath=`inset(0 0 0 ${v}%)`;
+  if(handle)handle.style.left=v+"%";
+};
 document.addEventListener("input",e=>{
-  if(e.target.closest(".ba")){
-    const b=e.target.parentNode,v=e.target.value;
-    b.querySelector(".a").style.clipPath=`inset(0 0 0 ${v}%)`;
-    b.querySelector("i").style.left=v+"%";
-  }
-  if(e.target.closest(".story-ba")){
-    const b=e.target.parentNode,v=e.target.value;
-    b.querySelector(".a-img").style.clipPath=`inset(0 0 0 ${v}%)`;
-    b.querySelector("i").style.left=v+"%";
-  }
-});
+  const t=e.target;
+  if(!t||t.tagName!=="INPUT"||t.type!=="range")return;
+  const box=t.closest(".ba,.story-ba");
+  if(!box)return;
+  syncBA(box,t.value);
+},true);
+/* Tapping the frame focuses the range first — some mobile browsers only start
+   tracking the drag once the control has focus. No preventDefault(), so the
+   page keeps its normal vertical scroll. */
+document.addEventListener("pointerdown",e=>{
+  const t=e.target;
+  if(!t||t.tagName==="INPUT")return;
+  const box=t.closest(".ba,.story-ba");
+  if(!box)return;
+  const r=box.querySelector('input[type="range"]');
+  if(r)r.focus({preventScroll:true});
+},{passive:true});
 
 /* --- about: team --- */
 set("#tm",[["Dr. Ayesha Khan","Lead Dentist &amp; Founder","BDS, MSc · Implants · RCT · Smile restoration","fa-user-doctor"],["Dr. Omar Siddiqui","Orthodontist","Aligners, braces &amp; bite correction · MOrth","fa-tooth"],["Dr. Sara Malik","Paediatric Dentist","Child dentistry &amp; prevention · BDS, MDS","fa-child"],["Sana Yousaf","Dental Hygienist","Scaling, whitening &amp; gum care","fa-spa"]].map(a=>`<div class="tmc"><div class="tmi"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#t"/></svg></div><div class="tmb"><h3>${a[0]}</h3><div class="rl"><i class="fa-solid ${a[3]}"></i> ${a[1]}</div><p>${a[2]}</p></div></div>`).join(""));
@@ -232,15 +277,63 @@ const cObs=$$("[data-count]").length&&"IntersectionObserver" in window?new Inter
 $$("[data-count]").forEach(el=>cObs?cObs.observe(el):cnt(el));
 
 /* --- header, mobile nav, dark mode --- */
-const mn=$("#mn"),nav=$("#nav");
-if(mn&&nav){
-  mn.onclick=()=>{const o=nav.classList.toggle("open");$("header").classList.toggle("mo",o);mn.setAttribute("aria-expanded",o)};
-  nav.onclick=()=>{nav.classList.remove("open");$("header").classList.remove("mo")};
+const hdr=document.querySelector("header"),mn=$("#mn"),nav=$("#nav");
+const NAV_MQ=matchMedia("(max-width: 980px)");
+if(mn&&nav&&hdr){
+  mn.setAttribute("aria-controls","nav");
+  mn.setAttribute("aria-label","Open menu");
+  const setMenu=o=>{
+    nav.classList.toggle("open",o);
+    hdr.classList.toggle("mo",o);
+    mn.setAttribute("aria-expanded",o?"true":"false");
+    mn.setAttribute("aria-label",o?"Close menu":"Open menu");
+    /* Stop the page scrolling behind the open menu. */
+    document.documentElement.classList.toggle("lock",o);
+  };
+  mn.onclick=()=>setMenu(!nav.classList.contains("open"));
+  /* Close when a link is tapped. */
+  nav.addEventListener("click",e=>{if(e.target.closest("a"))setMenu(false)});
+  /* Escape closes it and returns focus to the button that opened it. */
+  document.addEventListener("keydown",e=>{
+    if(e.key==="Escape"&&nav.classList.contains("open")){setMenu(false);mn.focus()}
+  });
+  /* Close on outside tap and when the layout goes back to desktop. */
+  document.addEventListener("click",e=>{
+    if(nav.classList.contains("open")&&!hdr.contains(e.target))setMenu(false);
+  });
+  NAV_MQ.addEventListener&&NAV_MQ.addEventListener("change",e=>{if(!e.matches)setMenu(false)});
+  addEventListener("resize",()=>{if(!NAV_MQ.matches)setMenu(false)},{passive:true});
 }
-addEventListener("scroll",()=>$("header").classList.toggle("sc",scrollY>24),{passive:true});
+/* Anything marked role="button" that is not a real button must still work
+   with Enter and Space (service cards, video cards). */
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" "&&e.key!=="Spacebar")return;
+  const t=e.target.closest&&e.target.closest('[role="button"]');
+  if(!t||t.tagName==="BUTTON"||t.tagName==="A")return;
+  e.preventDefault();
+  t.click();
+});
+if(hdr)addEventListener("scroll",()=>hdr.classList.toggle("sc",scrollY>24),{passive:true});
 const th=$("#th");
-if(th)th.onclick=()=>{const r=document.documentElement,next=getComputedStyle(r).getPropertyValue("--bg").trim()==="#0b1526"?"light":"dark";r.dataset.theme=next;try{localStorage.setItem("theme",next)}catch(e){}};
+if(th){
+  th.setAttribute("aria-pressed",document.documentElement.dataset.theme==="dark"?"true":"false");
+  th.onclick=()=>{const r=document.documentElement,next=getComputedStyle(r).getPropertyValue("--bg").trim()==="#0b1526"?"light":"dark";r.dataset.theme=next;th.setAttribute("aria-pressed",next==="dark"?"true":"false");try{localStorage.setItem("theme",next)}catch(e){}};
+}
 
 /* --- booking form --- */
-const go=$("#go");
-if(go)go.onclick=()=>{const n=$("#n").value.trim(),p=$("#p").value.trim(),d=$("#d").value;$("#e1").textContent=n?"":"Enter your name.";$("#e2").textContent=/^[+\d\s-]{7,}$/.test(p)?"":"Enter a valid phone number.";$("#e3").textContent=d?"":"Choose a date.";if(n&&/^[+\d\s-]{7,}$/.test(p)&&d){$("#bf").hidden=true;$("#ok").hidden=false}};
+const bkDlg=$("#bk"),bf=$("#bf"),sent=$("#ok"),goBtn=$("#go");
+if(goBtn){
+  const nIn=$("#n"),pIn=$("#p"),dIn=$("#d"),e1=$("#e1"),e2=$("#e2"),e3=$("#e3");
+  const validPhone=v=>/^[+\d\s-]{7,}$/.test(v);
+  const submit=()=>{
+    if(!nIn||!pIn||!dIn)return;
+    const n=nIn.value.trim(),p=pIn.value.trim(),d=dIn.value;
+    if(e1)e1.textContent=n?"":"Enter your name.";
+    if(e2)e2.textContent=validPhone(p)?"":"Enter a valid phone number.";
+    if(e3)e3.textContent=d?"":"Choose a date.";
+    if(n&&validPhone(p)&&d){if(bf)bf.hidden=true;if(sent)sent.hidden=false;}
+  };
+  goBtn.onclick=submit;
+  /* Enter anywhere in the booking form submits it. */
+  if(bf)bf.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.tagName!=="TEXTAREA"){e.preventDefault();submit()}});
+}
