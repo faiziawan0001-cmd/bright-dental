@@ -728,9 +728,7 @@ footer a { color: var(--blue); }
   object-fit: cover;
   pointer-events: none;
 }
-.explore-card-ba .ec-b {
-  filter: sepia(.3) contrast(.85) brightness(.82) saturate(.8);
-}
+
 .explore-card-ba .ec-a {
   clip-path: inset(0 0 0 50%);
 }
