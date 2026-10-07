@@ -71,10 +71,19 @@ const openDialog=d=>{
      html:has(dialog:modal) rule in the stylesheet handles it instead. */
 };
 const closeDialog=d=>{if(!d||!d.open)return;if(d.close)d.close();else d.removeAttribute("open")};
-window.openBooking=()=>openDialog(document.getElementById("bk"));
+/* Service currently open in the #sd details modal. Carried over to the booking
+   form (pre-selected dropdown) and to the WhatsApp deep link by the modal CTAs. */
+let sdSvc="";
+window.openBooking=svc=>{
+  const sel=$("#s");
+  if(sel&&svc&&[...sel.options].some(o=>o.value===svc))sel.value=svc;
+  openDialog(document.getElementById("bk"));
+};
 window.closeDialog=closeDialog;
+/* Details modal -> booking form, with that service pre-selected. */
+window.bookService=()=>{closeDialog(document.getElementById("sd"));openBooking(sdSvc)};
 
-const open=e=>{const c=e.target.closest("[data-i]");if(!c)return;const a=S[c.dataset.i];if(!a)return;set("#sb",`<h2>${a[0]}</h2><p>${a[2]}</p><p><b>Duration:</b> ${a[3]}</p><h3>Steps</h3><div class="tl">${a[6].map(x=>`<p>${x}</p>`).join("")}</div><details open><summary>${a[7][0]}</summary><p>${a[7][1]}</p></details>`);openDialog(document.getElementById("sd"))};
+const open=e=>{const c=e.target.closest("[data-i]");if(!c)return;const a=S[c.dataset.i];if(!a)return;set("#sb",`<h2>${a[0]}</h2><p>${a[2]}</p><p><b>Duration:</b> ${a[3]}</p><h3>Steps</h3><div class="tl">${a[6].map(x=>`<p>${x}</p>`).join("")}</div><details open><summary>${a[7][0]}</summary><p>${a[7][1]}</p></details>`);sdSvc=a[0];const wa=$("#sd-wa");if(wa)wa.href="https://wa.me/923211048740?text="+encodeURIComponent("Hi! I would like to book an appointment for "+a[0]);openDialog(document.getElementById("sd"))};
 
 /* --- home: featured services, why-us, before/after, reviews --- */
 set("#svp",S.slice(0,6).map(card).join(""));
