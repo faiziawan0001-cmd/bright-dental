@@ -367,7 +367,7 @@ document.addEventListener("keydown",e=>{
   e.preventDefault();
   t.click();
 });
-if(hdr)addEventListener("scroll",()=>hdr.classList.toggle("sc",scrollY>24),{passive:true});
+if(hdr){const setSc=()=>hdr.classList.toggle("sc",scrollY>60);setSc();addEventListener("scroll",setSc,{passive:true})}
 const th=$("#th");
 if(th){
   th.setAttribute("aria-pressed",document.documentElement.dataset.theme==="dark"?"true":"false");
