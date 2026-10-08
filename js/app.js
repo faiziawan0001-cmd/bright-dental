@@ -190,6 +190,25 @@ if(revs.length){
   }
 }
 
+/* --- one-line CTA banner headings -----------------------------------------
+   The banner h2 is nowrap (see styles.css), so a long heading would clip on
+   narrow screens. Scale it down to the banner's inner width instead — per
+   page, per viewport. Re-runs when the web font lands and on resize. */
+const fitCTAHeadings=()=>{
+  $$(".consult-strip h2").forEach(h=>{
+    const strip=h.closest(".consult-strip");
+    if(!strip)return;
+    h.style.fontSize="";
+    const cs=getComputedStyle(strip);
+    const avail=strip.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
+    const w=h.scrollWidth;
+    if(avail>0&&w>avail)h.style.fontSize=Math.floor(parseFloat(getComputedStyle(h).fontSize)*avail/w)+"px";
+  });
+};
+fitCTAHeadings();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitCTAHeadings);
+let fitCTO;addEventListener("resize",()=>{clearTimeout(fitCTO);fitCTO=setTimeout(fitCTAHeadings,150)},{passive:true});
+
 /* --- before/after slider behaviour (mouse, touch and keyboard) ------------ */
 /* The slider is a real <input type="range"> stretched over the whole frame, so
    it stays keyboard and screen-reader friendly for free. CSS gives it

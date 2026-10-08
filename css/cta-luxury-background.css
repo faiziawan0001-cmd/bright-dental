@@ -1,0 +1,58 @@
+/* ===========================================================================
+   CTA BANNER - LUXURY BACKGROUND (reference / drop-in variant)
+   --------------------------------------------------------------------------
+   Premium dark background for the .consult-strip pre-footer banner.
+   The live site uses the classic blue gradient in css/styles.css.
+
+   HOW TO SWITCH TO THIS BACKGROUND:
+     A) Fastest: add <link rel="stylesheet" href="css/cta-luxury-background.css">
+        AFTER styles.css on every page.
+     B) Permanent: copy the rules below into css/styles.css, replacing the
+        background/box-shadow of .consult-strip and appending the
+        pseudo-elements + keyframes.
+
+   AI PROMPT (paste into ChatGPT / Claude / v0 to regenerate this style):
+   ---------------------------------------------------------------------------
+   "Create production-ready CSS for a luxury pre-footer CTA banner background.
+   No images, no JavaScript. Rounded card (border-radius 28px, overflow hidden)
+   with centered content. Base: 135deg linear gradient from deep navy #071428
+   to royal blue #17497f through #0e2a57 at 55%. Layer an ambient glow overlay:
+   radial blue rgba(59,143,201,.55) at the top-left and radial warm gold
+   rgba(185,160,108,.45) at the bottom-right, slowly breathing (opacity
+   animation, 10s ease-in-out infinite, disabled under prefers-reduced-motion).
+   Add a decorative 420px thin white circle outline (1px solid
+   rgba(255,255,255,.10) plus a 70px faint outer ring via box-shadow
+   rgba(255,255,255,.035)) cropped at the top-right corner. Edge detail: gold
+   hairline inset 0 0 0 1px rgba(185,160,108,.38). Shadow: 0 28px 70px
+   rgba(7,20,40,.38). Content must sit above the decorations."
+   =========================================================================== */
+
+.consult-strip {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #071428 0%, #0e2a57 55%, #17497f 100%);
+  box-shadow: 0 28px 70px rgba(7, 20, 40, .38), inset 0 0 0 1px rgba(185, 160, 108, .38);
+}
+.consult-strip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(560px 280px at 12% -10%, rgba(59, 143, 201, .55), transparent 65%),
+    radial-gradient(520px 300px at 105% 115%, rgba(185, 160, 108, .45), transparent 65%);
+  animation: csBreath 10s ease-in-out infinite;
+  pointer-events: none;
+}
+.consult-strip::after {
+  content: "";
+  position: absolute;
+  right: -130px;
+  top: -170px;
+  width: 420px;
+  height: 420px;
+  border: 1px solid rgba(255, 255, 255, .10);
+  border-radius: 50%;
+  box-shadow: 0 0 0 70px rgba(255, 255, 255, .035);
+  pointer-events: none;
+}
+@keyframes csBreath { 50% { opacity: .55; } }

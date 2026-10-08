@@ -25,13 +25,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="css/styles.css">
-<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){};document.documentElement.classList.add("js")</script>
 </head><body>
 <svg width="0" height="0" style="position:absolute"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".6" stop-color="#eaf5fd"/><stop offset="1" stop-color="#a9d3f1"/></linearGradient></defs>
 <symbol id="t" viewBox="0 0 24 24"><path d="M12 3c-2 0-3 1-5 1S3 5 3 9c0 3 1 5 2 8 .5 2 1 4 2.5 4 1.7 0 1.5-4 4.5-4s2.8 4 4.5 4c1.5 0 2-2 2.5-4 1-3 2-5 2-8 0-4-2-5-4-5s-3-1-5-1z"/></symbol>
 </svg>
 <header><a class="logo" href="index.html"><svg><use href="#t"/></svg><span>Bright Smiles<br><small style="font-weight:400;color:var(--blue)">Dental Clinic</small></span></a>
-<nav id="nav"><a href="index.html">Home</a><a href="about.html">About Us</a><a href="services.html">Services</a><a href="clinic.html">Clinic</a><a href="work.html" class="on" aria-current="page">Smile Gallery</a></nav>
+<nav id="nav"><a href="index.html">Home</a><a href="about.html">About Us</a><a href="services.html">Services</a><a href="clinic.html">Clinic</a><a href="work.html" class="on" aria-current="page">Smile Gallery</a><a href="testimonials.html">Testimonials</a></nav>
 <div class="ha"><button type="button" class="btn hb" onclick="openBooking()">Book appointment</button><button type="button" id="th" aria-label="Toggle dark mode">&#127769;</button><button type="button" id="mn" class="mn" aria-label="Open menu" aria-controls="nav" aria-expanded="false">&#9776;</button></div></header>
 <main><section class="pg">
 <div class="w ph"><div class="crumb"><a href="index.html">Home</a><span>&#8250;</span>Our Work</div><h1>Smile Stories</h1><p>More than just dental procedures—we create transformations that inspire confidence. Explore real results from our patients.</p></div>
@@ -78,10 +78,10 @@
 </div>
 </div>
 </div>
-<div class="sec tint">
-<div class="w consult-strip">
-<div><h2>Ready for your own transformation?</h2><p>Book a private consultation to discuss your smile goals with our expert cosmetic dentists.</p></div>
-<div class="consult-actions"><button type="button" class="btn" onclick="openBooking()">Book consultation</button><a href="tel:+920000000000" class="btn alt">Call clinic</a></div>
+<div class="sec">
+<div class="w consult-strip js-rev">
+<div class="consult-copy"><span class="cs-eyebrow">Get in touch</span><h2>Ready for your own transformation?</h2><p>Book a private consultation to discuss your smile goals with our expert cosmetic dentists.</p></div>
+<div class="consult-actions"><button type="button" class="btn cs-book" onclick="openBooking()"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i> Book consultation</button><a class="btn cs-wa" href="https://wa.me/923211048740?text=Hi%21%20I%20am%20browsing%20your%20website%20and%20have%20a%20few%20questions%20before%20booking." target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chat on WhatsApp</a></div>
 </div>
 </div>
 </section></main>
@@ -107,7 +107,7 @@
         <li><a href="services.html">Services</a></li>
         <li><a href="work.html">Smile Gallery</a></li>
         <li><a href="clinic.html">Our Clinic</a></li>
-        <li><a href="index.html#testimonials">Patient Reviews</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
       </ul>
     </div>
     <div class="footer-col">

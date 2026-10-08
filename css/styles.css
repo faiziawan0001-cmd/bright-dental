@@ -144,13 +144,81 @@ dialog#sd { border-radius:28px; padding:34px 34px 26px; box-shadow:0 40px 80px r
 #sd details { border-top:1px solid var(--line); padding:14px 0; }
 #sd button.btn.alt { border:1px solid var(--line); }
 
-/* Not sure consult strip */
-.consult-strip { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:24px; background:linear-gradient(135deg,#1E3A6E,#3B8FC9); border-radius:28px; padding:clamp(28px,6vw,56px); color:#eaf3fa; box-shadow:0 24px 60px rgba(30,58,110,.25); }
-.consult-strip h2 { color:#fff; margin:0 0 8px; }
-.consult-strip p { margin:0; color:#dbe9f5; max-width:640px; }
-.consult-actions { display:flex; flex-wrap:wrap; gap:12px; }
-.consult-strip .btn.alt { background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.4); box-shadow:none; }
-.consult-strip .btn.alt:hover { background:rgba(255,255,255,.2); }
+/* =========================================================
+   Pre-footer CTA banner — ONE shared design, used by every
+   page. Only the eyebrow/heading/paragraph copy may differ;
+   structure, classes and styling stay identical everywhere.
+   (Luxury dark background variant: css/cta-luxury-background.css)
+   ========================================================= */
+.consult-strip {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, #1E3A6E, #3B8FC9);
+  border-radius: 28px;
+  padding: clamp(44px, 7vw, 68px) clamp(22px, 6vw, 56px);
+  color: #eaf3fa;
+  box-shadow: 0 24px 60px rgba(30, 58, 110, .25);
+}
+
+.consult-copy { position: relative; z-index: 1; max-width: 680px; }
+
+/* Gold eyebrow with hairline rules — the banner's signature detail */
+.cs-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 18px;
+  color: var(--gold);
+  font: 700 .74rem/1 var(--fh);
+  letter-spacing: .24em;
+  text-transform: uppercase;
+}
+.cs-eyebrow::before,
+.cs-eyebrow::after { content: ""; width: 40px; height: 1px; }
+.cs-eyebrow::before { background: linear-gradient(90deg, transparent, rgba(185, 160, 108, .95)); }
+.cs-eyebrow::after { background: linear-gradient(90deg, rgba(185, 160, 108, .95), transparent); }
+
+.consult-strip h2 { color: #fff; margin: 0 0 12px; font-size: clamp(1.7rem, 3.4vw, 2.4rem); letter-spacing: -.01em; }
+/* One line guaranteed: nowrap only when scripting is on — fitCTAHeadings()
+   in app.js then scales the type down so long headings never clip. */
+html.js .consult-strip h2 { white-space: nowrap; }
+.consult-strip p { margin: 0 auto; color: #d6e4f5; max-width: 560px; line-height: 1.7; }
+
+/* Button pair: primary booking + secondary WhatsApp, always centred together */
+.consult-actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 32px;
+  width: 100%;
+}
+.consult-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+  padding: 16px 30px;
+  border-radius: 14px;
+  white-space: nowrap;
+  transition: transform .3s cubic-bezier(.4, 0, .2, 1), box-shadow .3s cubic-bezier(.4, 0, .2, 1), background .3s, border-color .3s;
+}
+/* Primary — Book consultation: same blue as the hero "Book appointment" CTA */
+.consult-actions .btn.cs-book { background: linear-gradient(135deg, #55aae6, #2c78b4); color: #fff; border: 0; font-weight: 700; box-shadow: 0 14px 34px rgba(59, 143, 201, .45); }
+.consult-actions .btn.cs-book i { color: #fff; font-size: 1.3rem; }
+.consult-actions .btn.cs-book:hover { transform: translateY(-3px); box-shadow: 0 20px 44px rgba(59, 143, 201, .55); }
+/* Secondary — Chat on WhatsApp: crisp white, brand-green glyph, gold ring on hover */
+.consult-actions .btn.cs-wa { background: #fff; color: #0d2b4a; border: 0; font-weight: 700; box-shadow: 0 14px 34px rgba(4, 18, 38, .42); }
+.consult-actions .btn.cs-wa i { color: #25d366; font-size: 1.3rem; }
+.consult-actions .btn.cs-wa:hover { transform: translateY(-3px); box-shadow: 0 20px 44px rgba(4, 18, 38, .5), 0 0 0 4px rgba(185, 160, 108, .3); }
+.consult-strip :focus-visible { outline-color: #fff; }
 
 /* Smile Stories (Work Gallery) */
 .wk-filters { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:40px; }
@@ -517,13 +585,12 @@ html:has(dialog[open]) .fl { display: none; }
   .tli .yr { font-size: .72rem; }
   .story-cat { font-size: .7rem; margin-bottom: 10px; }
   .bdg { font-size: 12px; padding: 5px 10px; }
-  /* Call-to-action strips: buttons go full width, side by side. */
-  .consult-strip { padding: 24px 18px; border-radius: 22px; gap: 18px; }
-  .consult-actions { width: 100%; gap: 10px; }
-  .consult-actions .btn {
-    flex: 1 1 auto; justify-content: center; white-space: nowrap;
-    padding: 13px 10px; font-size: .86rem;
-  }
+  /* CTA banner: actions stack full-width for comfortable tap targets. */
+  .consult-strip { padding: 40px 18px; border-radius: 22px; }
+  .consult-actions { flex-direction: column; align-items: stretch; gap: 12px; margin-top: 26px; }
+  .consult-actions .btn { width: 100%; padding: 15px 18px; font-size: .95rem; }
+  .cs-eyebrow { letter-spacing: .16em; font-size: .68rem; gap: 10px; }
+  .cs-eyebrow::before, .cs-eyebrow::after { width: 26px; }
   /* Hero eyebrow: when it wraps to two lines on phones, balance the lines and
      centre them so the pill still looks deliberate. */
   .hs .eb { justify-content: center; }
@@ -959,18 +1026,6 @@ footer a { color: var(--blue); }
   .explore-card:hover .ec-arrow { transform: none; background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.4); color: #fff; }
   .explore-card:hover .explore-card-overlay { padding-bottom: 30px; }
 }
-
-/* =========================================================
-   CTA banner buttons — used inside the .consult-strip banner
-   ========================================================= */
-/* Secondary WhatsApp action: brand-green outline tuned for the dark surface
-   (the modal's .wa-act is built on theme vars and would be dark-on-dark here). */
-.btn.wa-line { background: rgba(37, 211, 102, .12); color: #8CF3B4; border: 2px solid #25D366; box-shadow: none; }
-.btn.wa-line:hover { background: #25D366; color: #04301B; box-shadow: 0 10px 26px rgba(37, 211, 102, .4); }
-/* Solid white call button (blue type on white, sized to the reference strip):
-   white background, blue text + phone icon, tight radius and soft shadow. */
-.btn.white-num { background: #fff; color: #1E3A6E; border-radius: 10px; padding: 14px 30px; box-shadow: 0 4px 16px rgba(0, 0, 0, .10); }
-.btn.white-num:hover { background: #dcebfa; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0, 20, 60, .16); }
 
 /* =========================================================
    Footer — dark 4-column layout (brand / links / services / hours)
