@@ -370,8 +370,12 @@ document.addEventListener("keydown",e=>{
 if(hdr)addEventListener("scroll",()=>hdr.classList.toggle("sc",scrollY>24),{passive:true});
 const th=$("#th");
 if(th){
-  th.setAttribute("aria-pressed",document.documentElement.dataset.theme==="dark"?"true":"false");
-  th.onclick=()=>{const r=document.documentElement,next=getComputedStyle(r).getPropertyValue("--bg").trim()==="#0b1526"?"light":"dark";r.dataset.theme=next;th.setAttribute("aria-pressed",next==="dark"?"true":"false");try{localStorage.setItem("theme",next)}catch(e){}};
+  const isDark=()=>getComputedStyle(document.documentElement).getPropertyValue("--bg").trim()==="#0b1526";
+  const paint=()=>{th.innerHTML=isDark()?'<i class="fa-solid fa-sun" aria-hidden="true"></i>':'<i class="fa-solid fa-moon" aria-hidden="true"></i>';};
+  const spin=()=>{th.classList.remove("spin");void th.offsetWidth;th.classList.add("spin");};
+  paint();
+  th.setAttribute("aria-pressed",isDark()?"true":"false");
+  th.onclick=()=>{const r=document.documentElement,next=isDark()?"light":"dark";r.dataset.theme=next;th.setAttribute("aria-pressed",next==="dark"?"true":"false");paint();spin();try{localStorage.setItem("theme",next)}catch(e){}};
 }
 
 /* --- booking form --- */
