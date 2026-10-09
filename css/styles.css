@@ -1289,13 +1289,15 @@ html.js .fit-line { white-space: nowrap; }
 .vp-body { min-width: 0; }
 .vp-label {
   display: block;
-  font: 700 .7rem/1 var(--fh);
-  letter-spacing: .18em;
+  font: 800 .72rem/1 var(--fh);
+  letter-spacing: .11em;
   text-transform: uppercase;
   color: var(--navy);
   margin-bottom: 9px;
 }
 .vp-text { margin: 0; color: var(--txt); font-size: .97rem; }
+.vp-text a { color: var(--txt); font-weight: 400; text-decoration: none; }
+.vp-text a:hover { color: var(--navy); text-decoration: underline; }
 .vp-link {
   display: inline-flex;
   align-items: center;
