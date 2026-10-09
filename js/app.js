@@ -79,9 +79,24 @@ const closeDialog=d=>{if(!d||!d.open)return;if(d.close)d.close();else d.removeAt
 /* Service currently open in the #sd details modal. Carried over to the booking
    form (pre-selected dropdown) and to the WhatsApp deep link by the modal CTAs. */
 let sdSvc="";
-window.openBooking=svc=>{
+/* Renders (or clears) the "Your selection" summary inside the booking dialog and
+   wires an optional WhatsApp deep link. Injected here so every page gets it. */
+const renderBookingSummary=(svc,ctx)=>{
+  const bf=$("#bf");if(!bf)return;
+  const prev=bf.querySelector(".bk-summary");if(prev)prev.remove();
+  if(!svc)return;
+  const units=ctx&&ctx.units>0?ctx.units:0;
+  const unitTxt=units?" · "+units+" unit"+(units>1?"s":""):"";
+  const est=ctx&&ctx.estimate>0?" · est. <b class=\"s-p\">PKR "+ctx.estimate.toLocaleString()+"</b>":"";
+  const el=document.createElement("div");
+  el.className="bk-summary";
+  el.innerHTML="<i class=\"fa-solid fa-circle-check\" aria-hidden=\"true\"></i><div><div class=\"s-t\">Your selection</div><div class=\"s-m\">"+svc+unitTxt+est+" — final price confirmed after consultation</div></div>";
+  bf.prepend(el);
+};
+window.openBooking=(svc,ctx)=>{
   const sel=$("#s");
   if(sel&&svc&&[...sel.options].some(o=>o.value===svc))sel.value=svc;
+  renderBookingSummary(svc,ctx);
   openDialog(document.getElementById("bk"));
 };
 window.closeDialog=closeDialog;
@@ -109,7 +124,7 @@ if(tb&&sv){
    so it has to be filled on every page, not just the services page. */
 const svcSel=$("#s");
 if(svcSel)svcSel.innerHTML=S.map(x=>`<option>${x[0]}</option>`).join("");
-const esSel=$("#es"),eq=$("#eq"),ev=$("#ev"),eo=$("#eo"),eemi=$("#eemi"),elab=$("#elab");
+const esSel=$("#es"),eq=$("#eq"),ev=$("#ev"),eo=$("#eo"),eemi=$("#eemi"),elab=$("#elab"),ewa=$("#ewa");
 if(esSel&&eq&&ev&&eo){
   esSel.innerHTML=S.map((x,i)=>`<option value="${i}">${x[0]}</option>`).join("");
   const fill=()=>{const p=(eq.value-eq.min)/(eq.max-eq.min)*100;eq.style.setProperty("--fill",p+"%")};
@@ -117,9 +132,12 @@ if(esSel&&eq&&ev&&eo){
     ev.textContent=q;eo.textContent=total.toLocaleString();
     if(eemi)eemi.textContent="PKR "+Math.round(total/6).toLocaleString()+"/mo";
     if(elab)elab.textContent=/Implants/.test(a[0])?"Implants":/Braces/.test(a[0])?"Units":"Teeth";
+    if(ewa)ewa.href="https://wa.me/923211048740?text="+encodeURIComponent("Hi! I would like to book "+a[0]+" ("+q+" unit"+(q>1?"s":"")+"), estimated PKR "+total.toLocaleString()+".");
     eo.classList.remove("pulse");void eo.offsetWidth;eo.classList.add("pulse");
     fill()};
   esSel.onchange=eq.oninput=est;est();
+  /* Contextual handoff: pass the currently selected treatment + units + estimate. */
+  window.bookEstimate=()=>{const a=S[esSel.value];if(!a){openBooking();return}const q=+eq.value||1;openBooking(a[0],{units:q,estimate:a[4]*q*100})};
 }
 
 /* --- before/after sliders (home + work) --- */
