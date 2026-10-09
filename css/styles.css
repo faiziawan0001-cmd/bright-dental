@@ -1194,3 +1194,261 @@ footer a { color: var(--blue); }
   .footer-credit { padding: 5px 11px; font-size: .68rem; gap: 6px; }
   .footer-credit .dot { width: 6px; height: 6px; }
 }
+
+
+/* --- 16. Clinic - "Plan your visit" (info panel + Google map) -------------
+   Two-column block: a divided info panel (address / hours / contact) on the
+   left, a click-to-load Google map on the right. The map is only fetched when
+   the visitor asks for it, so the iframe's scripts never block the page and a
+   swipe over the map can never trap the page scroll. */
+/* One-line section heading: the wrapper drops its 640px cap and the heading
+   refuses to wrap. fitCTAHeadings() in app.js then scales the type so it still
+   fits on narrow screens. */
+.sh-line { max-width: none; }
+html.js .fit-line { white-space: nowrap; }
+
+.visit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.08fr;
+  gap: 26px;
+  align-items: stretch;
+}
+
+/* --- Info panel --- */
+.visit-panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 16px 44px rgba(30, 58, 110, .09);
+  display: flex;
+  flex-direction: column;
+}
+.vp-head {
+  padding: 24px 28px;
+  background: linear-gradient(135deg, #0f2548, #1E3A6E 55%, #2c78b4);
+  color: #fff;
+}
+.vp-eyebrow {
+  display: block;
+  font: 700 .7rem/1 var(--fh);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.vp-head-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+.vp-head h3 { color: #fff; font-size: clamp(1.1rem, 2.2vw, 1.3rem); margin: 0; }
+
+/* Live "Open now / Closed" badge - filled in by app.js */
+.visit-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font: 700 .7rem/1 var(--fh);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid #ffffff33;
+  background: #ffffff1a;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  white-space: nowrap;
+}
+/* Keep the pill out of the layout until app.js has real data for it: a class
+   display rule would otherwise beat the UA's [hidden] display:none. */
+.visit-status[hidden] { display: none; }
+.visit-status::before {
+  content: "";
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #6ee7a8;
+  box-shadow: 0 0 0 3px rgba(110, 231, 168, .28);
+}
+.visit-status.is-closed::before { background: #f3a6a6; box-shadow: 0 0 0 3px rgba(243, 166, 166, .25); }
+
+.vp-row {
+  display: flex;
+  gap: 16px;
+  padding: 22px 28px;
+  border-top: 1px solid var(--line);
+  flex: 1;
+}
+.vp-ic {
+  flex: none;
+  width: 44px; height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--tint), #bfe0f7);
+  color: var(--blue);
+  font-size: 1.05rem;
+}
+.vp-body { min-width: 0; }
+.vp-label {
+  display: block;
+  font: 700 .7rem/1 var(--fh);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 9px;
+}
+.vp-text { margin: 0; color: var(--txt); font-size: .97rem; }
+.vp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: .88rem;
+  color: var(--blue);
+  text-decoration: none;
+}
+.vp-link i { font-size: .68rem; transition: transform .25s ease; }
+.vp-link:hover i { transform: translate(2px, -2px); }
+
+.vp-hours { display: grid; gap: 8px; }
+.vp-hours div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: .92rem;
+  padding: 9px 13px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--tint) 65%, transparent);
+  border: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
+}
+.vp-hours span { color: var(--txt); }
+.vp-hours b { color: var(--navy); font-weight: 700; white-space: nowrap; }
+
+.vp-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.vp-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  font-size: .9rem;
+  border-radius: 13px;
+}
+.vp-actions .btn.alt { border: 1px solid var(--line); }
+.vp-actions .btn.alt i { color: #25d366; font-size: 1.05rem; }
+
+/* --- Map column --- */
+.visit-map { position: relative; display: flex; min-width: 0; }
+.visit-map .map-wrap {
+  margin-top: 0;
+  aspect-ratio: auto;
+  flex: 1;
+  min-height: 360px;
+  border-radius: 26px;
+  box-shadow: 0 16px 44px rgba(30, 58, 110, .12);
+}
+.visit-map iframe { filter: saturate(1.02); }
+
+/* Facade shown until the visitor asks for the interactive map */
+.map-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 26px;
+  background:
+    radial-gradient(500px 260px at 22% 12%, color-mix(in srgb, var(--blue) 20%, transparent), transparent 72%),
+    linear-gradient(150deg, color-mix(in srgb, var(--blue) 8%, var(--card)), var(--card) 55%, color-mix(in srgb, var(--navy) 14%, var(--card)));
+}
+/* Faint street grid so the placeholder still reads as a map */
+.map-face::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .45;
+  background-image:
+    repeating-linear-gradient(62deg, color-mix(in srgb, var(--blue) 18%, transparent) 0 1px, transparent 1px 52px),
+    repeating-linear-gradient(-62deg, color-mix(in srgb, var(--blue) 12%, transparent) 0 1px, transparent 1px 74px);
+}
+.map-pin {
+  position: relative;
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--card);
+  color: var(--blue);
+  font-size: 1.35rem;
+  box-shadow: 0 12px 30px rgba(30, 58, 110, .28);
+  margin-bottom: 14px;
+}
+.map-pin::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--blue) 55%, transparent);
+  animation: pinPulse 2.6s ease-out infinite;
+}
+@keyframes pinPulse {
+  0% { transform: scale(.85); opacity: .9; }
+  70%, 100% { transform: scale(1.3); opacity: 0; }
+}
+.map-face-title { position: relative; margin: 0; color: var(--navy); font-weight: 800; font-size: 1.06rem; }
+.map-face-sub { position: relative; margin: 2px 0 16px; color: var(--txt); font-size: .88rem; }
+.map-load { position: relative; padding: 14px 26px; }
+.map-load i { font-size: .95rem; }
+.map-face-note { position: relative; display: block; margin-top: 12px; color: var(--txt); font-size: .74rem; letter-spacing: .03em; }
+
+/* Floating glass overlays on the map */
+.map-open, .map-chip {
+  position: absolute;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  font: 700 .79rem/1 var(--fh);
+  text-decoration: none;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.map-open {
+  top: 16px; right: 16px;
+  padding: 10px 16px;
+  background: color-mix(in srgb, var(--card) 90%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  color: var(--navy);
+  box-shadow: 0 8px 22px rgba(30, 58, 110, .18);
+}
+.map-open i { color: var(--gold); font-size: .7rem; }
+.map-open:hover { transform: translateY(-2px); color: var(--blue); box-shadow: 0 14px 30px rgba(30, 58, 110, .26); }
+.map-chip {
+  left: 16px; bottom: 16px;
+  padding: 10px 16px;
+  background: rgba(7, 20, 40, .62);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, .24);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(7, 20, 40, .3);
+  pointer-events: none;
+}
+.map-chip i { color: var(--gold); font-size: .95rem; }
+
+@media (max-width: 980px) {
+  .visit-grid { grid-template-columns: 1fr; }
+  .visit-map .map-wrap { flex: none; min-height: 0; aspect-ratio: 16 / 10; }
+}
+@media (max-width: 620px) {
+  .vp-head, .vp-row { padding-left: 20px; padding-right: 20px; }
+  .vp-row { flex-direction: row; }
+  .vp-actions .btn { flex: 1; justify-content: center; }
+  .vp-hours div { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .map-chip { display: none; }
+  .map-open { top: 12px; right: 12px; padding: 9px 13px; font-size: .74rem; }
+}

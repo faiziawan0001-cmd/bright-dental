@@ -118,7 +118,7 @@ const wk0=$("#wk0");if(wk0)wk0.innerHTML=ba("Teeth whitening");
 
 const WORK_DATA = [
   { name: "Sarah's Wedding Smile", cat: "Veneers", desc: "Sarah wanted a brighter, more symmetrical smile for her wedding. Using 8 custom porcelain veneers, we achieved a natural, radiant look.", img: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=800&auto=format&fit=crop" },
-  { name: "Ahmed's Transformation", cat: "Aligners", desc: "Ahmed corrected severe crowding over 14 months with clear aligners, entirely discreetly without metal braces.", img: "https://images.unsplash.com/photo-1590611936760-eeb9bcab58dc?q=80&w=800&auto=format&fit=crop" },
+  { name: "Ahmed's Transformation", cat: "Aligners", desc: "Ahmed corrected severe crowding over 14 months with clear aligners, entirely discreetly without metal braces.", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" },
   { name: "Fatima's Restoration", cat: "Implants", desc: "A seamless replacement of a missing front tooth using a titanium implant and custom hand-layered ceramic crown.", img: "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800&auto=format&fit=crop" },
   { name: "Omar's Refresh", cat: "Whitening", desc: "A dramatic 6-shade improvement in just one in-clinic session, completely rejuvenating his overall appearance.", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop" },
   { name: "Aisha's Makeover", cat: "Makeover", desc: "A combination of gum contouring and cosmetic bonding to fix uneven edges and correct a gummy smile.", img: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?q=80&w=800&auto=format&fit=crop" },
@@ -195,15 +195,16 @@ if(revs.length){
    narrow screens. Scale it down to the banner's inner width instead — per
    page, per viewport. Re-runs when the web font lands and on resize. */
 const fitCTAHeadings=()=>{
-  $$(".consult-strip h2").forEach(h=>{
-    const strip=h.closest(".consult-strip");
-    if(!strip)return;
+  const fit=(h,box)=>{
+    if(!box)return;
     h.style.fontSize="";
-    const cs=getComputedStyle(strip);
-    const avail=strip.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
+    const cs=getComputedStyle(box);
+    const avail=box.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
     const w=h.scrollWidth;
     if(avail>0&&w>avail)h.style.fontSize=Math.floor(parseFloat(getComputedStyle(h).fontSize)*avail/w)+"px";
-  });
+  };
+  $$(".consult-strip h2").forEach(h=>fit(h,h.closest(".consult-strip")));
+  $$(".fit-line").forEach(h=>fit(h,h.closest(".sh-line")||h.parentElement));
 };
 fitCTAHeadings();
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitCTAHeadings);
@@ -246,6 +247,39 @@ set("#tm",[["Dr. Ayesha Khan","Lead Dentist &amp; Founder","BDS, MSc · Implants
 const pic=(k,t,g)=>`<div class="pic" style="--g:${IMG[k]?`url(${IMG[k]})`:g}"><svg viewBox="0 0 24 24"><use href="#t"/></svg><span>${t}</span></div>`;
 set("#gal",[pic("reception","Reception and lounge","linear-gradient(135deg,#a8d5f2,#3B8FC9)"),pic("rooms","Treatment rooms","linear-gradient(135deg,#7fb6e0,#1E3A6E)"),pic("steril","Sterilisation suite","linear-gradient(135deg,#cfe9fb,#5aa5d8)"),pic("lounge","Kids' corner","linear-gradient(135deg,#9ad0f0,#2c78b4)")].join(""));
 set("#tech",[["scan","Digital X-ray","Low radiation, instant results."],["tag","3D intraoral scanner","No messy impressions."],["zap","Laser dentistry","Gentler gum care, faster healing."]].map(a=>`<div class="card">${ic(a[0])}<h3>${a[1]}</h3><p>${a[2]}</p></div>`).join(""));
+
+/* --- clinic: "Plan your visit" — click-to-load map + live open badge ----- */
+/* The Google Maps embed ships a large script payload and swallows the first
+   scroll gesture on touch screens, so it is only built once the visitor asks
+   for it. The address/directions links stay usable without ever loading it. */
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-map-load]");
+  if(!b)return;
+  const box=b.closest(".map-wrap"),src=box&&box.dataset.map;
+  if(!src)return;
+  box.innerHTML=`<iframe src="${src}" title="Google Map — Bright Smiles Dental Clinic, DHA Phase 6, Lahore" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>`;
+},{passive:true});
+
+/* Live "Open now / Closed" pill, evaluated in the clinic's own timezone so it
+   stays correct for visitors browsing from abroad. */
+const vst=$("#visit-status");
+if(vst&&typeof Intl!=="undefined"&&Intl.DateTimeFormat){
+  try{
+    const p=Object.fromEntries(new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Karachi",weekday:"short",hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(new Date()).filter(x=>x.type!=="literal").map(x=>[x.type,x.value]));
+    const WD=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],d=WD.indexOf(p.weekday);
+    const mins=(Number(p.hour)%24)*60+Number(p.minute);
+    const fmt=m=>{const h=Math.floor(m/60),ap=h>=12?"PM":"AM";return `${h%12||12}:${String(m%60).padStart(2,"0")} ${ap}`};
+    const open=d===0?[660,1020]:[540,1200]; /* Sun 11:00–17:00 · Mon–Sat 9:00–20:00 */
+    const on=d>-1&&mins>=open[0]&&mins<open[1];
+    const nextOpen=n=>fmt(n===0?660:540);
+    const txt=on?`Open now · closes ${fmt(open[1])}`
+      :(d<0||mins<open[0])?`Closed · opens ${nextOpen(d)}`
+      :`Closed · opens ${WD[(d+1)%7]} ${nextOpen((d+1)%7)}`;
+    vst.hidden=false;
+    vst.className="visit-status"+(on?"":" is-closed");
+    vst.textContent=txt;
+  }catch(err){}
+}
 
 /* --- testimonials: single pausable, labelled carousel --- */
 
