@@ -21,7 +21,24 @@
 <div class="ha"><button type="button" class="btn hb" onclick="openBooking()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Book appointment</button><button type="button" id="th" aria-label="Toggle dark mode"><i class="fa-solid fa-moon" aria-hidden="true"></i></button><button type="button" id="mn" class="mn" aria-label="Open menu" aria-controls="nav" aria-expanded="false">&#9776;</button></div></header>
 <main><section class="pg">
 <div class="w ph"><div class="crumb"><a href="index.html">Home</a><span>&#8250;</span>Services</div><h1>Our Dental Services</h1><p>Filter by type, then open any treatment for steps and FAQs.</p></div><div class="sec"><div class="w"><div class="sh"><h2>Our treatments</h2></div><div class="tabs" id="tb"></div><div class="grid" id="sv"></div>
-</div></div><div class="sec tint"><div class="w"><div class="sh"><h2>Plan your budget</h2><p>Get a quick idea of the cost before you visit.</p></div><div class="card" style="max-width:560px;margin:0 auto"><h3>Smile cost estimator <small style="font-weight:400">(sample prices)</small></h3><label for="es">Treatment</label><select id="es"></select><label for="eq">Teeth / units: <b id="ev">1</b></label><input id="eq" type="range" min="1" max="10" value="1"><p class="est" id="eo"></p></div></div></div>
+</div></div><div class="sec tint"><div class="w"><div class="sh"><h2>Plan your budget</h2><p>Get a clear estimate before you visit — no surprises at the clinic.</p></div>
+<div class="budget">
+  <div class="budget-form">
+    <div class="b-eyebrow">Cost estimator</div>
+    <h3>Estimate a single treatment</h3>
+    <p>Pick a treatment and set how many teeth or units it covers. You'll see a clear estimate instantly.</p>
+    <div class="field"><label for="es">Treatment</label><select id="es"></select></div>
+    <div class="field"><label for="eq"><span id="elab">Teeth / units</span>: <b id="ev">1</b></label><input class="sl2" id="eq" type="range" min="1" max="10" value="1"></div>
+  </div>
+  <div class="budget-out">
+    <div class="b-lbl">Estimated cost</div>
+    <div class="b-big">PKR <span id="eo">15,000</span></div>
+    <div class="b-hint">Confirmed after consultation · written quote before treatment</div>
+    <div class="b-emi">Or <b id="eemi">PKR 2,500/mo</b> over 6 months (0% available)</div>
+    <button type="button" class="btn b-book" onclick="openBooking()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Book this treatment</button>
+  </div>
+</div>
+</div></div>
 <div class="sec"><div class="w consult-strip js-rev"><div class="consult-copy"><span class="cs-eyebrow">Get in touch</span><h2>Not sure which treatment is right for you?</h2><p>WhatsApp us and our team will recommend the best treatment plan for your smile.</p></div><div class="consult-actions"><button type="button" class="btn cs-book" onclick="openBooking()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Book appointment</button><a class="btn cs-wa" href="https://wa.me/923211048740?text=Hi%21%20I%20am%20browsing%20your%20website%20and%20have%20a%20few%20questions%20before%20booking." target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chat on WhatsApp</a></div></div></div>
 </section></main>
 <footer class="site-footer"><div class="w">

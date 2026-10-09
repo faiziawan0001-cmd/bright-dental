@@ -39,20 +39,25 @@ const S=[["Cleaning","General","Scale and polish to protect your gums.","30 min"
 
 const R=[["Hira A.","I was terrified of dentists. Dr. Ayesha made it painless and kind."],["Bilal R.","My aligners finished two months early and the results are perfect."],["Mariam S.","My kids actually ask to go back. That says everything."],["Usman T.","Clear pricing, no surprises, and a great implant result."],["Noor F.","Whitening in one hour. Friends keep asking what I changed."],["Zain K.","An emergency toothache fixed the same afternoon. Thank you."]];
 
+/* Self-hosted, optimized 16:9 cover art for each treatment (images/services/).
+   Each slug has a 640w and 1280w WebP so the grid stays crisp on retina and
+   light on mobile. Swap any slug's files to drop in the clinic's own photos. */
 const SERV_IMG = {
-  "Cleaning": "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.1.0",
-  "Whitening": "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0",
-  "Implants": "https://images.unsplash.com/photo-1613846721397-9fc07b1e6d9b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0",
-  "Braces and aligners": "https://images.unsplash.com/photo-1588776814546-daab30f310ce?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0",
-  "Root canal": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop&ixlib=rb-4.1.0",
-  "Veneers": "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0",
-  "Child check-ups": "https://images.unsplash.com/photo-1504439468489-c8920d796a29?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0",
-  "Fillings": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0"
+  "Cleaning": "cleaning",
+  "Whitening": "whitening",
+  "Implants": "implants",
+  "Braces and aligners": "braces-aligners",
+  "Root canal": "root-canal",
+  "Veneers": "veneers",
+  "Child check-ups": "child-checkups",
+  "Fillings": "fillings"
 };
 const card=(a,i)=>{
-  const img = SERV_IMG[a[0]] || "";
+  const slug = SERV_IMG[a[0]] || "";
   const price = (a[4]*100).toLocaleString();
-  let media = img ? '<div class="svc-media"><img src="'+img+'" srcset="'+srcset(img)+'" sizes="'+SRV_SIZES+'" alt="'+a[0]+' at Bright Smiles Dental Clinic" loading="lazy" decoding="async" width="1200" height="675"><span class="svc-tag">'+a[1]+'</span></div>' : '<div class="svc-media"><div class="svc-fallback">'+ic(a[5])+'</div><span class="svc-tag">'+a[1]+'</span></div>';
+  let media = slug
+    ? '<div class="svc-media"><img src="images/services/'+slug+'-1280.webp" srcset="images/services/'+slug+'-640.webp 640w, images/services/'+slug+'-1280.webp 1280w" sizes="'+SRV_SIZES+'" alt="'+a[0]+' treatment at Bright Smiles Dental Clinic" loading="lazy" decoding="async" width="1280" height="720"><span class="svc-tag">'+a[1]+'</span></div>'
+    : '<div class="svc-media"><div class="svc-fallback">'+ic(a[5])+'</div><span class="svc-tag">'+a[1]+'</span></div>';
   return '<div class="card svc h" style="cursor:pointer" tabindex="0" role="button" aria-haspopup="dialog" data-i="'+i+'">'+media+'<div class="svc-body"><h3>'+a[0]+'</h3><p>'+a[2]+'</p><div class="svc-meta"><span class="svc-price">From Rs '+price+'</span><span class="svc-link">View details <i class="fa-solid fa-arrow-right"></i></span></div></div></div>';
 };
 
@@ -104,10 +109,15 @@ if(tb&&sv){
    so it has to be filled on every page, not just the services page. */
 const svcSel=$("#s");
 if(svcSel)svcSel.innerHTML=S.map(x=>`<option>${x[0]}</option>`).join("");
-const esSel=$("#es"),eq=$("#eq"),ev=$("#ev"),eo=$("#eo");
+const esSel=$("#es"),eq=$("#eq"),ev=$("#ev"),eo=$("#eo"),eemi=$("#eemi"),elab=$("#elab");
 if(esSel&&eq&&ev&&eo){
   esSel.innerHTML=S.map((x,i)=>`<option value="${i}">${x[0]}</option>`).join("");
-  const est=()=>{const a=S[esSel.value];if(!a)return;const q=+eq.value||1;ev.textContent=q;eo.textContent="Rs "+(a[4]*q*100).toLocaleString()+" – Rs "+(a[4]*q*140).toLocaleString()};
+  const fill=()=>{const p=(eq.value-eq.min)/(eq.max-eq.min)*100;eq.style.setProperty("--fill",p+"%")};
+  const est=()=>{const a=S[esSel.value];if(!a)return;const q=+eq.value||1;const total=a[4]*q*100;
+    ev.textContent=q;eo.textContent=total.toLocaleString();
+    if(eemi)eemi.textContent="PKR "+Math.round(total/6).toLocaleString()+"/mo";
+    if(elab)elab.textContent=/Implants/.test(a[0])?"Implants":/Braces/.test(a[0])?"Units":"Teeth";
+    fill()};
   esSel.onchange=eq.oninput=est;est();
 }
 
