@@ -149,6 +149,58 @@ h1,h2,h3,h4{color:var(--navy);line-height:1.15;margin:0 0 .4em}
 .fit .badge.no{color:#8a94a3;background:#eef1f5}
 .fit .badge i{font-size:.66rem}
 
+/* =========================================================
+   MOBILE CONNECTOR CONCEPTS — the production ".budget" estimator
+   shown stacked, with 3 ways to make the two halves read as one.
+   ========================================================= */
+.budget{display:grid;grid-template-columns:1.1fr .9fr;max-width:1000px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 18px 44px rgba(30,58,110,.09)}
+.budget.stack{grid-template-columns:1fr}
+.budget-form{padding:clamp(20px,4vw,28px)}
+.b-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.budget h3{font-size:1.15rem;margin-bottom:4px}
+.budget-form>p{font-size:.84rem;margin:0 0 16px;color:var(--txt)}
+.budget .field{margin-bottom:14px}
+.budget .field label{display:block;font-weight:600;font-size:.82rem;color:var(--navy);margin:0 0 6px}
+.budget .field label b{color:var(--blue)}
+.budget select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--navy);font:inherit;font-size:.9rem}
+.budget .sl2{-webkit-appearance:none;appearance:none;width:100%;height:6px;border:0;padding:0;border-radius:99px;background:linear-gradient(90deg,var(--blue) var(--fill,10%),var(--line) var(--fill,10%));outline:none;cursor:pointer}
+.budget .sl2::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:5px solid var(--blue);box-shadow:0 3px 10px rgba(30,58,110,.3);cursor:pointer}
+.budget .sl2::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:5px solid var(--blue);cursor:pointer}
+.budget-out{padding:clamp(20px,4vw,28px);display:flex;flex-direction:column;justify-content:center;text-align:center;background:linear-gradient(160deg,var(--tint),var(--card))}
+.b-lbl{font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
+.b-big{font-size:1.85rem;font-weight:800;color:var(--navy);line-height:1.1;margin:6px 0 4px;transition:color .3s}
+.b-hint{font-size:.76rem;color:var(--subtle)}
+.b-emi{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);font-size:.8rem;color:var(--navy)}
+.b-emi b{color:var(--blue)}
+.budget-out .btn{margin-top:16px;width:100%;text-align:center;font-size:.88rem;padding:12px 18px}
+
+/* phone frames */
+.phones{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;align-items:start;justify-items:center}
+.phone-demo{display:flex;flex-direction:column;gap:12px;align-items:center;width:100%}
+.phone-cap{font:700 .84rem var(--fh);color:var(--navy);text-align:center}
+.phone-cap small{display:block;font-weight:500;color:var(--subtle);font-size:.76rem;margin-top:2px}
+.phone{width:344px;max-width:100%;background:var(--tint);border:12px solid #0b1728;border-top-width:24px;border-bottom-width:16px;border-radius:42px;padding:16px;box-sizing:border-box;box-shadow:0 26px 60px rgba(7,20,40,.28)}
+.phone .budget{border-radius:18px;box-shadow:0 10px 26px rgba(30,58,110,.10);margin:0}
+
+/* V1 — inset receipt panel + arrow connector */
+.v1 .budget-form{padding-bottom:34px}
+.v1 .budget-out{margin:0 14px 16px;border:1px solid var(--line);border-radius:16px;position:relative}
+.v1 .connector{display:grid;place-items:center;height:0;position:relative;z-index:2}
+.v1 .connector i{position:relative;top:-17px;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#55aae6,#2c78b4);color:#fff;display:grid;place-items:center;font-size:.82rem;box-shadow:0 8px 18px rgba(59,143,201,.42);border:3px solid var(--card)}
+
+/* V2 — perforated tear seam with edge notches */
+.v2 .budget-form{border-bottom:2px dashed var(--line)}
+.v2 .budget-out{background:radial-gradient(circle at 0 0,var(--tint) 9px,transparent 9.5px),radial-gradient(circle at 100% 0,var(--tint) 9px,transparent 9.5px),linear-gradient(160deg,var(--tint),var(--card));background-repeat:no-repeat}
+
+/* V3 — inset panel + arrow + perforated seam + price pulse */
+.v3 .budget-form{padding-bottom:34px}
+.v3 .budget-out{position:relative;margin:0 14px 16px;border:1px solid var(--line);border-radius:16px;background:radial-gradient(circle at 0 0,var(--card) 8px,transparent 8.5px),radial-gradient(circle at 100% 0,var(--card) 8px,transparent 8.5px),linear-gradient(160deg,var(--tint),var(--card));background-repeat:no-repeat}
+.v3 .budget-out::before{content:"";position:absolute;top:0;left:16px;right:16px;border-top:2px dashed var(--line)}
+.v3 .connector{display:grid;place-items:center;height:0;position:relative;z-index:2}
+.v3 .connector i{position:relative;top:-17px;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#c9b076,#a98f52);color:#fff;display:grid;place-items:center;font-size:.82rem;box-shadow:0 8px 18px rgba(169,143,82,.42);border:3px solid var(--card)}
+.m-price.pulse{animation:pricePulse .5s ease;display:inline-block}
+@keyframes pricePulse{50%{transform:scale(1.12);color:var(--blue)}}
+
 /* notes */
 .verdict{margin-top:14px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:0 14px 14px 0;padding:16px 20px;font-size:.9rem}
 .verdict b{color:var(--navy)}
@@ -375,6 +427,89 @@ h1,h2,h3,h4{color:var(--navy);line-height:1.15;margin:0 0 .4em}
     </div>
   </section>
 
+  <!-- ================= MOBILE CONNECTOR CONCEPTS ================= -->
+  <section class="opt" id="optM">
+    <div class="opt-head">
+      <span class="tag">Mobile</span>
+      <h2>Connecting the two halves on phones</h2>
+    </div>
+    <p>This is the <b>production</b> estimator (what's now live on <code>services.html</code>), shown stacked as it appears on a phone. Same content, same code — three ways to make the form and the result feel like <b>one connected component</b> instead of two sections. Try the select and slider in each.</p>
+    <div class="phones">
+
+      <!-- V1 -->
+      <div class="phone-demo">
+        <div class="phone-cap">1 · Inset receipt + arrow<small>Estimate slides in as an inner card, joined by an arrow badge. Cleanest &amp; most robust.</small></div>
+        <div class="phone">
+          <div class="budget stack v1">
+            <div class="budget-form">
+              <div class="b-eyebrow">Cost estimator</div>
+              <h3>Estimate a single treatment</h3>
+              <p>Pick a treatment and set how many teeth or units it covers.</p>
+              <div class="field"><label>Treatment</label><select class="m-sel"></select></div>
+              <div class="field"><label><span class="m-lab">Teeth</span>: <b class="m-units">1</b></label><input class="sl2 m-slider" type="range" min="1" max="10" value="1"></div>
+            </div>
+            <div class="connector"><i class="fa-solid fa-arrow-down"></i></div>
+            <div class="budget-out">
+              <div class="b-lbl">Estimated cost</div>
+              <div class="b-big">PKR <span class="m-price">15,000</span></div>
+              <div class="b-hint">Final price confirmed after your consultation</div>
+              <div class="b-emi">Or <b class="m-emi">PKR 2,500/mo</b> over 6 months (0% available)</div>
+              <button type="button" class="btn b-book">Book this treatment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- V2 -->
+      <div class="phone-demo">
+        <div class="phone-cap">2 · Perforated tear seam<small>Full-width receipt look: dashed tear line with punched notches at the card edges.</small></div>
+        <div class="phone">
+          <div class="budget stack v2">
+            <div class="budget-form">
+              <div class="b-eyebrow">Cost estimator</div>
+              <h3>Estimate a single treatment</h3>
+              <p>Pick a treatment and set how many teeth or units it covers.</p>
+              <div class="field"><label>Treatment</label><select class="m-sel"></select></div>
+              <div class="field"><label><span class="m-lab">Teeth</span>: <b class="m-units">1</b></label><input class="sl2 m-slider" type="range" min="1" max="10" value="1"></div>
+            </div>
+            <div class="budget-out">
+              <div class="b-lbl">Estimated cost</div>
+              <div class="b-big">PKR <span class="m-price">15,000</span></div>
+              <div class="b-hint">Final price confirmed after your consultation</div>
+              <div class="b-emi">Or <b class="m-emi">PKR 2,500/mo</b> over 6 months (0% available)</div>
+              <button type="button" class="btn b-book">Book this treatment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- V3 -->
+      <div class="phone-demo">
+        <div class="phone-cap">3 · Both + live pulse<small>Inset panel, tear seam, gold arrow, and the price pulses when it updates.</small></div>
+        <div class="phone">
+          <div class="budget stack v3">
+            <div class="budget-form">
+              <div class="b-eyebrow">Cost estimator</div>
+              <h3>Estimate a single treatment</h3>
+              <p>Pick a treatment and set how many teeth or units it covers.</p>
+              <div class="field"><label>Treatment</label><select class="m-sel"></select></div>
+              <div class="field"><label><span class="m-lab">Teeth</span>: <b class="m-units">1</b></label><input class="sl2 m-slider" type="range" min="1" max="10" value="1"></div>
+            </div>
+            <div class="connector"><i class="fa-solid fa-arrow-down"></i></div>
+            <div class="budget-out">
+              <div class="b-lbl">Estimated cost</div>
+              <div class="b-big">PKR <span class="m-price">15,000</span></div>
+              <div class="b-hint">Final price confirmed after your consultation</div>
+              <div class="b-emi">Or <b class="m-emi">PKR 2,500/mo</b> over 6 months (0% available)</div>
+              <button type="button" class="btn b-book">Book this treatment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <div class="verdict">
     <b>My call for a $5,000 handover:</b> go with <b>Option A</b>. It's the strongest first impression, matches the luxury language you already ship, requires no ongoing content maintenance, and keeps a single honest source of truth for pricing (the <code>S</code> array in <code>app.js</code>). Option B is a strong second if the client wants a "pricing page" feel — I can add it as a later phase.
   </div>
@@ -462,6 +597,25 @@ function renderC(){
     </div>`}).join("");
 }
 cS.oninput=renderC;renderC();
+
+/* ============ Mobile connector demos (.budget) ============ */
+document.querySelectorAll(".budget .m-sel").forEach(sel=>{
+  sel.innerHTML=S.map((x,i)=>`<option value="${i}">${x[0]}</option>`).join("");
+});
+document.querySelectorAll(".budget").forEach(root=>{
+  const sel=root.querySelector(".m-sel"),sl=root.querySelector(".m-slider");
+  const units=root.querySelector(".m-units"),price=root.querySelector(".m-price"),emi=root.querySelector(".m-emi"),lab=root.querySelector(".m-lab");
+  if(!sel||!sl)return;
+  const fillSl=()=>{const p=(sl.value-sl.min)/(sl.max-sl.min)*100;sl.style.setProperty("--fill",p+"%")};
+  const upd=()=>{const a=S[sel.value],q=+sl.value,total=a[4]*q*100;
+    units.textContent=q;price.textContent=total.toLocaleString();
+    emi.textContent="PKR "+Math.round(total/6).toLocaleString()+"/mo";
+    lab.textContent=/Implants/.test(a[0])?"Implants":/Braces/.test(a[0])?"Units":"Teeth";
+    fillSl();
+    if(root.classList.contains("v3")){price.classList.remove("pulse");void price.offsetWidth;price.classList.add("pulse")}
+  };
+  sel.onchange=sl.oninput=upd;upd();
+});
 </script>
 </body>
 </html>

@@ -117,6 +117,7 @@ if(esSel&&eq&&ev&&eo){
     ev.textContent=q;eo.textContent=total.toLocaleString();
     if(eemi)eemi.textContent="PKR "+Math.round(total/6).toLocaleString()+"/mo";
     if(elab)elab.textContent=/Implants/.test(a[0])?"Implants":/Braces/.test(a[0])?"Units":"Teeth";
+    eo.classList.remove("pulse");void eo.offsetWidth;eo.classList.add("pulse");
     fill()};
   esSel.onchange=eq.oninput=est;est();
 }
