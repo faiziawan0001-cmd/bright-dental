@@ -124,6 +124,9 @@ if(tb&&sv){
    so it has to be filled on every page, not just the services page. */
 const svcSel=$("#s");
 if(svcSel)svcSel.innerHTML=S.map(x=>`<option>${x[0]}</option>`).join("");
+/* Homepage pre-footer CTA form also carries the same service list. */
+const ctaSel=$("#ctaService");
+if(ctaSel)ctaSel.innerHTML='<option value="">Select Service</option>'+S.map(x=>`<option>${x[0]}</option>`).join("");
 const esSel=$("#es"),eq=$("#eq"),ev=$("#ev"),eo=$("#eo"),eemi=$("#eemi"),elab=$("#elab"),ewa=$("#ewa");
 if(esSel&&eq&&ev&&eo){
   esSel.innerHTML=S.map((x,i)=>`<option value="${i}">${x[0]}</option>`).join("");
@@ -457,4 +460,37 @@ if(goBtn){
   goBtn.onclick=submit;
   /* Enter anywhere in the booking form submits it. */
   if(bf)bf.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.tagName!=="TEXTAREA"){e.preventDefault();submit()}});
+}
+
+/* --- homepage pre-footer CTA booking form --- */
+const ctaForm=$("#ctaForm");
+if(ctaForm){
+  const cN=$("#ctaName"),cP=$("#ctaPhone"),cE=$("#ctaEmail"),cD=$("#ctaDate");
+  const ce1=$("#ctaErr1"),ce2=$("#ctaErr2"),ce3=$("#ctaErr3"),ce4=$("#ctaErr4");
+  const ok=$("#ctaOk"),fields=$("#ctaFields"),reset=$("#ctaReset");
+  const vPhone=v=>/^[+\d\s-]{7,}$/.test(v);
+  const vEmail=v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  const clearErrs=(...els)=>els.forEach(el=>{if(el)el.textContent=""});
+  ctaForm.addEventListener("submit",e=>{
+    e.preventDefault();
+    const n=cN?cN.value.trim():"",p=cP?cP.value.trim():"",em=cE?cE.value.trim():"",d=cD?cD.value:"";
+    if(ce1)ce1.textContent=n?"":"Enter your name.";
+    if(ce2)ce2.textContent=vPhone(p)?"":"Enter a valid phone number.";
+    if(ce3)ce3.textContent=vEmail(em)?"":"Enter a valid email address.";
+    if(ce4)ce4.textContent=d?"":"Choose a date.";
+    if(n&&vPhone(p)&&vEmail(em)&&d){
+      if(fields)fields.hidden=true;
+      if(ok){
+        ok.hidden=false;
+        const nm=ok.querySelector(".cs-ok-name");
+        if(nm)nm.textContent=n;
+      }
+      ctaForm.reset();
+    }
+  });
+  if(reset)reset.addEventListener("click",()=>{
+    if(fields)fields.hidden=false;
+    if(ok)ok.hidden=true;
+    clearErrs(ce1,ce2,ce3,ce4);
+  });
 }

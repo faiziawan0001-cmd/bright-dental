@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Design Preview — "Plan your budget" section</title>
+<title>Design Preview — Plan your budget &amp; homepage CTA form</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -279,6 +279,77 @@ h1,h2,h3,h4{color:var(--navy);line-height:1.15;margin:0 0 .4em}
   .device-toggle{margin-left:0;width:100%}
   .device-toggle button{flex:1;justify-content:center}
 }
+
+/* ============================================================
+   HOMEPAGE CTA BANNER — 3 minimalist directions
+   ============================================================ */
+.cta-secA,.cta-secB,.cta-secC{position:relative;overflow:hidden;padding:clamp(48px,7vw,84px) 0}
+.cta-secA .w,.cta-secB .w,.cta-secC .w{max-width:1180px;margin:0 auto;padding:0 22px}
+
+/* --- shared atoms ------------------------------------------------- */
+.cta-eyebrow{font:700 .68rem var(--fh);letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+.cta-h2{font:800 clamp(1.7rem,3.2vw,2.4rem)/1.15 var(--fh);color:var(--navy);letter-spacing:-.02em;margin:0 0 12px}
+.cta-h2 em{font-style:normal;color:var(--blue)}
+.cta-p{margin:0 0 26px;font-size:1rem;color:var(--txt);line-height:1.7;max-width:46ch}
+.cta-info{display:flex;flex-direction:column;gap:12px}
+.cta-info-row{display:flex;align-items:center;gap:12px;font-size:.9rem;color:var(--navy);font-weight:600}
+.cta-info-row i{width:34px;height:34px;border-radius:10px;background:#fff;border:1px solid rgba(30,58,110,.08);display:grid;place-items:center;color:var(--blue);font-size:.85rem;box-shadow:0 6px 16px rgba(30,58,110,.06)}
+.cta-info-row a{color:inherit;text-decoration:none}
+.cta-card h3{font:800 1.25rem var(--fh);color:var(--navy);margin:0 0 20px}
+.cta-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.cta-card .f{margin-bottom:12px}
+.cta-card label{display:block;font:600 .72rem var(--fh);letter-spacing:.08em;text-transform:uppercase;color:var(--subtle);margin:0 0 6px}
+.cta-card input,.cta-card select,.cta-card textarea{width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid #d8e2ec;border-radius:12px;background:#fff;color:var(--navy);font:inherit;font-size:.92rem;outline:none;transition:border-color .25s,box-shadow .25s}
+.cta-card input:focus,.cta-card select:focus,.cta-card textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(59,143,201,.12)}
+.cta-card textarea{resize:vertical}
+.cta-submit{width:100%;margin-top:6px;padding:15px 20px;border:0;border-radius:12px;background:var(--navy);color:#fff;font:700 .95rem var(--fh);letter-spacing:.01em;cursor:pointer;box-shadow:0 14px 30px rgba(30,58,110,.28);transition:transform .25s,background .25s,box-shadow .25s}
+.cta-submit:hover{transform:translateY(-2px);background:#27508a;box-shadow:0 18px 38px rgba(30,58,110,.34)}
+.cta-card .note{text-align:center;font-size:.76rem;color:var(--subtle);margin:12px 0 0}
+.cta-ok{display:none;text-align:center;padding:14px 0}
+.cta-ok.show{display:block}
+.cta-ok i{font-size:2rem;color:#22c55e;margin-bottom:8px}
+.cta-ok h3{margin:0 0 6px}
+.cta-ok p{margin:0;font-size:.9rem;color:var(--txt)}
+
+/* --- A · Light & airy (recommended) --------------------------------- */
+.cta-secA{background:radial-gradient(900px 420px at 88% -8%,rgba(59,143,201,.12),transparent 62%),var(--cream)}
+.cta-gridA{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,76px);align-items:center}
+.cta-cardA{background:#fff;border:1px solid rgba(30,58,110,.08);border-radius:26px;padding:clamp(26px,3.5vw,42px);box-shadow:0 30px 70px rgba(30,58,110,.12)}
+
+/* --- B · Refined dark ------------------------------------------------ */
+.cta-secB{background:radial-gradient(720px 380px at 92% -18%,rgba(59,143,201,.22),transparent 60%),#0d1c33}
+.cta-gridB{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,76px);align-items:center}
+.cta-secB .cta-eyebrow{color:var(--gold)}
+.cta-secB .cta-h2{color:#fff}
+.cta-secB .cta-h2 em{color:#8fcdf5}
+.cta-secB .cta-p{color:#c6d8ee}
+.cta-secB .cta-info-row{color:#eaf3fa}
+.cta-secB .cta-info-row i{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#fff}
+.cta-cardB{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:26px;padding:clamp(26px,3.5vw,42px);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 30px 70px rgba(7,20,40,.4)}
+.cta-cardB h3{color:#fff}
+.cta-cardB label{color:#9fb6d4}
+.cta-cardB input,.cta-cardB select,.cta-cardB textarea{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#fff}
+.cta-cardB input::placeholder,.cta-cardB textarea::placeholder{color:#7f97b6}
+.cta-cardB select option{background:#0d1c33;color:#fff}
+.cta-cardB :is(input,select,textarea):focus{border-color:#55aae6;box-shadow:0 0 0 4px rgba(85,170,230,.25)}
+.cta-cardB .cta-submit{background:linear-gradient(135deg,#55aae6,#2c78b4)}
+.cta-cardB .cta-submit:hover{background:linear-gradient(135deg,#6ab5ec,#3588c4)}
+.cta-cardB .note{color:#8ba3c2}
+
+/* --- C · In-page neutral (centered card) ----------------------------- */
+.cta-secC{background:var(--bg)}
+.cta-center{max-width:760px;margin:0 auto;text-align:center}
+.cta-center .cta-p{margin:0 auto 32px}
+.cta-cardC{background:#fff;border:1px solid rgba(30,58,110,.08);border-radius:26px;padding:clamp(28px,4vw,48px);box-shadow:0 30px 70px rgba(30,58,110,.12);text-align:left;max-width:760px;margin:0 auto}
+.cta-trust{margin-top:20px;display:flex;gap:22px;justify-content:center;flex-wrap:wrap;font-size:.8rem;color:var(--subtle)}
+.cta-trust span{display:inline-flex;align-items:center;gap:7px}
+.cta-trust i{color:var(--blue);font-size:.75rem}
+
+@media(max-width:900px){
+  .cta-gridA,.cta-gridB{grid-template-columns:1fr;gap:34px}
+  .cta-secB .w,.cta-secA .w,.cta-secC .w{padding:0 18px}
+}
+@media(max-width:520px){.cta-grid-2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -286,9 +357,10 @@ h1,h2,h3,h4{color:var(--navy);line-height:1.15;margin:0 0 .4em}
 
   <div class="topbar">
     <h1>Design preview</h1>
-    <p>3 concepts for the "Plan your budget" section — pick one and I'll ship it into <code>services.html</code>.</p>
+    <p>Concepts for the <b>"Plan your budget"</b> section and the <b>homepage booking CTA</b> — pick one of each and I'll ship them.</p>
     <div class="jump">
-      <a href="#optA">Option A</a><a href="#optB">Option B</a><a href="#optC">Option C</a>
+      <a href="#optA">Budget A</a><a href="#optB">Budget B</a><a href="#optC">Budget C</a>
+      <a href="#ctaA">CTA A</a><a href="#ctaB">CTA B</a><a href="#ctaC">CTA C</a>
     </div>
   </div>
 
@@ -460,6 +532,135 @@ h1,h2,h3,h4{color:var(--navy);line-height:1.15;margin:0 0 .4em}
             <input class="sl3" id="cSlider" type="range" min="5000" max="150000" step="1000" value="25000">
             <div class="range-lbls"><span>PKR 5,000</span><span>PKR 150,000+</span></div>
             <div class="fits" id="cFits"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA OPTION A ================= -->
+  <section class="opt" id="ctaA">
+    <div class="opt-head">
+      <span class="tag">CTA Option A</span>
+      <h2>Light &amp; airy</h2>
+      <span class="rec">★ My recommendation</span>
+    </div>
+    <p><b>Why:</b> A calm, warm off-white band instead of a loud gradient. Floating white card, hairline border, soft shadow, thin-lined fields and a solid-navy button. Reads premium and trustworthy, matches the clinic's clean/sterile brand, and never fights the dark hero above. Lowest risk for a first impression.</p>
+    <div class="frame">
+      <div class="frame-label">Preview — homepage, one section above the footer</div>
+      <div class="cta-secA">
+        <div class="w">
+          <div class="cta-gridA">
+            <div>
+              <div class="cta-eyebrow">Book today</div>
+              <h2 class="cta-h2">Ready for a <em>healthier smile?</em></h2>
+              <p class="cta-p">Schedule your appointment in under a minute. A member of our team will call you back to confirm.</p>
+              <div class="cta-info">
+                <div class="cta-info-row"><i class="fa-solid fa-location-dot"></i><span>DHA Phase 6, Lahore</span></div>
+                <div class="cta-info-row"><i class="fa-solid fa-phone"></i><a href="#">+92 321 1048740</a></div>
+                <div class="cta-info-row"><i class="fa-solid fa-clock"></i><span>Mon–Sat · 9:00 AM – 8:00 PM</span></div>
+              </div>
+            </div>
+            <form class="cta-card cta-cardA" data-cta-form>
+              <div class="cta-fields">
+                <h3>Book an appointment</h3>
+                <div class="cta-grid-2">
+                  <div class="f"><label>Full name</label><input type="text" placeholder="Ayesha Khan"></div>
+                  <div class="f"><label>Phone</label><input type="tel" placeholder="03xx xxxxxxx"></div>
+                </div>
+                <div class="f"><label>Email</label><input type="email" placeholder="you@email.com"></div>
+                <div class="f"><label>Service</label><select><option>General check-up &amp; cleaning</option><option>Teeth whitening</option><option>Dental implants</option><option>Braces &amp; aligners</option><option>Root canal</option><option>Veneers</option></select></div>
+                <div class="f"><label>Preferred date</label><input type="date"></div>
+                <div class="f"><label>Notes</label><textarea rows="3" placeholder="Anything we should know? (optional)"></textarea></div>
+                <button type="submit" class="cta-submit">Request appointment</button>
+                <p class="note">We typically reply within a few hours.</p>
+              </div>
+              <div class="cta-ok"><i class="fa-solid fa-circle-check"></i><h3>Request sent</h3><p>We'll call you shortly to confirm.</p></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA OPTION B ================= -->
+  <section class="opt" id="ctaB">
+    <div class="opt-head">
+      <span class="tag">CTA Option B</span>
+      <h2>Refined dark</h2>
+    </div>
+    <p><b>Why:</b> Keeps a dark band for contrast and drama, but strips it to a solid deep-navy with a single soft glow — no loud multi-stop gradient, no decorative circles. The form sits in a frosted-glass card so fields stay readable. More "luxury night" than clinic; pairs well if you ever switch other sections to a dark theme.</p>
+    <div class="frame">
+      <div class="frame-label">Preview — homepage, one section above the footer</div>
+      <div class="cta-secB">
+        <div class="w">
+          <div class="cta-gridB">
+            <div>
+              <div class="cta-eyebrow">Book today</div>
+              <h2 class="cta-h2">Ready for a <em>healthier smile?</em></h2>
+              <p class="cta-p">Schedule your appointment in under a minute. A member of our team will call you back to confirm.</p>
+              <div class="cta-info">
+                <div class="cta-info-row"><i class="fa-solid fa-location-dot"></i><span>DHA Phase 6, Lahore</span></div>
+                <div class="cta-info-row"><i class="fa-solid fa-phone"></i><a href="#">+92 321 1048740</a></div>
+                <div class="cta-info-row"><i class="fa-solid fa-clock"></i><span>Mon–Sat · 9:00 AM – 8:00 PM</span></div>
+              </div>
+            </div>
+            <form class="cta-card cta-cardB" data-cta-form>
+              <div class="cta-fields">
+                <h3>Book an appointment</h3>
+                <div class="cta-grid-2">
+                  <div class="f"><label>Full name</label><input type="text" placeholder="Ayesha Khan"></div>
+                  <div class="f"><label>Phone</label><input type="tel" placeholder="03xx xxxxxxx"></div>
+                </div>
+                <div class="f"><label>Email</label><input type="email" placeholder="you@email.com"></div>
+                <div class="f"><label>Service</label><select><option>General check-up &amp; cleaning</option><option>Teeth whitening</option><option>Dental implants</option><option>Braces &amp; aligners</option><option>Root canal</option><option>Veneers</option></select></div>
+                <div class="f"><label>Preferred date</label><input type="date"></div>
+                <div class="f"><label>Notes</label><textarea rows="3" placeholder="Anything we should know? (optional)"></textarea></div>
+                <button type="submit" class="cta-submit">Request appointment</button>
+                <p class="note">We typically reply within a few hours.</p>
+              </div>
+              <div class="cta-ok"><i class="fa-solid fa-circle-check"></i><h3>Request sent</h3><p>We'll call you shortly to confirm.</p></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA OPTION C ================= -->
+  <section class="opt" id="ctaC">
+    <div class="opt-head">
+      <span class="tag">CTA Option C</span>
+      <h2>In-page neutral</h2>
+    </div>
+    <p><b>Why:</b> No colored band at all — maximum minimalism. Sits on the page's normal background as one centered card, like a floating contact widget, with a small trust row underneath. Cleanest of the three, but gives up the visual punctuation that helps a final CTA stand out.</p>
+    <div class="frame">
+      <div class="frame-label">Preview — homepage, one section above the footer</div>
+      <div class="cta-secC">
+        <div class="w">
+          <div class="cta-center">
+            <div class="cta-eyebrow">Book today</div>
+            <h2 class="cta-h2">Ready for a <em>healthier smile?</em></h2>
+            <p class="cta-p">Schedule your appointment in under a minute. A member of our team will call you back to confirm.</p>
+          </div>
+          <form class="cta-card cta-cardC" data-cta-form>
+            <div class="cta-fields">
+              <div class="cta-grid-2">
+                <div class="f"><label>Full name</label><input type="text" placeholder="Ayesha Khan"></div>
+                <div class="f"><label>Phone</label><input type="tel" placeholder="03xx xxxxxxx"></div>
+              </div>
+              <div class="f"><label>Email</label><input type="email" placeholder="you@email.com"></div>
+              <div class="f"><label>Service</label><select><option>General check-up &amp; cleaning</option><option>Teeth whitening</option><option>Dental implants</option><option>Braces &amp; aligners</option><option>Root canal</option><option>Veneers</option></select></div>
+              <div class="f"><label>Preferred date</label><input type="date"></div>
+              <div class="f"><label>Notes</label><textarea rows="3" placeholder="Anything we should know? (optional)"></textarea></div>
+              <button type="submit" class="cta-submit">Request appointment</button>
+            </div>
+            <div class="cta-ok"><i class="fa-solid fa-circle-check"></i><h3>Request sent</h3><p>We'll call you shortly to confirm.</p></div>
+          </form>
+          <div class="cta-trust">
+            <span><i class="fa-solid fa-shield-halved"></i> PMDC-registered dentists</span>
+            <span><i class="fa-solid fa-star"></i> 5.0 on Google</span>
+            <span><i class="fa-solid fa-lock"></i> Your details stay private</span>
           </div>
         </div>
       </div>
@@ -665,6 +866,10 @@ h1,h2,h3,h4{color:var(--navy);line-height:1.15;margin:0 0 .4em}
     <b>My call for a $5,000 handover:</b> go with <b>Option A</b>. It's the strongest first impression, matches the luxury language you already ship, requires no ongoing content maintenance, and keeps a single honest source of truth for pricing (the <code>S</code> array in <code>app.js</code>). Option B is a strong second if the client wants a "pricing page" feel — I can add it as a later phase.
   </div>
 
+  <div class="verdict" style="margin-top:10px">
+    <b>Homepage CTA recommendation:</b> ship <b>CTA Option A (Light &amp; airy)</b>. It's the most "premium studio" of the three, matches the clinic's clean brand, and replaces the current heavy gradient without losing the conversion focus. <b>CTA Option B</b> is the pick if the client loves the dark, dramatic look; <b>CTA Option C</b> is the most stripped-back. All three use the same fields, so swapping later is a CSS-only change.
+  </div>
+
 </div>
 
 <script>
@@ -766,6 +971,21 @@ document.querySelectorAll(".budget").forEach(root=>{
     if(root.classList.contains("v3")){price.classList.remove("pulse");void price.offsetWidth;price.classList.add("pulse")}
   };
   sel.onchange=sl.oninput=upd;upd();
+});
+
+/* ============ CTA form demos: show the success state on submit ============ */
+document.querySelectorAll("form[data-cta-form]").forEach(f=>{
+  f.addEventListener("submit",e=>{
+    e.preventDefault();
+    const fields=f.querySelector(".cta-fields"),ok=f.querySelector(".cta-ok");
+    if(fields)fields.style.display="none";
+    if(ok)ok.classList.add("show");
+    setTimeout(()=>{
+      if(fields)fields.style.display="";
+      if(ok)ok.classList.remove("show");
+      f.reset();
+    },2600);
+  });
 });
 </script>
 </body>
