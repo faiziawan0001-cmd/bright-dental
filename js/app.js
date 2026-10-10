@@ -494,3 +494,36 @@ if(ctaForm){
     clearErrs(ce1,ce2,ce3,ce4);
   });
 }
+
+/* --- hero treatment strip: chevron-tab stepper (homepage) ------------------
+   The five services sit in one track; two identical copies are appended so the
+   strip can step forward or back one card at a time and wrap without a seam.
+   Auto-advances on a timer, yields to hover/focus, and never auto-plays under
+   prefers-reduced-motion (the arrows still work). Clones are aria-hidden so
+   assistive tech reads each service once. */
+const stripEl=$("[data-strack]");
+if(stripEl){
+  const stripRoot=stripEl.closest(".strip");
+  const originals=Array.prototype.slice.call(stripEl.children);
+  const N=originals.length;
+  for(let c=0;c<2;c++)originals.forEach(o=>{const cl=o.cloneNode(true);cl.setAttribute("aria-hidden","true");stripEl.appendChild(cl);});
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const cardW=()=>originals[0].getBoundingClientRect().width;
+  let idx=N,timer=null,hold=0;
+  const paint=anim=>{
+    stripEl.style.transition=anim&&!reduce?"transform .5s cubic-bezier(.4,0,.2,1)":"none";
+    stripEl.style.transform="translateX("+(-idx*cardW())+"px)";
+  };
+  const next=()=>{idx++;paint(true);hold=setTimeout(()=>{if(idx>=2*N){idx-=N;paint(false)}},reduce?0:520)};
+  const prev=()=>{idx--;paint(true);hold=setTimeout(()=>{if(idx<=0){idx+=N;paint(false)}},reduce?0:520)};
+  const play=()=>{if(reduce)return;clearInterval(timer);timer=setInterval(next,2400)};
+  const stop=()=>clearInterval(timer);
+  stripRoot.querySelectorAll("[data-dir]").forEach(b=>b.addEventListener("click",()=>{(+b.dataset.dir>0?next:prev)();play();}));
+  stripRoot.addEventListener("mouseenter",stop);
+  stripRoot.addEventListener("mouseleave",play);
+  stripRoot.addEventListener("focusin",stop);
+  stripRoot.addEventListener("focusout",e=>{if(!stripRoot.contains(e.relatedTarget))play()});
+  window.addEventListener("resize",()=>{clearTimeout(hold);paint(false)});
+  paint(false);
+  play();
+}
