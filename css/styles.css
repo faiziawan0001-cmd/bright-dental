@@ -1737,10 +1737,10 @@ html.js .fit-line { white-space: nowrap; }
 @media (max-width: 768px) {
   .hs { height: auto; min-height: auto; max-height: none; align-items: flex-start; padding: 130px 0 100px; }
   .hs .hero > div:first-child { max-width: 100%; }
-  .hs .eb { margin-bottom: 20px; padding: 6px 14px; white-space: nowrap; text-align: left; }
-  .hs .eb .eb-full { display: none; }
-  .hs .eb .eb-short { display: inline; }
-  .hs .eb span { font-size: .7rem; line-height: 1.4; letter-spacing: .1em; }
+  .hs .eb { margin-bottom: 20px; padding: 6px 14px; white-space: normal; text-align: left; }
+  .hs .eb .eb-full { display: inline; }
+  .hs .eb .eb-short { display: none; }
+  .hs .eb span { font-size: .7rem; line-height: 1.4; letter-spacing: .1em; white-space: normal; }
   .hs h1 { font-size: clamp(2.15rem, 4.8vw, 3.5rem); line-height: 1.12; margin-bottom: 18px; }
   .hs p, .hero p { font-size: clamp(1rem, 1.8vw, 1.1rem); max-width: 100%; line-height: 1.65; margin-bottom: 30px; }
   .hs .hero-btns { flex-direction: column; align-items: stretch; gap: 12px; margin-top: 0; margin-bottom: 26px; }
