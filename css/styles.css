@@ -1724,3 +1724,70 @@ html.js .fit-line { white-space: nowrap; }
   .footer-bottom { gap: 6px; }
   .hs .eb { padding: 5px 10px; }
 }
+
+/* =========================================================
+   MOBILE PARITY FIXES — appended last so they take priority
+   ========================================================= */
+
+/* Fix 1: Floating 5.0★ Google Rating badge — on mobile the inline
+   right:-20px / bottom:-20px spills outside the viewport.
+   Clamp it inside the image on any screen ≤820px. */
+@media (max-width: 820px) {
+  .pic { overflow: hidden !important; }
+  .pic .gl {
+    right: 12px !important;
+    bottom: 12px !important;
+    left: auto !important;
+  }
+}
+
+/* Fix 2: "Our Story" + "Call us now" buttons in the Welcome/About
+   section — stack them full-width on phones so each is a comfortable
+   thumb target. The wrapper already has flex-wrap, so just make
+   the buttons expand when they do wrap. */
+@media (max-width: 600px) {
+  .two > div > div[style*="display:flex"],
+  .two > div > div[style*="display: flex"] {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .two > div > div[style*="display:flex"] .btn,
+  .two > div > div[style*="display: flex"] .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  /* Also fix the inline padding-left on the text column
+     which causes a subtle overflow on 360px devices */
+  .two > div[style*="padding-left"] {
+    padding-left: 0 !important;
+  }
+}
+
+/* Fix 3: CTA banner heading nowrap guard.
+   When JS is active the heading gets white-space:nowrap so JS can
+   measure and scale it. Add an overflow guard so, on the rare
+   frame before fitCTAHeadings() fires, it clips instead of scrolling. */
+html.js .consult-strip h2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Fix 4: Bento grid right-column cards — give them a sensible
+   minimum so they never collapse to zero height between 560-900px. */
+@media (min-width: 561px) and (max-width: 900px) {
+  .explore-grid--bento {
+    grid-template-rows: 280px 240px;
+  }
+  .explore-card {
+    min-height: 200px;
+  }
+}
+
+/* Fix 5: On very narrow phones (≤360px) keep the header from
+   wrapping the logo onto a second line */
+@media (max-width: 360px) {
+  .logo { font-size: .82rem; }
+  .logo svg { width: 28px; height: 28px; }
+}
