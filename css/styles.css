@@ -445,8 +445,32 @@ html.js .js-rev { opacity: 0; transform: translateY(28px); transition: opacity .
 html.js .js-rev.in { opacity: 1; transform: none; }
 .smile-grid .js-rev:nth-child(2) { transition-delay: .1s; }
 .smile-grid .js-rev:nth-child(3) { transition-delay: .2s; }
+
+/* Reference-style directional reveals (homepage sections below the hero only).
+   Same timing/easing as the reference: .fade-in rises, .fade-in-left/right slide in.
+   Uses keyframes with backwards fill so elements finish on their normal styles and
+   existing hover transitions on cards keep working after the reveal. */
+html.js .fade-in, html.js .fade-in-left, html.js .fade-in-right { opacity: 0; }
+html.js .fade-in.in { opacity: 1; animation: revUp .7s ease backwards; }
+html.js .fade-in-left.in { opacity: 1; animation: revLeft .7s ease backwards; }
+html.js .fade-in-right.in { opacity: 1; animation: revRight .7s ease backwards; }
+@keyframes revUp { from { opacity: 0; transform: translateY(24px); } }
+@keyframes revLeft { from { opacity: 0; transform: translateX(-40px); } }
+@keyframes revRight { from { opacity: 0; transform: translateX(40px); } }
+
+/* Reference-style .stagger: the container reveals and its children rise in sequence. */
+html.js .stagger > * { opacity: 0; }
+html.js .stagger.in > * { opacity: 1; animation: revUp .7s ease backwards; }
+html.js .stagger.in > *:nth-child(1) { animation-delay: 0s; }
+html.js .stagger.in > *:nth-child(2) { animation-delay: .1s; }
+html.js .stagger.in > *:nth-child(3) { animation-delay: .2s; }
+html.js .stagger.in > *:nth-child(4) { animation-delay: .3s; }
+html.js .stagger.in > *:nth-child(5) { animation-delay: .4s; }
+html.js .stagger.in > *:nth-child(6) { animation-delay: .5s; }
+
 @media (prefers-reduced-motion: reduce) {
   .js-rev { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .fade-in, .fade-in-left, .fade-in-right, .stagger > * { opacity: 1 !important; transform: none !important; animation: none !important; }
 }
 
 @media (max-width: 980px) { .smile-grid { grid-template-columns: 1fr 1fr; gap: 20px; } }

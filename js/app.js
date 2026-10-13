@@ -212,7 +212,7 @@ if(wkHome){
   }).join("");
 }
 /* Reference-style scroll reveal: sections rise into place as they enter view. */
-const revs=$$(".js-rev");
+const revs=$$(".js-rev, .fade-in, .fade-in-left, .fade-in-right, .stagger");
 if(revs.length){
   if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion: reduce)").matches){
     const rObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");rObs.unobserve(e.target)}}),{threshold:.15,rootMargin:"0px 0px -40px 0px"});
