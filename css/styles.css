@@ -1729,19 +1729,43 @@ html.js .fit-line { white-space: nowrap; }
   .budget-out::before { content: ""; position: absolute; top: 0; left: 16px; right: 16px; border-top: 2px dashed var(--line); }
 }
 
-/* Homepage hero on phones: content-height, top-aligned, readable badge — matches the Ahmed Clinic reference.
-   Kept last in the file so it overrides the earlier <=560px hero rules (fluid type, eyebrow nowrap, etc.). */
+/* Homepage hero on phones — mirrors the Ahmed Clinic reference:
+   top-aligned content, stacked full-width CTAs, column trust list, the same
+   heading / subheading type scale, short badge text and a visible scroll cue.
+   Kept last in the file so it overrides the earlier <=560px hero rules. */
 .eb-short { display: none; }
 @media (max-width: 768px) {
-  .hs { height: auto; min-height: 0; max-height: none; align-items: flex-start; padding: calc(104px + env(safe-area-inset-top, 0px)) 0 56px; }
-  .hs .eb { justify-content: center; padding: 7px 14px; }
+  .hs { height: auto; min-height: auto; max-height: none; align-items: flex-start; padding: 130px 0 100px; }
+  .hs .hero > div:first-child { max-width: 100%; }
+  .hs .eb { margin-bottom: 20px; padding: 6px 14px; white-space: nowrap; text-align: left; }
   .hs .eb .eb-full { display: none; }
   .hs .eb .eb-short { display: inline; }
-  .hs .eb span { white-space: nowrap; font-size: 11.5px; line-height: 1.4; letter-spacing: .08em; }
-  .hs h1 { font-size: clamp(2rem, 8.6vw, 2.5rem); }
-  .hs .hero-btns { flex-direction: column; align-items: stretch; gap: 12px; margin-top: 24px; }
-  .hs .hero-btns .btn { width: 100%; justify-content: center; min-height: 50px; }
-  .hs .trust { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .hs .eb span { font-size: .7rem; line-height: 1.4; letter-spacing: .1em; }
+  .hs h1 { font-size: clamp(2.15rem, 4.8vw, 3.5rem); line-height: 1.12; margin-bottom: 18px; }
+  .hs p, .hero p { font-size: clamp(1rem, 1.8vw, 1.1rem); max-width: 100%; line-height: 1.65; margin-bottom: 30px; }
+  .hs .hero-btns { flex-direction: column; align-items: stretch; gap: 12px; margin-top: 0; margin-bottom: 26px; }
+  .hs .hero-btns .btn { width: 100%; justify-content: center; }
+  .hs .trust { flex-direction: column; align-items: flex-start; gap: 12px; }
   .hs .trust .ti { white-space: normal; }
-  .hs .scb { display: none; }
+  .hs .scb { bottom: 24px; }
+}
+@media (max-width: 420px) {
+  .hs .eb { white-space: normal; line-height: 1.4; }
+  .hs h1 { font-size: clamp(1.9rem, 9vw, 2.3rem); }
+  .hs .trust .ti { font-size: .8rem; }
+}
+
+/* Site-wide mobile parity with the Ahmed Clinic reference (<=480px).
+   Every section already collapses on phones; these rules align the remaining
+   metric values — gutters, button sizing, stat cards and footer links — with
+   the reference's small-screen scale. Scoped to <=480px so nothing above the
+   reference's own breakpoint changes. */
+@media (max-width: 480px) {
+  .w { padding-left: 16px; padding-right: 16px; }
+  .btn { padding: 12px 24px; font-size: .88rem; }
+  .stats { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
+  .stats b { font-size: 1.8rem; }
+  .footer-grid { gap: 16px 14px; }
+  .footer-col ul li a { font-size: .76rem; }
+  .footer-bottom { gap: 6px; }
 }
