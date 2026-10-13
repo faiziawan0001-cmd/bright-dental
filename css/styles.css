@@ -81,7 +81,7 @@ html:not(.js) .strip .swin{overflow-x:auto}
 .feat{display:flex;gap:16px;align-items:flex-start}
 .feat .ic{margin-bottom:0;flex-shrink:0;font-size:1.2rem;color:var(--blue)}
 .feat h4{margin:0 0 4px;font-size:1.05rem;color:var(--navy)}
-.feat p{margin:0;font-size:var(--fs-small);line-height:1.6}.hero .btn{margin:0 10px 10px 0}footer .grid{gap:28px}.mb{display:none}.mn{display:none;cursor:pointer;font-size:1.6rem;color:var(--navy);line-height:1;background:none;border:0;padding:0 4px}
+.feat p{margin:0;font-size:var(--fs-small);line-height:1.6}.hero .btn{margin:0 10px 10px 0}footer .grid{gap:28px}.mn{display:none;cursor:pointer;font-size:1.6rem;color:var(--navy);line-height:1;background:none;border:0;padding:0 4px}
 
 @media(max-width:820px){.hs{background:linear-gradient(rgba(7,20,40,.28),rgba(7,20,40,.28)),linear-gradient(90deg,rgba(7,20,40,.62) 0%,rgba(7,20,40,.35) 35%,rgba(7,20,40,0) 62%),linear-gradient(180deg,rgba(7,20,40,.45) 0%,rgba(7,20,40,0) 18%),url('../images/landing-image-mobile.jpg') center/cover no-repeat,url('../images/landing-image.webp') center 25%/cover no-repeat}}
 .hs h1,.hs .eb,.hs p,.hs .trust .ti{text-shadow:0 1px 3px rgba(7,20,40,.5),0 2px 18px rgba(7,20,40,.55)}
@@ -142,14 +142,12 @@ html:not(.js) .strip .swin{overflow-x:auto}
 .star{color:#f5a623;letter-spacing:2px}.tl{border-left:3px solid var(--blue);padding-left:22px}.tl p{margin:0 0 14px}
 details{border-top:1px solid var(--line);padding:10px 0}summary{cursor:pointer;font-weight:600;color:var(--navy)}
 footer{background:var(--tint);padding:46px 0;font-size:.92rem}
-/* Mobile bottom contact bar (< 768px). */
-.fl{display:none}
 dialog{border:0;border-radius:24px;padding:30px;width:min(480px,92vw);background:var(--card);color:var(--txt);max-height:88vh;overflow:auto}dialog::backdrop{background:rgba(8,16,30,.6);backdrop-filter:blur(3px)}
 label{display:block;font-weight:600;font-size:.85rem;margin:10px 0 4px;color:var(--navy)}input,select{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--navy);font:inherit}
 .err{color:#c0392b;font-size:.82rem;min-height:1em}.est{font-size:2rem;font-weight:800;color:var(--blue)}
 @media(max-width:820px){header{padding:10px 16px;gap:10px}.hero{grid-template-columns:1fr;padding:36px 0 40px;gap:36px}.vis{max-width:400px;width:100%;margin:0 auto}.stats{grid-template-columns:1fr 1fr;margin-bottom:40px}.ph{padding-top:40px}.tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px}.tabs button{flex:none}.card{padding:22px}.ba{height:180px}footer{padding-bottom:90px}}
 @media(max-width:520px){.g3{display:none}.gl{padding:8px 12px;font-size:.75rem}.gl b{font-size:1rem}.btn{padding:13px 20px}.hs .eb{font-size:.64rem;letter-spacing:.1em;padding:6px 12px;gap:6px}.hs .hero-btns .btn{padding:13px 22px;font-size:.88rem}.trust{flex-direction:column;align-items:flex-start;gap:12px}.ti{font-size:.8rem;white-space:normal}}
-@media(max-width:980px){header{display:flex;flex-wrap:wrap}.ha{margin-left:auto}.hb,.tel{display:none}header .btn.hb{display:none}.mn,.mb{display:block}nav{display:none;order:9;width:100%;flex-direction:column;gap:0}nav.open{display:flex}nav a{padding:13px 4px;border-bottom:1px solid var(--line);font-size:1rem}}@media(max-width:820px){.ph{padding:40px 20px}.hs{padding:36px 0 40px}.two{grid-template-columns:1fr;gap:28px}.top{display:none}}#svp,#wk,#rv{grid-template-columns:repeat(3,1fr)}@media(max-width:900px){#svp,#wk,#rv{grid-template-columns:1fr 1fr}}@media(max-width:820px){.hs{padding:108px 0 56px;height:auto;min-height:100svh;max-height:none}.ph{padding:104px 20px 40px}.wm{opacity:.08;width:70vw}}@media(max-width:768px){#svp,#wk,#rv{grid-template-columns:1fr}}
+@media(max-width:980px){header{display:flex;flex-wrap:wrap}.ha{margin-left:auto}.hb,.tel{display:none}header .btn.hb{display:none}.mn{display:block}nav{display:none;order:9;width:100%;flex-direction:column;gap:0}nav.open{display:flex}nav a{padding:13px 4px;border-bottom:1px solid var(--line);font-size:1rem}}@media(max-width:820px){.ph{padding:40px 20px}.hs{padding:36px 0 40px}.two{grid-template-columns:1fr;gap:28px}.top{display:none}}#svp,#wk,#rv{grid-template-columns:repeat(3,1fr)}@media(max-width:900px){#svp,#wk,#rv{grid-template-columns:1fr 1fr}}@media(max-width:820px){.hs{padding:108px 0 56px;height:auto;min-height:100svh;max-height:none}.ph{padding:104px 20px 40px}.wm{opacity:.08;width:70vw}}@media(max-width:768px){#svp,#wk,#rv{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .ci{width:18px;height:18px;vertical-align:-3px;margin-right:8px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 /* Luxury touches for services */
@@ -530,9 +528,8 @@ html.js .js-rev.in { opacity: 1; transform: none; }
    Contents
      1.  Foundation & overflow guards
      2.  Safe areas (notched phones)
-     3.  Touch targets, tap feedback, hover fallbacks
-      4.  Floating contact widgets (mobile bar / desktop WhatsApp pill)
-     5.  Mobile navigation panel
+  3.  Touch targets, tap feedback, hover fallbacks
+  5.  Mobile navigation panel
      6.  Fluid typography
      7.  Hero & inner page header
      8.  Sections, cards & multi-column grids
@@ -569,12 +566,6 @@ html:has(dialog:modal) { overflow: hidden; }
   .ph { padding: calc(130px + env(safe-area-inset-top, 0px)) clamp(16px, 4vw, 20px) 64px; }
   .hs { padding-top: calc(130px + env(safe-area-inset-top, 0px)); }
 }
-/* The sticky action bar only exists below 768px, so reserve room for it there. */
-@media (max-width: 767px) {
-  body { padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
-  footer { padding-bottom: 30px; }
-}
-
 /* --- 3. Touch targets, tap feedback, hover fallbacks ---------------------- */
 a, button, input, select, textarea, summary, [role="button"] {
   touch-action: manipulation;
@@ -615,43 +606,6 @@ header:is(:not(.sc),.mo) #th:hover { background: rgba(143,205,245,.16); border-c
   .story-card:hover .story-cta i { transform: none; }
   .testimonials__ctrl-btn:hover { background: var(--card); color: var(--navy); border-color: var(--line); }
   .tabs button:not(.on):hover { background: transparent; color: var(--txt); }
-}
-
-/* --- 4. Floating contact widgets ------------------------------------------ */
-/* Mobile (< 768px): a fixed full-width bar with three equal-width buttons -
-   Call, WhatsApp and Book now - pinned above the home indicator.
-   Desktop (>= 768px): that bar is hidden completely and a fixed green
-   "Chat on WhatsApp" pill sits in the bottom right corner instead. */
-.fl .wa .ci { fill: currentColor; stroke: none; }
-@media (max-width: 767px) {
-  .fl {
-    display: flex;
-    position: fixed; left: 0; right: 0; bottom: 0;
-    gap: 8px; justify-content: center;
-    padding: 10px 14px;
-    /* iOS home indicator: keep the bar clear of it. */
-    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
-    background: color-mix(in srgb, var(--card) 94%, transparent);
-    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
-    border-top: 1px solid var(--line);
-    box-shadow: 0 -2px 18px rgba(30, 58, 110, .16);
-    z-index: 20;
-  }
-  .fl .btn {
-    flex: 1 1 0; min-width: 0; min-height: 44px;
-    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-    padding: 13px 8px; font-size: .82rem; line-height: 1.2;
-    white-space: nowrap; text-align: center; border-radius: 12px;
-  }
-  .fl .ci { width: 16px; height: 16px; margin-right: 0; flex: none; }
-}
-/* While any modal (service details, booking form, ...) is open, the bottom bar
-   steps aside so it can never cover the dialog; closing the dialog restores it
-   to display: flex. Pure CSS via :has() - no JS state that can go stale, the
-   same approach as the scroll lock above. Desktop keeps .fl hidden anyway. */
-html:has(dialog[open]) .fl { display: none; }
-@media (max-width: 767px) {
-  html:not(:has(dialog[open])) .fl { display: flex; }
 }
 
 /* --- 5. Mobile navigation panel ------------------------------------------- */
@@ -936,7 +890,6 @@ dialog::backdrop { z-index: 10000; }
     transition-duration: .001ms !important; scroll-behavior: auto !important;
   }
   .hero .in, .wk-hero-content { opacity: 1 !important; transform: none !important; }
-  .fl { -webkit-backdrop-filter: none; backdrop-filter: none; }
   .ring, .sp, .vis > svg.big { animation: none !important; }
 }
 
@@ -1735,7 +1688,7 @@ html.js .fit-line { white-space: nowrap; }
    Kept last in the file so it overrides the earlier <=560px hero rules. */
 .eb-short { display: none; }
 @media (max-width: 768px) {
-  .hs { height: auto; min-height: auto; max-height: none; align-items: flex-start; padding: 130px 0 100px; }
+  .hs { height: auto; min-height: calc(100vh - 60px); min-height: calc(100svh - 60px); max-height: none; align-items: flex-start; padding: 130px 0 100px; }
   .hs .hero > div:first-child { max-width: 100%; }
   .hs .eb { margin-bottom: 20px; padding: 6px 14px; white-space: normal; text-align: left; }
   .hs .eb .eb-full { display: inline; }
