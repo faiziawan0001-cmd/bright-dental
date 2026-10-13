@@ -1691,9 +1691,10 @@ html.js .fit-line { white-space: nowrap; }
   .hs { height: auto; min-height: calc(100vh - 60px); min-height: calc(100svh - 60px); max-height: none; align-items: flex-start; padding: 130px 0 100px; }
   .hs .hero > div:first-child { max-width: 100%; }
   .hs .eb { margin-bottom: 20px; padding: 6px 14px; white-space: normal; text-align: left; }
-  .hs .eb .eb-full { display: inline; }
-  .hs .eb .eb-short { display: none; }
-  .hs .eb span { font-size: .7rem; line-height: 1.4; letter-spacing: .1em; white-space: normal; }
+  .hs .eb .eb-full { display: none; }
+  .hs .eb .eb-short { display: inline; }
+  .eb, .hs .eb span { font-size: .6rem; letter-spacing: .06em; }
+  .hs .eb span { line-height: 1.4; white-space: normal; }
   .hs h1 { font-size: clamp(2.15rem, 4.8vw, 3.5rem); line-height: 1.12; margin-bottom: 18px; }
   .hs p, .hero p { font-size: clamp(1rem, 1.8vw, 1.1rem); max-width: 100%; line-height: 1.65; margin-bottom: 30px; }
   .hs .hero-btns { flex-direction: column; align-items: stretch; gap: 12px; margin-top: 0; margin-bottom: 26px; }
@@ -1721,4 +1722,5 @@ html.js .fit-line { white-space: nowrap; }
   .footer-grid { gap: 16px 14px; }
   .footer-col ul li a { font-size: .76rem; }
   .footer-bottom { gap: 6px; }
+  .hs .eb { padding: 5px 10px; }
 }
